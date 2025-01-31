@@ -1,9 +1,9 @@
 # diabetic-meal-planner
 
 ## Description 
-The Diabetic Meal Planner is a mobile iOS application targeted to aid patients in tracking important nutrients, creating weekly meal plans through diabetic friendly recipes and providing cost-friendly ways to purchase meal ingredients to help individuals sustain a diabetic friendly diet.
+Glucose Genie is a stand-alone mobile iOS application targeted to aid patients in tracking important nutrients, creating weekly meal plans through diabetic friendly recipes and providing cost-friendly ways to purchase meal ingredients to help individuals sustain a diabetic friendly diet.
 
-## Diabetic Meal Planner webpage:
+## Glucose Genie webpage:
 https://seniorproject.cci.drexel.edu/project/1cc9ab4d-ca3b-451a-8dc6-10bf035e1d72/
 
 ### Team Members
