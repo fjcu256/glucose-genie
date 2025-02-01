@@ -1,61 +1,111 @@
-#### Github Workflow
+# Github Workflow
 
 Below are the steps each team member is expected to follow when making changes to the main repository. 
 
-1. Each member should have their own fork of the main repository. Create a fork with the button at 
-the upper right corner of the main repo's screen. 
-2. Clone Fork *git clone git@github.com:user_name/repo-name.git*
-3. Add remotes (upstream)
-	- *git remote add upstream git@github.com:main_user_name/repo-name.git*
- - To check if added successfully:
- - - *git remote -v* 
+## Getting Started
 
+Each member should have a fork of the main `glucose-genie` repository.
 
-4. Sync with main
-- git fetch upstream main 
-- git rebase upstream/main
-- git log To check that most recent updates are at the top.
-- git push -f origin master To push synced main branch to your personal fork.
+### 1. Create a fork using the button at 
+the upper right corner of the browser version of the main repo's home screen [home screen](https://github.com/fjcu256/glucose-genie). 
 
-5. Whenever working on a new feature or change create a new feature branch. 
- - git checkout -b new-branch-name
- - git branch To check you've successfully created the new branch. 
+### 2. Clone Fork 
 
-6. Make changes to existing codebase on your branch. Stage changes for commit by 'add'.
- - git add file-name
- - OR git add -A To add all changes made to staging area.
+Create a new directory on your Mac where you will be working on the code locally. Go to the folder and clone your fork. 
 
-7. Check that changes are in staging area.
- - git status
+`git clone git@github.com:fjcu256/glucose-genie.git`
 
-8. Commit staged changes with message. 
- - git commit -m "Your commit message"
+### 3. Add remotes (upstream)
+`git remote add upstream git@github.com:user_name/repo-name.git`
 
-9. Sync the feature branch with main before pushing. 
- -  While on feature branch:
- - git fetch upstream main 
- - git rebase upstream/main
- - git log Verify that your newest changes are on top of previous commits in main. 
+To check if added successfully: `git remote -v`
 
-10. Push to main.
- + a. If a PR has not been opened yet: 
-	- git push -u origin branch-name
- 	- git branch -vv To check if remote tracking has been set up.
- + b. If commiting to existing PR:
-	- git push -f To push synced feature branch to your fork. 
+## Continuous Development
+The following steps should always be taken when adding new code to the main branch. We will follow a continous PR workflow where all changes will be made locally on a new feature branch ontop the existing main branch. When changes are made the developer will create a PR and request a review from the team. Once the PR is approved, the PR can be merged into the main branch. 
 
-11. Create Pull Request (PR).
- - Go to the main repo website from your browser. When you refresh you should receive a pop-up to create a new PR. 
- - Request a review from team-mates and communicate before approving your changes and merging into main. 
+### 1. Sync with main
+Synchronizing the fork with the main branch should always be done before creating a new feature branch. 
 
-12. Ensure all team-mates are OK with new code and select 'Squash and Merge' to add your code changes into main.
+```
+git fetch upstream main
+git rebase upstream/main
+```
+To check that the most recent updates are at the top:
 
-13. Delete your local and remote branches that were used for the changes. 
+ `git log` 
+
+To push the synced main branch to your origin: 
+
+`git push -f origin master`
+
+### 2. Create new feature branch 
+Whenever working on a new feature or code change create a new feature branch. 
+```
+ git checkout -b <new-branch-name>
+ ```
+ To check the new branch was successfully created: `git branch`
+
+### 3. Add changes to staging
+Make changes to existing codebase on your branch. 
+Add changes to the staging area in order to commit:
+`git add <file_name>` or `git add -A` to add all changes to the staging area. 
+
+To check that changes are in the staging area:
+
+`git status`
+
+### 4. Commit staged changes with message
+After changes are in staging you can commit the change and add a commit message.
+```
+git commit -m "Your commit message"
+```
+
+### 5. Sync with main before pushing
+Sync the feature branch with the main branch before pushing to ensure that all of your new changes are ontop of the existing codebase and any new changes from other contributors that may have been made while working on your own feature. 
+
+From the feature branch:
+```
+git fetch upstream main 
+git rebase upstream/main
+```
+Use `git log` to verify that your newest changes are ontop of the newest commits in the main branch. 
+
+### 6. Push to main
+
+#### If a PR has not been created:
+
+``` 
+git push -u origin <branch-name>
+```
+
+Use `git branch -vv` to check that remote tracking has been set up.
+
+#### If commiting to an existing PR:
+
+```
+git push origin <branch-name>
+```
+Depending on whether new changes have been made while the developer was working on the feature branch, a force push may be required. 
+
+```
+ git push -f origin <branch-name>
+```
+
+### 7. Create Pull Request (PR)
+After the developer pushes new changes on a new feature branch to their remote a PR needs to be made and opened for review before the new changes can be commited in the main branch. 
+ - Go to the main repo website from your browser. After refreshing, a pop-up will appear to create a new PR. 
+ - Request a review from teammates to look over the code changes, leave comments and suggestions for any changes that need to be made before merging. 
+ - Once the PR is approved, **Squash and Merge** the changes into the main branch.
+
+### 8. Delete branches
+Delete your local and remote branches that were used for the new changes. 
 
 Delete from local branch (ensure you are on main branch and *not* on feature branch):
- - git branch -D branch-name
-
-Delete from public repo/remote
- - git push --delete origin branch-name
-
-14. Repeat process whenever new changes to main are made. 
+```
+git branch -D <branch-name>
+```
+Delete from public repo/remote:
+```
+git push --delete origin <branch-name>
+```
+### 9. Repeat steps 1-8 whenever new changes to main are made. 
