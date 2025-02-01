@@ -36,7 +36,7 @@ To check that the most recent updates are at the top:
 
 To push the synced main branch to your origin: 
 
-`git push -f origin master`
+`git push -f origin main`
 
 ### 2. Create new feature branch 
 Whenever working on a new feature or code change create a new feature branch. 
