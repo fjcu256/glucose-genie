@@ -1,4 +1,4 @@
-# diabetic-meal-planner
+# Glucose-Genie
 
 ## Description 
 Glucose Genie is a stand-alone mobile iOS application targeted to aid patients in tracking important nutrients, creating weekly meal plans through diabetic friendly recipes and providing cost-friendly ways to purchase meal ingredients to help individuals sustain a diabetic friendly diet.
