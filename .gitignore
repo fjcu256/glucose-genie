@@ -1,0 +1,48 @@
+# Xcode & Derived Data
+DerivedData/
+*.xcworkspace
+*.xcuserdata/
+*.xcuserstate
+
+# Build & Intermediate Files
+build/
+*.xcarchive
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.dSYM.gif
+
+# Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Swift PM Binary Artifacts
+.artifacts/
+
+# Swift PM build folder
+.build/
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Other
+*.moved-aside
+*.swp
+*.swo
+*~
+
+# Personal / Machine-specific
+.idea/
+.vscode/
+*.DS_Store
+*.env
