@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		14FFDD3620BCA9BAEBD88013 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */; };
 		1C7175124ED8CDE24B3CCFB7 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = D8729492447C7EDF07254D62 /* awsconfiguration.json */; };
+		265A25F32D6BCFED000A59B2 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 265A25F22D6BCFED000A59B2 /* AWSCognitoAuthPlugin */; };
+		265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */; };
+		265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F72D6BD519000A59B2 /* LandingView.swift */; };
+		265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F92D6BD5A7000A59B2 /* MainView.swift */; };
 		7F1ADDD82D6A825F0089909E /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 7F1ADDD72D6A825F0089909E /* Amplify */; };
 		FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0C92D63C3F700525F77 /* GlucoseGenieApp.swift */; };
 		FD2EC0CC2D63C3F700525F77 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0CB2D63C3F700525F77 /* ContentView.swift */; };
@@ -38,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		265A25F42D6BD06C000A59B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		265A25F92D6BD5A7000A59B2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		D8729492447C7EDF07254D62 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		FD2EC0C62D63C3F700525F77 /* GlucoseGenie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseGenie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F1ADDD82D6A825F0089909E /* Amplify in Frameworks */,
+				265A25F32D6BCFED000A59B2 /* AWSCognitoAuthPlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +88,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		265A25F12D6BCFED000A59B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3C2144024792AF640B947A66 /* AmplifyConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +112,7 @@
 				FD2EC0E52D63C40000525F77 /* GlucoseGenieUITests */,
 				FD2EC0C72D63C3F700525F77 /* Products */,
 				3C2144024792AF640B947A66 /* AmplifyConfig */,
+				265A25F12D6BCFED000A59B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,8 +129,12 @@
 		FD2EC0C82D63C3F700525F77 /* GlucoseGenie */ = {
 			isa = PBXGroup;
 			children = (
+				265A25F42D6BD06C000A59B2 /* Info.plist */,
 				FD2EC0C92D63C3F700525F77 /* GlucoseGenieApp.swift */,
+				265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */,
 				FD2EC0CB2D63C3F700525F77 /* ContentView.swift */,
+				265A25F72D6BD519000A59B2 /* LandingView.swift */,
+				265A25F92D6BD5A7000A59B2 /* MainView.swift */,
 				FD2EC0CD2D63C3F700525F77 /* Item.swift */,
 				FD2EC0CF2D63C3FE00525F77 /* Assets.xcassets */,
 				FD2EC0D12D63C3FE00525F77 /* Preview Content */,
@@ -164,6 +185,7 @@
 			name = GlucoseGenie;
 			packageProductDependencies = (
 				7F1ADDD72D6A825F0089909E /* Amplify */,
+				265A25F22D6BCFED000A59B2 /* AWSCognitoAuthPlugin */,
 			);
 			productName = GlucoseGenie;
 			productReference = FD2EC0C62D63C3F700525F77 /* GlucoseGenie.app */;
@@ -285,8 +307,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD2EC0CC2D63C3F700525F77 /* ContentView.swift in Sources */,
+				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
+				265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */,
 				FD2EC0CE2D63C3F700525F77 /* Item.swift in Sources */,
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
+				265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +477,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"GlucoseGenie/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlucoseGenie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -480,6 +506,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"GlucoseGenie/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GlucoseGenie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -623,6 +650,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		265A25F22D6BCFED000A59B2 /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F1ADDD62D6A825F0089909E /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSCognitoAuthPlugin;
+		};
 		7F1ADDD72D6A825F0089909E /* Amplify */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7F1ADDD62D6A825F0089909E /* XCRemoteSwiftPackageReference "amplify-swift" */;
