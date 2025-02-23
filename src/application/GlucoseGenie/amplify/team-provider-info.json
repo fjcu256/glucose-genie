@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-glucosegenie-dev-cdcc8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::412381779806:role/amplify-glucosegenie-dev-cdcc8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::412381779806:role/amplify-glucosegenie-dev-cdcc8-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-glucosegenie-dev-cdcc8-deployment",
+      "UnauthRoleName": "amplify-glucosegenie-dev-cdcc8-unauthRole",
+      "StackName": "amplify-glucosegenie-dev-cdcc8",
+      "StackId": "arn:aws:cloudformation:us-east-1:412381779806:stack/amplify-glucosegenie-dev-cdcc8/55c01840-f168-11ef-84d0-0e3280fdf21d",
+      "AmplifyAppId": "d2qf9yijblr62q"
+    }
+  }
+}
