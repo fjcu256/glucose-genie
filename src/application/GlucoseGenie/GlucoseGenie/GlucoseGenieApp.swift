@@ -7,9 +7,14 @@
 
 import SwiftUI
 import SwiftData
+import Amplify
 
 @main
 struct GlucoseGenieApp: App {
+    init() {
+        configureAmplify()
+    }
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -28,5 +33,14 @@ struct GlucoseGenieApp: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+    }
+    
+    private func configureAmplify() {
+        do {
+            try Amplify.configure()
+            print("Amplify sucessfully configured")
+        } catch {
+            print("Could not configure Amplify")
+        }
     }
 }
