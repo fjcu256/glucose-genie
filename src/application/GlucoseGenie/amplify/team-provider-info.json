@@ -10,6 +10,11 @@
       "StackName": "amplify-glucosegenie-dev-cdcc8",
       "StackId": "arn:aws:cloudformation:us-east-1:412381779806:stack/amplify-glucosegenie-dev-cdcc8/55c01840-f168-11ef-84d0-0e3280fdf21d",
       "AmplifyAppId": "d2qf9yijblr62q"
+    },
+    "categories": {
+      "auth": {
+        "glucosegenie56529a16": {}
+      }
     }
   }
 }
