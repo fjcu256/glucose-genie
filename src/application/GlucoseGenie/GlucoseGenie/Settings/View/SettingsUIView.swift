@@ -9,8 +9,10 @@ import SwiftUI
 
 struct SettingsUIView: View {
     @State private var viewModel = SettingsUIViewModel()
+    @EnvironmentObject private var authenticationService: AuthenticationService
     
     var body: some View {
+        
         NavigationView {
             Form {
                 Section {
@@ -46,13 +48,15 @@ struct SettingsUIView: View {
     }
     
     private func handleLogOut() {
-        print("User logged out")
+        Task {
+            await authenticationService.signOut()
+        }
     }
     
 }
 
 struct SettingsUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsUIView()
+        SettingsUIView().environmentObject(AuthenticationService())
     }
 }
