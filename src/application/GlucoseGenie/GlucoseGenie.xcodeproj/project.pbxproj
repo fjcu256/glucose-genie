@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */; };
+		EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */; };
 		14FFDD3620BCA9BAEBD88013 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */; };
 		1C7175124ED8CDE24B3CCFB7 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = D8729492447C7EDF07254D62 /* awsconfiguration.json */; };
 		265A25F32D6BCFED000A59B2 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 265A25F22D6BCFED000A59B2 /* AWSCognitoAuthPlugin */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+
+		EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIView.swift; sourceTree = "<group>"; };
+		EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIViewModel.swift; sourceTree = "<group>"; };
 		265A25F42D6BD06C000A59B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
@@ -84,6 +89,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+
+		EB2BCA7F2D63CABF00D83213 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EB2BCA842D63DC9700D83213 /* Model */,
+				EB2BCA832D63DC9000D83213 /* ViewModel */,
+				EB2BCA822D63DC8300D83213 /* View */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		EB2BCA822D63DC8300D83213 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EB2BCA832D63DC9000D83213 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EB2BCA842D63DC9700D83213 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+        };
 		265A25F12D6BCFED000A59B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +163,7 @@
 		FD2EC0C82D63C3F700525F77 /* GlucoseGenie */ = {
 			isa = PBXGroup;
 			children = (
+				EB2BCA7F2D63CABF00D83213 /* Settings */,
 				265A25F42D6BD06C000A59B2 /* Info.plist */,
 				FD2EC0C92D63C3F700525F77 /* GlucoseGenieApp.swift */,
 				265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */,
@@ -300,6 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2EC0CC2D63C3F700525F77 /* ContentView.swift in Sources */,
+				EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */,
+				EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */,
+				FD2EC0CE2D63C3F700525F77 /* Item.swift in Sources */,
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
 				265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */,
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
