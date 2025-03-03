@@ -11,64 +11,55 @@ struct MainView: View {
     @State private var showMenu = false
     
     var body: some View {
-        //NavigationView {
+        NavigationStack {
             VStack {
                 Text("This is the main view :)")
+                
                 NavigationLink(destination: SettingsUIView()) {
                     Image(systemName: "gearshape.fill")
-            
-            
-            Button("Recipes") {
-                Task{
-                    // Go to recipe display page.
                 }
-            }
-            
-            // TODO Recipe Search Bar
-            // TODO Recipe Display
-            
-            Button("Weekly Meal Plan"){
-                Task {
-                    // Go to Weekly Meal Plan Page
-                    // Weekly meal plan page should have a section that
-                    // shows nutrient totals from recipes.
+                
+                Button("Recipes") {
+                    Task{
+                        // Go to recipe display page.
+                    }
                 }
-            }
-            Button("Saved Recipes"){
-                Task{
-                    // Go to Saved Recipes Page
+                
+                // TODO Recipe Search Bar
+                // TODO Recipe Display
+                
+                Button("Weekly Meal Plan"){
+                    Task {
+                        // Go to Weekly Meal Plan Page
+                        // Weekly meal plan page should have a section that
+                        // shows nutrient totals from recipes.
+                    }
                 }
-            }
-            Button("Grocery List"){
-                Task{
-                    // Go to GroceryListViewer Page
+                Button("Saved Recipes"){
+                    Task{
+                        // Go to Saved Recipes Page
+                    }
                 }
-            }
-            Button("Grocery Stores"){
-                Task{
-                    // Go to GroceryStoreViewer
+                Button("Grocery List"){
+                    Task{
+                        // Go to GroceryListViewer Page
+                    }
                 }
-            }
-
-            // TODO Sign out can be placed in menu
-            Button("Sign out") {
-                Task {
-                    await authenticationService.signOut()
+                Button("Grocery Stores"){
+                    Task{
+                        // Go to GroceryStoreViewer
+                    }
                 }
-            }
-            
-            Button("MORE"){
-                withAnimation {
-                    showMenu.toggle()
+                
+                // TODO Sign out can be placed in menu
+                Button("Sign out") {
+                    Task {
+                        await authenticationService.signOut()
+                    }
                 }
+                // end
             }
-            .padding()
-            //.frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.blue)
-            .ignoresSafeArea()
-            
         }
-        
     }
 }
 
