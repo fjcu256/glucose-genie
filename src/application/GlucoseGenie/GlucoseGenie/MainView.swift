@@ -18,46 +18,18 @@ struct MainView: View {
                 NavigationLink(destination: SettingsUIView()) {
                     Image(systemName: "gearshape.fill")
                 }
-                
-                Button("Recipes") {
-                    Task{
-                        // Go to recipe display page.
-                    }
+                NavigationLink(destination: RecipeView()) {
+                    Text("Recipes")
                 }
-                
-                // TODO Recipe Search Bar
-                // TODO Recipe Display
-                
-                Button("Weekly Meal Plan"){
-                    Task {
-                        // Go to Weekly Meal Plan Page
-                        // Weekly meal plan page should have a section that
-                        // shows nutrient totals from recipes.
-                    }
+                NavigationLink(destination: WeeklyMealPlanView()) {
+                    Text("Weekly Meal Plan")
                 }
-                Button("Saved Recipes"){
-                    Task{
-                        // Go to Saved Recipes Page
-                    }
+                NavigationLink(destination: SavedRecipesView()) {
+                    Text("Saved Recipes")
                 }
-                Button("Grocery List"){
-                    Task{
-                        // Go to GroceryListViewer Page
-                    }
+                NavigationLink(destination: GroceryStoreView()) {
+                    Text("Find Grocery Store")
                 }
-                Button("Grocery Stores"){
-                    Task{
-                        // Go to GroceryStoreViewer
-                    }
-                }
-                
-                // TODO Sign out can be placed in menu
-                Button("Sign out") {
-                    Task {
-                        await authenticationService.signOut()
-                    }
-                }
-                // end
             }
         }
     }

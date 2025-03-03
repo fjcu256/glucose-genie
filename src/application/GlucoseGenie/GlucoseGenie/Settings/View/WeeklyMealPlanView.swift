@@ -9,7 +9,9 @@ import SwiftUI
 
 struct WeeklyMealPlanView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Weekly Meal Plan View")
+        // Weekly meal plan page should have a section that
+        // shows nutrient totals from recipes.
     }
 }
 
