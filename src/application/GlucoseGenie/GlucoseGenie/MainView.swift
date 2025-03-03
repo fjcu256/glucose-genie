@@ -12,20 +12,21 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("This is the main view :)")
-                
+            VStack {                
                 NavigationLink(destination: SettingsUIView()) {
                     Image(systemName: "gearshape.fill")
                 }
                 NavigationLink(destination: RecipeView()) {
                     Text("Recipes")
                 }
+                NavigationLink(destination: SavedRecipesView()) {
+                    Text("Saved Recipes")
+                }
                 NavigationLink(destination: WeeklyMealPlanView()) {
                     Text("Weekly Meal Plan")
                 }
-                NavigationLink(destination: SavedRecipesView()) {
-                    Text("Saved Recipes")
+                NavigationLink(destination: GroceryListView()) {
+                    Text("Grocery List")
                 }
                 NavigationLink(destination: GroceryStoreView()) {
                     Text("Find Grocery Store")
