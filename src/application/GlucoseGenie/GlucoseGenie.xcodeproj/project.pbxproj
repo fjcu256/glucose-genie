@@ -26,6 +26,7 @@
 		FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
 		FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E012D761A9200654EEF /* GroceryStoreView.swift */; };
 		FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E032D761AC500654EEF /* SavedRecipesView.swift */; };
+		FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E052D761F7E00654EEF /* GroceryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanView.swift; sourceTree = "<group>"; };
 		FDF89E012D761A9200654EEF /* GroceryStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreView.swift; sourceTree = "<group>"; };
 		FDF89E032D761AC500654EEF /* SavedRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipesView.swift; sourceTree = "<group>"; };
+		FDF89E052D761F7E00654EEF /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */,
 				FDF89E012D761A9200654EEF /* GroceryStoreView.swift */,
 				FDF89E032D761AC500654EEF /* SavedRecipesView.swift */,
+				FDF89E052D761F7E00654EEF /* GroceryListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
 				FDF89DF62D760FEA00654EEF /* RecipeView.swift in Sources */,
 				FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */,
+				FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */,
 				265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */,
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
 				265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */,
