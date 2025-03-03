@@ -8,34 +8,63 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject private var authenticationService: AuthenticationService
-    @State private var showMenu = false
     
     var body: some View {
         NavigationStack {
-            VStack {                
-                NavigationLink(destination: SettingsUIView()) {
-                    Image(systemName: "gearshape.fill")
-                }
-                NavigationLink(destination: RecipeView()) {
-                    Text("Recipes")
-                }
-                NavigationLink(destination: SavedRecipesView()) {
-                    Text("Saved Recipes")
-                }
-                NavigationLink(destination: WeeklyMealPlanView()) {
-                    Text("Weekly Meal Plan")
-                }
-                NavigationLink(destination: GroceryListView()) {
-                    Text("Grocery List")
-                }
-                NavigationLink(destination: GroceryStoreView()) {
-                    Text("Find Grocery Store")
+            ZStack(alignment: .bottom) {
+                
+                
+                VStack(spacing: 20) {
+                    Spacer()
+                    
+                    NavigationLink(destination: SavedRecipesView()) {
+                        Text("Recipes").styledButton()
+                    }
+                    NavigationLink(destination: SavedRecipesView()) {
+                        Text("Saved Recipes").styledButton()
+                    }
+                    NavigationLink(destination: WeeklyMealPlanView()) {
+                        Text("Weekly Meal Plan").styledButton()
+                    }
+                    NavigationLink(destination: GroceryListView()) {
+                        Text("Grocery List").styledButton()
+                    }
+                    NavigationLink(destination: GroceryStoreView()) {
+                        Text("Find Grocery Store").styledButton()
+                    }
+                    Spacer()
+                }.padding()
+                
+                VStack {
+                    HStack {
+                      Spacer()
+                        NavigationLink(destination: SettingsUIView()) {
+                            Image(systemName: "gearshape.fill")
+                                .font(.largeTitle)
+                                .padding()
+                        }
+                    }.padding()
+                    Spacer()
                 }
             }
         }
     }
+    
 }
 
 #Preview {
     MainView()
+}
+
+extension View {
+    func styledButton(color: Color = .orange) -> some View {
+        self
+            .font(.title)
+            .frame(maxWidth: .infinity, minHeight: 50)
+            .padding()
+            .background(color)
+            .foregroundColor(.black)
+            .cornerRadius(15)
+            .padding(.horizontal)
+    }
 }
