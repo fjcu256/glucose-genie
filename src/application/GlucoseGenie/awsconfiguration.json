@@ -35,22 +35,30 @@
                 ]
             },
             "authenticationFlowType": "USER_SRP_AUTH",
-            "socialProviders": [],
-            "usernameAttributes": [],
-            "signupAttributes": [
-                "EMAIL"
+            "mfaConfiguration": "OFF",
+            "mfaTypes": [
+                "SMS"
             ],
             "passwordProtectionSettings": {
                 "passwordPolicyMinLength": 8,
                 "passwordPolicyCharacters": []
             },
-            "mfaConfiguration": "OFF",
-            "mfaTypes": [
-                "SMS"
+            "signupAttributes": [
+                "EMAIL"
             ],
+            "socialProviders": [],
+            "usernameAttributes": [],
             "verificationMechanisms": [
                 "EMAIL"
             ]
+        }
+    },
+    "AppSync": {
+        "Default": {
+            "ApiUrl": "https://qzxatnnfi5fwjmuo6b3ixhsbdu.appsync-api.us-east-1.amazonaws.com/graphql",
+            "Region": "us-east-1",
+            "AuthMode": "AMAZON_COGNITO_USER_POOLS",
+            "ClientDatabasePrefix": "glucosegenieAPI_AMAZON_COGNITO_USER_POOLS"
         }
     }
 }

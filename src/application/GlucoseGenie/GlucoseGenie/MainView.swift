@@ -43,6 +43,11 @@ struct MainView: View {
                                 .font(.largeTitle)
                                 .padding()
                         }
+                        NavigationLink(destination: APITestView()) {
+                            Image(systemName: "heart.fill")
+                                .font(.largeTitle)
+                                .padding()
+                        }
                     }.padding()
                     Spacer()
                 }
