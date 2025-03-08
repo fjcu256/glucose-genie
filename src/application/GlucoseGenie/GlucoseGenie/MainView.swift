@@ -38,6 +38,11 @@ struct MainView: View {
                             Text("Track Nutrients").styledButton()
                         }
                         Spacer()
+                        NavigationLink(destination: APITestView()) {
+                            Image(systemName: "heart.fill")
+                                .font(.largeTitle)
+                                .padding()
+                        }
                     }.padding()
                     
                     VStack {
