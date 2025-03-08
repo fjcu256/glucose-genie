@@ -24,6 +24,11 @@
 		FD2EC0DD2D63C40000525F77 /* GlucoseGenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0DC2D63C40000525F77 /* GlucoseGenieTests.swift */; };
 		FD2EC0E72D63C40000525F77 /* GlucoseGenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */; };
 		FD2EC0E92D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */; };
+		FDF89DF62D760FEA00654EEF /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DF52D760FEA00654EEF /* RecipeView.swift */; };
+		FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
+		FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E012D761A9200654EEF /* GroceryStoreView.swift */; };
+		FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E032D761AC500654EEF /* SavedRecipesView.swift */; };
+		FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E052D761F7E00654EEF /* GroceryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +68,11 @@
 		FD2EC0E22D63C40000525F77 /* GlucoseGenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseGenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITests.swift; sourceTree = "<group>"; };
 		FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FDF89DF52D760FEA00654EEF /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanView.swift; sourceTree = "<group>"; };
+		FDF89E012D761A9200654EEF /* GroceryStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreView.swift; sourceTree = "<group>"; };
+		FDF89E032D761AC500654EEF /* SavedRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipesView.swift; sourceTree = "<group>"; };
+		FDF89E052D761F7E00654EEF /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +165,11 @@
 			isa = PBXGroup;
 			children = (
 				EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */,
+				FDF89DF52D760FEA00654EEF /* RecipeView.swift */,
+				FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */,
+				FDF89E012D761A9200654EEF /* GroceryStoreView.swift */,
+				FDF89E032D761AC500654EEF /* SavedRecipesView.swift */,
+				FDF89E052D761F7E00654EEF /* GroceryListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,11 +394,16 @@
 				EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */,
 				EB51E4672D76236C00B9844B /* NutrientViewModel.swift in Sources */,
 				EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */,
+				FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */,
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
+				FDF89DF62D760FEA00654EEF /* RecipeView.swift in Sources */,
+				FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */,
+				FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */,
 				265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */,
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
 				265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */,
 				EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */,
+				FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
