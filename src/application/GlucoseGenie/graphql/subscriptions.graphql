@@ -1,0 +1,34 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreateTestDB($filter: ModelSubscriptionTestDBFilterInput) {
+  onCreateTestDB(filter: $filter) {
+    id
+    owner
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateTestDB($filter: ModelSubscriptionTestDBFilterInput) {
+  onUpdateTestDB(filter: $filter) {
+    id
+    owner
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteTestDB($filter: ModelSubscriptionTestDBFilterInput) {
+  onDeleteTestDB(filter: $filter) {
+    id
+    owner
+    description
+    createdAt
+    updatedAt
+    __typename
+  }
+}
