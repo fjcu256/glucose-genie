@@ -38,22 +38,22 @@ struct MainView: View {
                             Text("Track Nutrients").styledButton()
                         }
                         Spacer()
-                        NavigationLink(destination: APITestView()) {
-                            Image(systemName: "heart.fill")
-                                .font(.largeTitle)
-                                .padding()
-                        }
                     }.padding()
                     
                     VStack {
-                        HStack {
+                        HStack(spacing: -16) {
                           Spacer()
+                            NavigationLink(destination: APITestView()) {
+                                Image(systemName: "heart.fill")
+                                    .font(.largeTitle)
+                                    .padding()
+                            }
                             NavigationLink(destination: SettingsUIView()) {
                                 Image(systemName: "gearshape.fill")
                                     .font(.largeTitle)
                                     .padding()
                             }
-                        }.padding()
+                        }
                         Spacer()
                     }
                 }
