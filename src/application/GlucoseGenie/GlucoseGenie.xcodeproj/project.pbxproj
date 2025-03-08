@@ -162,6 +162,8 @@
 				EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */,
 			);
 			name = View;
+            sourceTree = "<group>";
+        };
 		687D680813159B2375EFE22F /* AmplifyModels */ = {
 			isa = PBXGroup;
 			children = (
