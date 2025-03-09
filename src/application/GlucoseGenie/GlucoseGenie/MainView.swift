@@ -11,50 +11,75 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
-                
-                
-                VStack(spacing: 20) {
-                    Spacer()
+            ScrollView {
+                ZStack(alignment: .bottom) {
                     
-                    NavigationLink(destination: SavedRecipesView()) {
-                        Text("Recipes").styledButton()
-                    }
-                    NavigationLink(destination: SavedRecipesView()) {
-                        Text("Saved Recipes").styledButton()
-                    }
-                    NavigationLink(destination: WeeklyMealPlanView()) {
-                        Text("Weekly Meal Plan").styledButton()
-                    }
-                    NavigationLink(destination: GroceryListView()) {
-                        Text("Grocery List").styledButton()
-                    }
-                    NavigationLink(destination: GroceryStoreView()) {
-                        Text("Find Grocery Store").styledButton()
-                    }
-                    Spacer()
-                }.padding()
-                
-                VStack {
-                    HStack {
-                      Spacer()
-                        NavigationLink(destination: SettingsUIView()) {
-                            Image(systemName: "gearshape.fill")
-                                .font(.largeTitle)
-                                .padding()
+                    VStack(spacing: 20) {
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                        NavigationLink(destination: SavedRecipesView()) {
+                            Text("Recipes").styledButton()
                         }
-                        NavigationLink(destination: APITestView()) {
-                            Image(systemName: "heart.fill")
-                                .font(.largeTitle)
-                                .padding()
+                        NavigationLink(destination: SavedRecipesView()) {
+                            Text("Saved Recipes").styledButton()
                         }
+                        NavigationLink(destination: WeeklyMealPlanView()) {
+                            Text("Weekly Meal Plan").styledButton()
+                        }
+                        NavigationLink(destination: GroceryListView()) {
+                            Text("Grocery List").styledButton()
+                        }
+                        NavigationLink(destination: GroceryStoreView()) {
+                            Text("Find Grocery Store").styledButton()
+                        }
+                        NavigationLink(destination:
+                                        NutrientUIView()) {
+                            Text("Track Nutrients").styledButton()
+                        }
+                        Spacer()
                     }.padding()
-                    Spacer()
+                    
+                    VStack {
+                        HStack(spacing: -16) {
+                          Spacer()
+                            NavigationLink(destination: APITestView()) {
+                                Image(systemName: "heart.fill")
+                                    .font(.largeTitle)
+                                    .padding()
+                            }
+                            NavigationLink(destination: SettingsUIView()) {
+                                Image(systemName: "gearshape.fill")
+                                    .font(.largeTitle)
+                                    .padding()
+                            }
+                        }
+                        Spacer()
+                    }
                 }
+                
             }
+            
         }
     }
     
+}
+
+struct NutrientInputField: View {
+    var title: String
+    @Binding var value: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.headline)
+            TextField("Enter \(title.lowercased())", text: $value)
+                .padding(.bottom)
+                .frame(width: 200.0)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.decimalPad)
+        }
+    }
 }
 
 #Preview {
