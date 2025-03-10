@@ -12,6 +12,7 @@ struct RecipeView: View {
         Text("Recipe Page!")
         // TODO Recipe Search Bar
         // TODO Recipe Display
+        
     }
 }
 

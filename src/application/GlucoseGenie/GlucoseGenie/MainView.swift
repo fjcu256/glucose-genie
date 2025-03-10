@@ -18,7 +18,7 @@ struct MainView: View {
                         Spacer()
                         Spacer()
                         Spacer()
-                        NavigationLink(destination: SavedRecipesView()) {
+                        NavigationLink(destination: RecipeView()) {
                             Text("Recipes").styledButton()
                         }
                         NavigationLink(destination: SavedRecipesView()) {
