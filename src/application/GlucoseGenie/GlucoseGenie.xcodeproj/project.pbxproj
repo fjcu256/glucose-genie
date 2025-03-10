@@ -24,13 +24,13 @@
 		EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51E4682D76246200B9844B /* NutrientLog.swift */; };
 		EBFAE15D2D7CD3AF00561A7A /* NutrientUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */; };
 		F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */; };
+		FD0CA5722D7F201F00243404 /* RecipeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0CA5712D7F201F00243404 /* RecipeUIView.swift */; };
 		FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0C92D63C3F700525F77 /* GlucoseGenieApp.swift */; };
 		FD2EC0D02D63C3FE00525F77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD2EC0CF2D63C3FE00525F77 /* Assets.xcassets */; };
 		FD2EC0D32D63C3FE00525F77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD2EC0D22D63C3FE00525F77 /* Preview Assets.xcassets */; };
 		FD2EC0DD2D63C40000525F77 /* GlucoseGenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0DC2D63C40000525F77 /* GlucoseGenieTests.swift */; };
 		FD2EC0E72D63C40000525F77 /* GlucoseGenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */; };
 		FD2EC0E92D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */; };
-		FDF89DF62D760FEA00654EEF /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DF52D760FEA00654EEF /* RecipeView.swift */; };
 		FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
 		FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E012D761A9200654EEF /* GroceryStoreView.swift */; };
 		FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E032D761AC500654EEF /* SavedRecipesView.swift */; };
@@ -55,21 +55,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		044A06F039F2C3BC0F639832 /* TestDB.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = TestDB.swift; path = amplify/generated/models/TestDB.swift; sourceTree = "<group>"; };
+		044A06F039F2C3BC0F639832 /* TestDB.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TestDB.swift; path = amplify/generated/models/TestDB.swift; sourceTree = "<group>"; };
 		265A25F42D6BD06C000A59B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		265A25F92D6BD5A7000A59B2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7F4F572C2D7A11CE00FE25FE /* APITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITestView.swift; sourceTree = "<group>"; };
 		85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
-		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
-		CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
+		CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		D8729492447C7EDF07254D62 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIView.swift; sourceTree = "<group>"; };
 		EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIViewModel.swift; sourceTree = "<group>"; };
 		EB51E4662D76236C00B9844B /* NutrientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewModel.swift; sourceTree = "<group>"; };
 		EB51E4682D76246200B9844B /* NutrientLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLog.swift; sourceTree = "<group>"; };
 		EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientUIView.swift; sourceTree = "<group>"; };
+		FD0CA5712D7F201F00243404 /* RecipeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUIView.swift; sourceTree = "<group>"; };
 		FD2EC0C62D63C3F700525F77 /* GlucoseGenie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseGenie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2EC0C92D63C3F700525F77 /* GlucoseGenieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieApp.swift; sourceTree = "<group>"; };
 		FD2EC0CF2D63C3FE00525F77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		FD2EC0E22D63C40000525F77 /* GlucoseGenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseGenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITests.swift; sourceTree = "<group>"; };
 		FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FDF89DF52D760FEA00654EEF /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanView.swift; sourceTree = "<group>"; };
 		FDF89E012D761A9200654EEF /* GroceryStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreView.swift; sourceTree = "<group>"; };
 		FDF89E032D761AC500654EEF /* SavedRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipesView.swift; sourceTree = "<group>"; };
@@ -130,6 +130,16 @@
 			name = AmplifyConfig;
 			sourceTree = "<group>";
 		};
+		687D680813159B2375EFE22F /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */,
+				86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */,
+				044A06F039F2C3BC0F639832 /* TestDB.swift */,
+			);
+			name = AmplifyModels;
+			sourceTree = "<group>";
+		};
 		EB26447D2D761DA9005147A9 /* NutrientTrackers */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,16 +172,6 @@
 				EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */,
 			);
 			name = View;
-            sourceTree = "<group>";
-        };
-		687D680813159B2375EFE22F /* AmplifyModels */ = {
-			isa = PBXGroup;
-			children = (
-				CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */,
-				86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */,
-				044A06F039F2C3BC0F639832 /* TestDB.swift */,
-			);
-			name = AmplifyModels;
 			sourceTree = "<group>";
 		};
 		EB2BCA7F2D63CABF00D83213 /* Settings */ = {
@@ -188,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */,
-				FDF89DF52D760FEA00654EEF /* RecipeView.swift */,
 				FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */,
 				FDF89E012D761A9200654EEF /* GroceryStoreView.swift */,
 				FDF89E032D761AC500654EEF /* SavedRecipesView.swift */,
@@ -212,6 +211,22 @@
 			);
 			path = Model;
 			sourceTree = "<unknown>";
+		};
+		FD0CA56F2D7F1F9700243404 /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				FD0CA5702D7F1FDC00243404 /* View */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		FD0CA5702D7F1FDC00243404 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD0CA5712D7F201F00243404 /* RecipeUIView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
 		};
 		FD2EC0BD2D63C3F700525F77 = {
 			isa = PBXGroup;
@@ -239,6 +254,7 @@
 		FD2EC0C82D63C3F700525F77 /* GlucoseGenie */ = {
 			isa = PBXGroup;
 			children = (
+				FD0CA56F2D7F1F9700243404 /* Recipes */,
 				EB26447D2D761DA9005147A9 /* NutrientTrackers */,
 				EB2BCA7F2D63CABF00D83213 /* Settings */,
 				265A25F42D6BD06C000A59B2 /* Info.plist */,
@@ -422,7 +438,6 @@
 				EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */,
 				FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */,
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
-				FDF89DF62D760FEA00654EEF /* RecipeView.swift in Sources */,
 				7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */,
 				FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */,
 				FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */,
@@ -435,6 +450,7 @@
 				F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */,
 				7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */,
 				B3C2817AA7A942FA274038C4 /* TestDB.swift in Sources */,
+				FD0CA5722D7F201F00243404 /* RecipeUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
