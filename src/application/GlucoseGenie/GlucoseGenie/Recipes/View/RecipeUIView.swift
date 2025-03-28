@@ -41,10 +41,45 @@ struct RecipeUIView: View {
                carbs: 8),
     ]
     
+    @State private var searchQuery: String = ""
+    
+    var filteredRecipes: [Recipe] {
+        if searchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return recipes
+        } else {
+            return recipes.filter { $0.name.localizedCaseInsensitiveContains(searchQuery)}
+        }
+    }
     
     var body: some View {
         NavigationView {
             ScrollView {
+                // Search Bar & Filter Button stacked at the top of the screen.
+                VStack(spacing: 12) {
+                    // Search Bar
+                    TextField("Search recipes...", text: $searchQuery)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                    
+                    // Filter Button
+                    Button(action: {
+                        //TODO Implement filtering.
+                    }) {
+                        HStack {
+                            Image(systemName: "line.horizontal.3.decrease.circle")
+                            Text("Filter")
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity) // This spreads the button across the screen.
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.leading)
+                    }
+                }
+                
+                
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                     ForEach(recipes) { recipe in
                         VStack {
