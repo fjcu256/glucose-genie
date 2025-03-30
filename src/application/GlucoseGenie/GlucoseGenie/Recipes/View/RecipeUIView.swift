@@ -41,10 +41,94 @@ struct RecipeUIView: View {
                carbs: 8),
     ]
     
+    @State private var searchQuery: String = ""
+    @State private var selectedFilters: Set<String> = []
+    let filters: [String] = ["vegetarian", "low carb", "chinese"]
+    
+    var filteredRecipes: [Recipe] {
+        var result = recipes
+        
+        // Search
+        // TODO Implement search results through API search.
+        if !searchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            result = result.filter { $0.name.localizedCaseInsensitiveContains(searchQuery) }
+        }
+        
+        // Filters
+        // TODO Implement filtering through API
+        if !selectedFilters.isEmpty {
+            result = result.filter { recipe in
+                selectedFilters.allSatisfy { filter in
+                    switch filter {
+                    case "vegetarian":
+                        return recipe.name.localizedCaseInsensitiveContains("spinach") || recipe.name.localizedCaseInsensitiveContains("carrot")
+                    case "low carb":
+                        return recipe.carbs < 10
+                    default:
+                        return true
+                    }
+                }
+                
+            }
+        }
+        return result
+    }
+    
+    func toggleFilter(_ filter: String) {
+        if selectedFilters.contains(filter) {
+            selectedFilters.remove(filter)
+        } else {
+            selectedFilters.insert(filter)
+        }
+    }
     
     var body: some View {
         NavigationView {
             ScrollView {
+                // Search Bar & Filter Button stacked at the top of the screen.
+                VStack(spacing: 12) {
+                    // Search Bar
+                    TextField("Search recipes...", text: $searchQuery)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                    
+                    // Filter Menu
+                    Menu {
+                        // Display Different Filters in menu dropdown.
+                        ForEach(filters, id: \.self) { filter in
+                            Button {
+                                toggleFilter(filter)
+                            } label: {
+                                HStack {
+                                    Text(filter.capitalized)
+                                    Spacer()
+                                    if selectedFilters.contains(filter) {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            }
+                        }
+                        Divider()
+                        Button("Clear Filters") {
+                            selectedFilters.removeAll()
+                        }
+                        
+                    } label: {
+                        HStack {
+                            Image(systemName: "line.horizontal.3.decrease.circle")
+                            Text(selectedFilters.isEmpty ? "Filter" : "Filter: \(selectedFilters.joined(separator: ", ").capitalized)")
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity) // This spreads the button across the screen.
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.leading)
+                    }
+                }
+                
+                // Scrollable Grid Layout of Recipes.
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                     ForEach(recipes) { recipe in
                         VStack {
