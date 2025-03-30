@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Recipe: Identifiable {
+struct Recipe: Identifiable, Equatable, Codable {
     let id = UUID()
     let name: String
     let imageUrl: String
@@ -15,6 +15,8 @@ struct Recipe: Identifiable {
     let carbs: Int
 }
 struct RecipeUIView: View {
+    @State private var likedRecipes: [Recipe] = []
+    
     // FIXME Hard Coded Recipe info and URLs
     let recipes: [Recipe] = [
         Recipe(name: "Grilled Veggie Wrap",
@@ -55,7 +57,7 @@ struct RecipeUIView: View {
                                 ProgressView()
                             }
                             
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(spacing: 4) {
                                 Text(recipe.name)
                                     .font(.headline)
                                     .foregroundColor(.primary)
@@ -65,17 +67,40 @@ struct RecipeUIView: View {
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                     .multilineTextAlignment(.center)
+                                
+                                Button(action: { toggleLike(recipe)}) {
+                                    Image(systemName: likedRecipes.contains(recipe) ? "heart.fill" : "heart")
+                                        .foregroundColor(.red)
+                                        .padding(.top, 4)
+                                }
+                                
                             }
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
                             .padding(.top, 4)
                         }
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemGray6)))
                     }
                 }.padding()
-            }
-            .navigationTitle("Recipes")
+            }.navigationTitle("Recipes")
         }
     }
+    
+    func toggleLike(_ recipe: Recipe) {
+            if likedRecipes.contains(recipe) {
+                likedRecipes.removeAll {$0 == recipe}
+            } else {
+                likedRecipes.append(recipe)
+                saveToProfile(recipe)
+            }
+        }
+
+        func saveToProfile(_ recipe: Recipe) {
+            // TODO - Add logic to save the recipe to the user's favorited recipes.
+            // API call to save to DB.
+            print("Saved Recipe: \(recipe.name)")
+        }
 }
 
 #Preview {
