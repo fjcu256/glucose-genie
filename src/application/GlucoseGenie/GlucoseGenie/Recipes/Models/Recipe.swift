@@ -11,13 +11,17 @@ struct Recipe: Identifiable, Equatable {
     let id = UUID()
     let name: String
     let image: String
+    let url: String
     let ingredients: [Ingredient]
     let totalNutrients: [Nutrient]
     let diets: [DietType]
     let mealtypes: [MealType]
     let healthLabels: [HealthLabel]
     
-    // Getters
+    /*
+     Getters. All of the getters return nil if a value cannot be found.
+     Returning a nil will not crash the application */
+    
     var imageUrl: URL? {
         URL(string: image)
     }

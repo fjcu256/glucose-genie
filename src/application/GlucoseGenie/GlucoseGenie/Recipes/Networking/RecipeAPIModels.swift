@@ -15,9 +15,11 @@ struct Hit: Codable {
     let recipe: EdamamRecipe
 }
 
+// Keys to extract from Edamam API
 struct EdamamRecipe: Codable {
     let label: String
     let image: String
+    let url: String
     let ingredientLines: [String]?
     let ingredients: [IngredientAPI]
     let healthLabels: [String]?
