@@ -19,39 +19,13 @@ struct RecipeUIView: View {
     @State private var allRecipes: [Recipe] = []
     @State private var searchQuery: String = ""
     @State private var selectedFilters: Set<String> = []
-    @State private var isLoading: Bool = true
-    
-    let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
-    
-    // TODO
-    //var filteredRecipes: [Recipe] {    }
-    
-    
     @State private var likedRecipes: [Recipe] = []
-    
-    // FIXME Hard Coded Recipe info and URLs
-    /*let recipes: [Recipe] = [
-        Recipe(name: "Grilled Veggie Wrap",
-               imageUrl: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/shutterstock_425424460.webp?h=e2d4e250&itok=ptCQ_FGY",
-               calories: 110,
-               carbs: 11),
-        Recipe(name: "Roasted Cauliflower",
-               imageUrl: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/2050-diabetic-roasted-Cauliflower_DaVita_040821.webp?h=13c67c56&itok=-y2MYyC4",
-              calories: 40,
-               carbs: 4),
-        Recipe(name: "Ginger Carrot Soup",
-               imageUrl: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/Carrot%20Ginger%20Soup%20Diabetic.webp?h=9ed651ec&itok=pw_mK-BQ",
-              calories: 90,
-               carbs: 10),
-        Recipe(name: "Spinach Yogurt Dip",
-               imageUrl: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/521-diabetic-spinach-yogurt-dip_96297700_083018.webp?h=6853934b&itok=jtgGjBZx",
-              calories: 15,
-               carbs: 1),
-        Recipe(name: "Zucchini Egg Boats",
-               imageUrl: "https://diabetesfoodhub.org/sites/foodhub/files/styles/recipe_hero_banner_720w_2x/public/2019-diabetic-breakfast-zucchini-egg-boat_diabetes-cookbook_081618_1021x779.webp?h=48784f2c&itok=clFreezC",
-              calories: 160,
-               carbs: 8),
-    ]*/
+    @State private var isLoading: Bool = true
+    @State private var uiErrorMessage: String?
+        
+    // TODO Filter and Search Recipes
+    let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
+    //var filteredRecipes: [Recipe] {    }
     
     var filteredRecipes: [Recipe] {
         var result = allRecipes
@@ -133,6 +107,13 @@ struct RecipeUIView: View {
                         .cornerRadius(10)
                         .padding(.horizontal)
                         .multilineTextAlignment(.leading)
+                    }
+                    
+                    if let error = uiErrorMessage{
+                        Text(error)
+                            .foregroundColor(.orange)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
                     }
                 }
                 
@@ -216,14 +197,24 @@ struct RecipeUIView: View {
         }
 
         func saveToProfile(_ recipe: Recipe) {
-            // TODO - Add logic to save the recipe to the user's favorited recipes.
+            // TODO - Add logic to save the recipe/recipeID/recipe URL to the user's favorited recipes.
             // API call to save to DB.
-            print("Saved Recipe: \(recipe.name)")
+            print("Saved Recipe: \(recipe.name)") // logging
         }
     
     
     func fetchInitialRecipes() {
         let baseUrl = "https://api.edamam.com/api/recipes/v2"
+        
+        // Check if both API credentials are supplied. Returns if not.
+        if Secrets.appId.isEmpty || Secrets.appKey.isEmpty{
+            print("Needed API credentials are missing")
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.uiErrorMessage = "Unable to get recipes. Credentials are missing. Please contact support."
+            }
+            return
+        }
         
         var query = URLComponents(string: baseUrl)!
         query.queryItems = [
@@ -233,31 +224,49 @@ struct RecipeUIView: View {
             URLQueryItem(name: "glycemicIndex", value: "0.0-69.0")
         ]
         
-        // Setup GET Request in English.
+        // Language choosing logic.
+        let lang = "en"
+        
+        // Setup GET Request in desired language.
         var request = URLRequest(url: query.url!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "accept")
-        request.addValue("en", forHTTPHeaderField: "Accept-Language")
+        request.addValue(lang, forHTTPHeaderField: "Accept-Language")
+        
+        isLoading = true
         
         // Response
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             if let error = error {
                 print("Request Error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.uiErrorMessage = "Network error."
+                }
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse else {
                 print("No valid response")
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.uiErrorMessage = "Something went wrong while getting recipes."
+                }
                 return
             }
             
             print("Status Code: \(httpResponse.statusCode)")
             guard let data = data else {
                 print("No data received")
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.uiErrorMessage = "No recipes recipes received."
+                }
                 return
             }
+            
             let parsedRecipes = RecipeParser.parseRecipes(from: data)
             
-            // DEBUGGING
+            // DEBUGGING/Logging
             if let json = String(data: data, encoding: .utf8) {
                 print("JSON Response: \(json)")
             }
@@ -265,6 +274,12 @@ struct RecipeUIView: View {
             DispatchQueue.main.async {
                 self.allRecipes = parsedRecipes
                 self.isLoading = false
+                self.uiErrorMessage = nil
+                
+                if parsedRecipes.isEmpty {
+                    print("No recipes found")
+                    self.uiErrorMessage = "No recipes found. Try another search."
+                }
             }
         }
         task.resume()
