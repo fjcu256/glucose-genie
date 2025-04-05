@@ -15,37 +15,45 @@ struct RecipeUIView: View {
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
         
-    // TODO Filter and Search Recipes
-    let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
-    //var filteredRecipes: [Recipe] {    }
+    // Filter values.
+    //let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
+    let mealTypeFilters: [MealType] = MealType.allCases
+    let healthFilters: [HealthLabel] = HealthLabel.allCases
+    //let dietFilters: [DietType] = DietType.allCases
+    @State private var selectedMealTypes: Set<MealType> = []
+    @State private var selectedHealthLabels: Set<HealthLabel> = []
     
+    // Filter recipes based on search and filtering options.
     var filteredRecipes: [Recipe] {
-        var result = allRecipes
+        // Query from search bar.
+        let trimmedQuery = searchQuery.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
-        // Search
-        // TODO Implement search results through API search.
-        if !searchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            result = result.filter { $0.name.localizedCaseInsensitiveContains(searchQuery) }
+        var results = allRecipes
+        
+        if !selectedMealTypes.isEmpty {
+            results = results.filter { recipe in
+                !Set(recipe.mealtypes).isDisjoint(with: selectedMealTypes)
+            }
         }
         
-        // Filters
-        // TODO Implement filtering through API for mealtype, diet type, etc.
-        /*if !selectedFilters.isEmpty {
-            result = result.filter { recipe in
-                selectedFilters.allSatisfy { filter in
-                    switch filter {
-                    case "vegetarian":
-                        return recipe.name.localizedCaseInsensitiveContains("spinach") || recipe.name.localizedCaseInsensitiveContains("carrot")
-                    case "low carb":
-                        return recipe.carbs < 10
-                    default:
-                        return true
-                    }
-                }
-                
+        if !selectedHealthLabels.isEmpty {
+            results = results.filter { recipe in
+                !Set(recipe.healthLabels).isDisjoint(with:  selectedHealthLabels)
             }
-        }*/
-        return result
+        }
+        
+        if trimmedQuery.isEmpty {
+            return results
+        }
+        
+        // Return filtered recipes.
+        return results.filter { recipe in
+            recipe.name.lowercased().contains(trimmedQuery) ||
+            recipe.ingredients.contains(where: { $0.text.lowercased().contains(trimmedQuery) }) ||
+            recipe.dietTypesDisplay.lowercased().contains(trimmedQuery) ||
+            recipe.mealTypesDisplay.lowercased().contains(trimmedQuery) ||
+            recipe.healthLabelsDisplay.lowercased().contains(trimmedQuery)
+        }
     }
     
     func toggleFilter(_ filter: String) {
@@ -65,32 +73,55 @@ struct RecipeUIView: View {
                     TextField("Search recipes...", text: $searchQuery)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal)
+                        //.onSubmit {
+                          //  print("Submitted search for \(searchQuery)") // Debugging
+                        //}
                     
                     // Filter Menu
                     Menu {
-                        // Display Different Filters in menu dropdown.
-                        ForEach(filters, id: \.self) { filter in
-                            Button {
-                                toggleFilter(filter)
-                            } label: {
-                                HStack {
-                                    Text(filter.capitalized)
-                                    Spacer()
-                                    if selectedFilters.contains(filter) {
-                                        Image(systemName: "checkmark")
+                        Section("Meal Types"){
+                            ForEach(mealTypeFilters, id: \.self) {filter in
+                                Button {
+                                    toggleMealTypeFilter(filter)
+                                } label: {
+                                    HStack {
+                                        Text(filter.displayName)
+                                        Spacer()
+                                        if selectedMealTypes.contains(filter) {
+                                            Image(systemName: "checkmark")
+                                        }
                                     }
                                 }
                             }
                         }
+                        
+                        Section("Diets") {
+                            ForEach(healthFilters, id: \.self) { filter in
+                                Button {
+                                    toggleHealthFilter(filter)
+                                } label: {
+                                    HStack {
+                                        Text(filter.displayName)
+                                        Spacer()
+                                        if selectedHealthLabels.contains(filter) {
+                                            Image(systemName: "checkmark")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                
                         Divider()
-                        Button("Clear Filters") {
-                            selectedFilters.removeAll()
+                        // Button that unchecks all filters when clicked.
+                        Button("Clear All Filters") {
+                            selectedMealTypes.removeAll()
+                            selectedHealthLabels.removeAll()
                         }
                         
                     } label: {
                         HStack {
                             Image(systemName: "line.horizontal.3.decrease.circle")
-                            Text(selectedFilters.isEmpty ? "Filter" : "Filter: \(selectedFilters.joined(separator: ", ").capitalized)")
+                            Text("Filters (\(selectedMealTypes.count + selectedHealthLabels.count))")
                         }
                         .padding()
                         .frame(maxWidth: .infinity) // This spreads the button across the screen.
@@ -116,7 +147,7 @@ struct RecipeUIView: View {
                     Spacer()
                 } else {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                        ForEach(allRecipes) { recipe in
+                        ForEach(filteredRecipes) { recipe in
                             VStack {
                                 // Show Image or place holder.
                                 if let imageUrl = recipe.imageUrl {
@@ -179,6 +210,24 @@ struct RecipeUIView: View {
         
     }
     
+    // Methods for Filtering buttons.
+    func toggleMealTypeFilter(_ filter: MealType) {
+        if selectedMealTypes.contains(filter) {
+            selectedMealTypes.remove(filter)
+        } else {
+            selectedMealTypes.insert(filter)
+        }
+    }
+    
+    func toggleHealthFilter(_ filter: HealthLabel) {
+        if selectedHealthLabels.contains(filter) {
+            selectedHealthLabels.remove(filter)
+        } else {
+            selectedHealthLabels.insert(filter)
+        }
+    }
+    
+    // Methods for Saving recipes.
     func toggleLike(_ recipe: Recipe) {
             if likedRecipes.contains(recipe) {
                 likedRecipes.removeAll {$0 == recipe}
@@ -194,7 +243,7 @@ struct RecipeUIView: View {
             print("Saved Recipe: \(recipe.name)") // logging
         }
     
-    
+    // Method to get all recipes at initial page opening.
     func fetchInitialRecipes() {
         let baseUrl = "https://api.edamam.com/api/recipes/v2"
         
