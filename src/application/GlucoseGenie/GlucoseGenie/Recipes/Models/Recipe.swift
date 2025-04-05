@@ -62,6 +62,10 @@ struct Recipe: Identifiable, Equatable {
         diets.map { $0.displayName }.joined(separator: ", ")
     }
     
+    var healthLabelsDisplay: String {
+        healthLabels.map { $0.displayName }.joined(separator: ", ")
+    }
+    
 }
 
 struct Ingredient: Identifiable, Equatable, Codable {
@@ -188,7 +192,7 @@ enum HealthLabel: String, Codable, CaseIterable, Equatable, Identifiable {
     case lowPotassium
     case lowSugar
     case peanutFree
-    case pescaterian
+    case pescatarian
     case porkFree
     case soyFree
     case treeNutFree
@@ -213,8 +217,8 @@ enum HealthLabel: String, Codable, CaseIterable, Equatable, Identifiable {
             return "Low Sugar"
         case .peanutFree:
             return "Peanut Free"
-        case .pescaterian:
-            return "Pescaterian"
+        case .pescatarian:
+            return "Pescatarian"
         case .porkFree:
             return "Pork Free"
         case .soyFree:
