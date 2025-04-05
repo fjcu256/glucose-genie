@@ -341,6 +341,7 @@ struct RecipeUIView: View {
                 
                 if let nextUrl = nextUrl, pagesFetched < maxPages  {
                     fetchPage(from: nextUrl)
+                    nextPageUrl = nextUrl
                 } else {
                     DispatchQueue.main.async {
                         self.allRecipes = combinedRecipes
@@ -376,8 +377,13 @@ struct RecipeUIView: View {
             guard let data = data else { return }
             let (parsedRecipes, newNextUrl) = RecipeParser.parseRecipes(from: data)
             
+            // Filter out duplicates. 
+            let uniqueRecipes = parsedRecipes.filter { newRecipe in
+                !allRecipes.contains(where: {$0.id == newRecipe.id} )
+            }
+            
             DispatchQueue.main.async {
-                allRecipes.append(contentsOf: parsedRecipes)
+                allRecipes.append(contentsOf: uniqueRecipes)
                 nextPageUrl = newNextUrl
             }
         }.resume()
