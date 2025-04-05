@@ -285,7 +285,14 @@ struct RecipeUIView: View {
             URLQueryItem(name: "type", value: "public"),
             URLQueryItem(name: "app_id", value: Secrets.appId),
             URLQueryItem(name: "app_key", value: Secrets.appKey),
+            URLQueryItem(name: "health", value: "alcohol-free"),
+            // Diabetes Friendly Nutrient Filters
             URLQueryItem(name: "glycemicIndex", value: "0.0-69.0"),
+            URLQueryItem(name: "calories", value: "0-800"),
+            URLQueryItem(name: "nutrients[CHOCDF]", value: "0-50.0"),
+            URLQueryItem(name: "nutrients[SUGAR]", value: "0-15.0"),
+            //URLQueryItem(name: "nutrients[CHOLE]", value: "0-75.0"),
+            //URLQueryItem(name: "random", value: "true") // When this is true, we are unable to load more recieps.
         ]
         
         self.isLoading = true
@@ -377,7 +384,7 @@ struct RecipeUIView: View {
             guard let data = data else { return }
             let (parsedRecipes, newNextUrl) = RecipeParser.parseRecipes(from: data)
             
-            // Filter out duplicates. 
+            // Filter out duplicates.
             let uniqueRecipes = parsedRecipes.filter { newRecipe in
                 !allRecipes.contains(where: {$0.id == newRecipe.id} )
             }
