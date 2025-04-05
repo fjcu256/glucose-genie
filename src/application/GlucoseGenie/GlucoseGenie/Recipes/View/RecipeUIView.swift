@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-/*struct Recipe: Identifiable, Equatable, Codable {
-    let id = UUID()
-    let name: String
-    let imageUrl: String
-    let calories: Int
-    let carbs: Int
-    
-}*/
 struct RecipeUIView: View {
     @State private var allRecipes: [Recipe] = []
     @State private var searchQuery: String = ""
