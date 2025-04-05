@@ -54,7 +54,8 @@ struct RecipeUIView: View {
         results = results.filter { recipe in
             recipe.name.lowercased().contains(trimmedQuery) ||
             recipe.ingredients.contains(where: { $0.text.lowercased().contains(trimmedQuery) }) ||
-            recipe.healthLabelsDisplay.lowercased().contains(trimmedQuery)
+            recipe.healthLabelsDisplay.lowercased().contains(trimmedQuery) ||
+            recipe.tags.contains(where: { $0.lowercased().contains(trimmedQuery) })
         }
         print("Done filtering recipes")
         return results

@@ -17,6 +17,7 @@ struct Recipe: Identifiable, Equatable {
     let diets: [DietType]
     let mealtypes: [MealType]
     let healthLabels: [HealthLabel]
+    let tags: [String]
     
     /*
      Getters. All of the getters return nil if a value cannot be found.
@@ -64,6 +65,10 @@ struct Recipe: Identifiable, Equatable {
     
     var healthLabelsDisplay: String {
         healthLabels.map { $0.displayName }.joined(separator: ", ")
+    }
+    
+    var tagsDisplay: String {
+        tags.joined(separator: ", ")
     }
     
 }

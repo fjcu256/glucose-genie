@@ -42,7 +42,7 @@ struct EdamamRecipe: Codable {
     let dietLabels: [String]?
     let cuisineType: [String]?
     let totalNutrients: [String: NutrientAPI]?
-    // todo add tags.
+    let tags: [String]?
 }
 
 // Ingredient defined by Edamam API
