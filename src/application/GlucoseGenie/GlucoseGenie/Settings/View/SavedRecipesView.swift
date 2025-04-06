@@ -56,6 +56,12 @@ struct SavedRecipesView: View {
                     store.saved.remove(atOffsets: offsets)
                 }
             }
+            Spacer(minLength: 30)
+            Image("EdamamBadge")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 30)
+                .padding(.bottom, 20)
         }
         .navigationTitle("Saved Recipes")
         // Present the standard day+slot picker
