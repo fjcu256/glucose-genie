@@ -241,7 +241,7 @@ struct MealSectionWithPlan: View {
                                 } else if phase.error != nil {
                                     placeHolderEmoji
                                 } else {
-                                    ProgressView().frame(width: 150, height: 150)
+                                    placeHolderEmoji
                                 }
                             }
                         } else {
@@ -295,14 +295,14 @@ struct MealSectionWithPlan: View {
         .padding()
         .cornerRadius(10)
     }
-}
-
-private var placeHolderEmoji: some View {
-    Text("🍽️")
-        .font(.system(size: 60))
-        .frame(width: 150, height: 150)
-        .background(Color.gray.opacity(0.2))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+    
+    private var placeHolderEmoji: some View {
+        Text("🍽️")
+            .font(.system(size: 60))
+            .frame(width: 150, height: 150)
+            .background(Color.gray.opacity(0.2))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
 }
 
 #Preview {
