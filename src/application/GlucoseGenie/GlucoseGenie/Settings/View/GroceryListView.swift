@@ -113,13 +113,13 @@ struct GroceryListView: View {
                         }
                     }
                     .padding()
+                    Spacer(minLength: 30)
+                    Image("EdamamBadge")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 30)
+                        .padding(.bottom, 20)
                 }
-                Spacer(minLength: 30)
-                Image("EdamamBadge")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 30)
-                    .padding(.bottom, 20)
             }
             .navigationTitle("Grocery List")
             .toolbar {
