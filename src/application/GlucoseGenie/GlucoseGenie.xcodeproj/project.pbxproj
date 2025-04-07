@@ -18,6 +18,7 @@
 		7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F572C2D7A11CE00FE25FE /* APITestView.swift */; };
 		7F8E30362D7A147500604F37 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 7F8E30352D7A147500604F37 /* AWSAPIPlugin */; };
 		B3C2817AA7A942FA274038C4 /* TestDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A06F039F2C3BC0F639832 /* TestDB.swift */; };
+		EB03E3EF2DA44C03005C73D8 /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03E3EE2DA44C03005C73D8 /* LocationDetailsView.swift */; };
 		EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */; };
 		EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */; };
 		EB51E4672D76236C00B9844B /* NutrientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51E4662D76236C00B9844B /* NutrientViewModel.swift */; };
@@ -65,6 +66,7 @@
 		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
 		CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		D8729492447C7EDF07254D62 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		EB03E3EE2DA44C03005C73D8 /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
 		EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIView.swift; sourceTree = "<group>"; };
 		EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIViewModel.swift; sourceTree = "<group>"; };
 		EB51E4662D76236C00B9844B /* NutrientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewModel.swift; sourceTree = "<group>"; };
@@ -140,6 +142,39 @@
 			name = AmplifyModels;
 			sourceTree = "<group>";
 		};
+		EB03E3EA2DA43D00005C73D8 /* GroceryStoreMap */ = {
+			isa = PBXGroup;
+			children = (
+				EB03E3ED2DA43D25005C73D8 /* View */,
+				EB03E3EC2DA43D1B005C73D8 /* ViewModel */,
+				EB03E3EB2DA43D14005C73D8 /* Model */,
+			);
+			path = GroceryStoreMap;
+			sourceTree = "<group>";
+		};
+		EB03E3EB2DA43D14005C73D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EB03E3EC2DA43D1B005C73D8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EB03E3ED2DA43D25005C73D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FDF89E012D761A9200654EEF /* GroceryStoreView.swift */,
+				EB03E3EE2DA44C03005C73D8 /* LocationDetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		EB26447D2D761DA9005147A9 /* NutrientTrackers */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,7 +224,6 @@
 			children = (
 				EB2BCA802D63CBC900D83213 /* SettingsUIView.swift */,
 				FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */,
-				FDF89E012D761A9200654EEF /* GroceryStoreView.swift */,
 				FDF89E032D761AC500654EEF /* SavedRecipesView.swift */,
 				FDF89E052D761F7E00654EEF /* GroceryListView.swift */,
 				7F4F572C2D7A11CE00FE25FE /* APITestView.swift */,
@@ -254,6 +288,7 @@
 		FD2EC0C82D63C3F700525F77 /* GlucoseGenie */ = {
 			isa = PBXGroup;
 			children = (
+				EB03E3EA2DA43D00005C73D8 /* GroceryStoreMap */,
 				FD0CA56F2D7F1F9700243404 /* Recipes */,
 				EB26447D2D761DA9005147A9 /* NutrientTrackers */,
 				EB2BCA7F2D63CABF00D83213 /* Settings */,
@@ -436,6 +471,7 @@
 				EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */,
 				EB51E4672D76236C00B9844B /* NutrientViewModel.swift in Sources */,
 				EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */,
+				EB03E3EF2DA44C03005C73D8 /* LocationDetailsView.swift in Sources */,
 				FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */,
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
 				7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */,
