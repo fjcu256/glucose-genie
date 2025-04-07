@@ -38,6 +38,7 @@
 		FD2EC0DD2D63C40000525F77 /* GlucoseGenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0DC2D63C40000525F77 /* GlucoseGenieTests.swift */; };
 		FD2EC0E72D63C40000525F77 /* GlucoseGenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */; };
 		FD2EC0E92D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */; };
+		FD5D1DC82DA458EB001769E2 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5D1DC72DA458EB001769E2 /* Style.swift */; };
 		FDE6F9CA2D9F2AB4009FD7B6 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDE6F9C92D9F2AB4009FD7B6 /* Secrets.plist */; };
 		FDE6F9CD2D9F2CFF009FD7B6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9CC2D9F2CFF009FD7B6 /* Secrets.swift */; };
 		FDE6F9D02D9F53B4009FD7B6 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9CF2D9F53B4009FD7B6 /* Recipe.swift */; };
@@ -71,10 +72,10 @@
 		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		265A25F92D6BD5A7000A59B2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		269B0F322DAD621100DFD321 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7CDC792C2DCAB250006DF552 /* DetailedRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRecipeView.swift; sourceTree = "<group>"; };
 		7CF45BF32DCCFF2400A1E212 /* RecipeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStore.swift; sourceTree = "<group>"; };
 		7CF45C012DCD016200A1E212 /* AddToMealPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToMealPlanView.swift; sourceTree = "<group>"; };
-		269B0F322DAD621100DFD321 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F4F572C2D7A11CE00FE25FE /* APITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITestView.swift; sourceTree = "<group>"; };
 		85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		FD2EC0E22D63C40000525F77 /* GlucoseGenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseGenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITests.swift; sourceTree = "<group>"; };
 		FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FD5D1DC72DA458EB001769E2 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FDE6F9C92D9F2AB4009FD7B6 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		FDE6F9CC2D9F2CFF009FD7B6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		FDE6F9CF2D9F53B4009FD7B6 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				265A25F92D6BD5A7000A59B2 /* MainView.swift */,
 				FD2EC0CF2D63C3FE00525F77 /* Assets.xcassets */,
 				FD2EC0D12D63C3FE00525F77 /* Preview Content */,
+				FD5D1DC72DA458EB001769E2 /* Style.swift */,
 			);
 			path = GlucoseGenie;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
 				265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */,
 				EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */,
+				FD5D1DC82DA458EB001769E2 /* Style.swift in Sources */,
 				7C70EA6B2DD1824E00C33726 /* WeeklyMealPlanView.swift in Sources */,
 				F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */,
 				7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */,

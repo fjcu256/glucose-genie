@@ -15,11 +15,7 @@ struct LandingView: View {
     var body: some View {
         ZStack {
             
-            // Custom Orange color
-            // Hex: fb934b
-            // RGB: 251, 147, 75
-            Color(red: 251/255, green: 147/255, blue: 75/255)
-                .ignoresSafeArea()
+            Color.orangeMain.ignoresSafeArea()
             
             if isLoading {
                 ProgressView()
@@ -32,8 +28,10 @@ struct LandingView: View {
                         // Add Logo to Screen.
                         Image("GlucoseGenieBanner")
                             .resizable()
-                            .scaledToFit()
-                            .padding(.horizontal)
+                            .scaledToFill()
+                            .frame(width: UIScreen.main.bounds.width, height:100)
+                            .offset(y:  -12) // Show only the middle section of square banner
+                            .clipped()
                         
                         // Sign in button.
                         Button("Sign in") {
