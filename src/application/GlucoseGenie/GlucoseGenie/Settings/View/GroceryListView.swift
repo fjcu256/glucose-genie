@@ -130,15 +130,13 @@ struct GroceryListView: View {
                             }
                         }
                     }
-                    .padding()
+                    .listStyle(InsetGroupedListStyle())
                     Spacer(minLength: 30)
                     Image("EdamamBadge")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 30)
                         .padding(.bottom, 20)
-
-                    .listStyle(InsetGroupedListStyle())
                 }
             }
             .navigationTitle("Grocery List")
