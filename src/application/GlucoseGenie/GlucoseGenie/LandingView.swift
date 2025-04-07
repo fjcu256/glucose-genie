@@ -14,6 +14,13 @@ struct LandingView: View {
 
     var body: some View {
         ZStack {
+            
+            // Custom Orange color
+            // Hex: fb934b
+            // RGB: 251, 147, 75
+            Color(red: 251/255, green: 147/255, blue: 75/255)
+                .ignoresSafeArea()
+            
             if isLoading {
                 ProgressView()
             }
@@ -21,11 +28,26 @@ struct LandingView: View {
                 if authenticationService.isSignedIn {
                     MainView()
                 } else {
-                    Button("Sign in") {
-                        Task {
-                            await authenticationService.signIn(presentationAnchor: window)
+                    VStack {
+                        // Add Logo to Screen.
+                        Image("GlucoseGenieBanner")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal)
+                        
+                        // Sign in button.
+                        Button("Sign in") {
+                            Task {
+                                await authenticationService.signIn(presentationAnchor: window)
+                            }
                         }
+                        .padding()
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
                     }
+                    .padding()
                 }
             }
             .opacity(isLoading ? 0.5 : 1)
