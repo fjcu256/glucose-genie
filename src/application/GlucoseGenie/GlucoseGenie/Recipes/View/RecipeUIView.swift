@@ -34,28 +34,47 @@ struct RecipeUIView: View {
     let filtersString = String(localized: "Filters")
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                filterSection
-                recipeGrid
-                loadMoreButton
-                Spacer(minLength: 30)
-                Image("EdamamBadge")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 30)
-                    .padding(.bottom, 20)
-            }
-            .navigationTitle("Recipes")
-            .navigationBarTitleDisplayMode(.large)
-            .onAppear {
-                if allRecipes.isEmpty {
-                    fetchInitialRecipes()
+        NavigationStack {
+            ZStack(alignment: .top) {
+                
+                // Set background to two colors
+                VStack(spacing: 0) {
+                    Color.orangeMain.frame(height:98)
+                    Color.eggWhite
+                }.ignoresSafeArea()
+                
+                ScrollView {
+                    VStack {
+                        filterSection
+                        recipeGrid
+                        loadMoreButton
+                        
+                        Spacer(minLength: 30)
+                        
+                        Image("EdamamBadge")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 30)
+                            .padding(.bottom, 20)
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Recipes")
+                            .font(.largeTitle.bold())
+                            .foregroundColor(.darkBrown)
+                    }
+                }
+                .navigationBarTitleDisplayMode(.large)
+                .onAppear {
+                    if allRecipes.isEmpty {
+                        fetchInitialRecipes()
+                    }
                 }
             }
         }
     }
-
+        
     // Search + Filters
     @ViewBuilder private var filterSection: some View {
         VStack(spacing: 12) {
@@ -106,7 +125,7 @@ struct RecipeUIView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.orange)
+                .background(Color.orangeMain)
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding(.horizontal)
@@ -166,7 +185,7 @@ struct RecipeUIView: View {
                     Text("Load More Recipes")
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.orange)
+                        .background(Color.orangeMain)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                         .padding(.horizontal)
@@ -211,6 +230,7 @@ struct RecipeUIView: View {
                 Text(recipe.name)
                     .font(.headline)
                     .multilineTextAlignment(.center)
+                    .foregroundColor(Color.darkBrown)
 
                 HStack {
                     if let cal = recipe.calories {
@@ -221,22 +241,23 @@ struct RecipeUIView: View {
                     }
                 }
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .foregroundColor(Color.darkBrown)
 
-                Button {
+                // FIXME - Removed Heart saving from each recipe. Not functional.
+                /*Button {
                     toggleLike(recipe)
                 } label: {
                     Image(systemName: likedRecipes.contains(recipe) ? "heart.fill" : "heart")
                         .foregroundColor(.red)
                 }
-                .padding(.top, 4)
+                .padding(.top, 4)*/
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 4)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemGray6)))
+            .fill(Color.darkBeige))
     }
 
     // Filtering logic
