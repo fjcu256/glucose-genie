@@ -8,26 +8,78 @@
 import SwiftUI
 
 struct WeeklyMealPlanView: View {
+    let calendar = Calendar.current
+
+    // Compute and store the current week's dates
+    var weekDays: [Date] {
+        let today = Date()
+        let weekday = calendar.component(.weekday, from: today)
+        let startOfWeek = calendar.date(byAdding: .day, value: -(weekday - calendar.firstWeekday), to: today)!
+
+        return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: startOfWeek) }
+    }
+
     var body: some View {
-        // Text("Weekly Meal Plan View")
-        // Weekly meal plan page should have a section that
-        // shows nutrient totals from recipes.
         NavigationView {
             ScrollView {
-                VStack(spacing: 20) {
-                    Text("Test")
+                // LazyVStack so that full width is used
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    ForEach(weekDays, id: \.self) { date in
+                        Section(header: Text(sectionHeader(for: date))
+                                    .font(.title2)
+                                    .bold()
+                                    .padding(.top)
+                                    .padding(.leading)) {
+                            ScrollView(.horizontal, showsIndicators: true) {
+                                HStack(spacing: 30) {
+                                    MealSection(title: "Breakfast")
+                                    MealSection(title: "Lunch")
+                                    MealSection(title: "Dinner")
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
                 }
-                .padding()
+                .padding(.bottom)
             }
             .navigationTitle("Weekly Meal Planner")
             .toolbar {
                 Button(action: {
-                    // Action for adding or editing meals
+                    // No action for now
                 }) {
                     Image(systemName: "square.and.pencil")
                 }
             }
         }
+    }
+
+    // Format date into weekday, month day string
+    func sectionHeader(for date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMMM d"
+        return formatter.string(from: date)
+    }
+}
+
+struct MealSection: View {
+    let title: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(title)
+                .font(.headline)
+            VStack(alignment: .leading, spacing: 5){
+                Text("Meal")
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(10)
+        }
+        .frame(width: 100, alignment: .leading) // Fixed width
+        .padding()
+        //.background(Color(.systemGray6))
+        .cornerRadius(10)
     }
 }
 
