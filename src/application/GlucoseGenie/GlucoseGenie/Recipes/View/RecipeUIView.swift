@@ -29,6 +29,8 @@ struct RecipeUIView: View {
     let healthFilters: [HealthLabel] = HealthLabel.allCases
     @State private var selectedMealTypes: Set<MealType> = []
     @State private var selectedHealthLabels: Set<HealthLabel> = []
+    let caloriesString = String(localized: "Calories")
+    let carbsString = String(localized: "Carbs")
 
     var body: some View {
         NavigationView {
