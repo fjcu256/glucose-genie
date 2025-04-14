@@ -11,11 +11,13 @@ import MapKit
 struct LocationDetailsView: View {
     @Binding var mapSelection: MKMapItem?
     @Binding var show: Bool
-    @Binding var getDirections: Bool
+    //@Binding var getDirections: Bool
     @State private var lookAroundScene: MKLookAroundScene?
     
     var body: some View {
+        Spacer()
         VStack {
+            
             HStack {
                 VStack(alignment: .leading) {
                     Text(mapSelection?.placemark.name ?? "")
@@ -65,17 +67,17 @@ struct LocationDetailsView: View {
                         .cornerRadius(12)
                 }
                 
-                Button {
-                    getDirections = true
-                    show = false
-                } label: {
-                    Text("Get Directions")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 170, height: 48)
-                        .background(.blue)
-                        .cornerRadius(12)
-                }
+//                Button {
+//                    getDirections = true
+//                    show = false
+//                } label: {
+//                    Text("Get Directions")
+//                        .font(.headline)
+//                        .foregroundColor(.white)
+//                        .frame(width: 170, height: 48)
+//                        .background(.blue)
+//                        .cornerRadius(12)
+//                }
             }
         }
         .onAppear{
@@ -101,5 +103,6 @@ extension LocationDetailsView {
 }
 
 #Preview {
-    LocationDetailsView(mapSelection: .constant(nil), show: .constant(false), getDirections: .constant(false))
+    LocationDetailsView(mapSelection: .constant(nil), show: .constant(false))
+    //, getDirections: .constant(false)
 }

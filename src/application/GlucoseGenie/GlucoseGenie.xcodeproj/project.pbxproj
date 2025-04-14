@@ -23,6 +23,7 @@
 		EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */; };
 		EB51E4672D76236C00B9844B /* NutrientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51E4662D76236C00B9844B /* NutrientViewModel.swift */; };
 		EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51E4682D76246200B9844B /* NutrientLog.swift */; };
+		EBE3A81D2DAD8CA700C4341B /* GroceryStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE3A81C2DAD8CA700C4341B /* GroceryStoreViewModel.swift */; };
 		EBFAE15D2D7CD3AF00561A7A /* NutrientUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */; };
 		F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */; };
 		FD0CA5722D7F201F00243404 /* RecipeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0CA5712D7F201F00243404 /* RecipeUIView.swift */; };
@@ -71,6 +72,7 @@
 		EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIViewModel.swift; sourceTree = "<group>"; };
 		EB51E4662D76236C00B9844B /* NutrientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewModel.swift; sourceTree = "<group>"; };
 		EB51E4682D76246200B9844B /* NutrientLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLog.swift; sourceTree = "<group>"; };
+		EBE3A81C2DAD8CA700C4341B /* GroceryStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreViewModel.swift; sourceTree = "<group>"; };
 		EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientUIView.swift; sourceTree = "<group>"; };
 		FD0CA5712D7F201F00243404 /* RecipeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUIView.swift; sourceTree = "<group>"; };
 		FD2EC0C62D63C3F700525F77 /* GlucoseGenie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseGenie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,7 @@
 		EB03E3EC2DA43D1B005C73D8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EBE3A81C2DAD8CA700C4341B /* GroceryStoreViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
 				7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */,
 				FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */,
+				EBE3A81D2DAD8CA700C4341B /* GroceryStoreViewModel.swift in Sources */,
 				FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */,
 				265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */,
 				EBFAE15D2D7CD3AF00561A7A /* NutrientUIView.swift in Sources */,
@@ -653,6 +657,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GlucoseGenie/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Glucose Genie wants your location to provide a map of nearby grocery stores";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -682,6 +687,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GlucoseGenie/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Glucose Genie wants your location to provide a map of nearby grocery stores";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
