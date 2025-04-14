@@ -14,6 +14,12 @@ struct RecipeUIView: View {
     @State private var likedRecipes: [Recipe] = []
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
+    let caloriesString = String(localized: "Calories")
+    let carbsString = String(localized: "Carbs")
+        
+    // TODO Filter and Search Recipes
+    let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
+    //var filteredRecipes: [Recipe] {    }
     
     var onRecipeSelected: ((Recipe, URL?) -> Void)? = nil
     // Set language to english
@@ -163,7 +169,6 @@ struct RecipeUIView: View {
                                 } else {
                                     placeHolderEmoji
                                 }
-                                
                                 VStack(spacing: 4) {
                                     Text(recipe.name)
                                         .font(.headline)
@@ -173,10 +178,10 @@ struct RecipeUIView: View {
                                     // Show the calorie and carb info if available.
                                     HStack {
                                         if let calories = recipe.calories {
-                                            Text("Calories: \(calories) kcal")
+                                            Text("\(caloriesString): \(calories) kcal")
                                         }
                                         if let carbs = recipe.carbs {
-                                            Text("Carbs: \(carbs)g")
+                                            Text("\(carbsString): \(carbs)g")
                                         }
                                     }
                                     .font(.subheadline)

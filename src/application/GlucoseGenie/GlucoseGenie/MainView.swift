@@ -68,12 +68,13 @@ struct MainView: View {
 struct NutrientInputField: View {
     var title: String
     @Binding var value: String
+    let enterString = String(localized: "Enter")
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
                 .font(.headline)
-            TextField("Enter \(title.lowercased())", text: $value)
+            TextField("\(enterString) \(title.lowercased())", text: $value)
                 .padding(.bottom)
                 .frame(width: 200.0)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

@@ -13,6 +13,7 @@
 		265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */; };
 		265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F72D6BD519000A59B2 /* LandingView.swift */; };
 		265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F92D6BD5A7000A59B2 /* MainView.swift */; };
+		269B0F2F2DAD621000DFD321 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 269B0F312DAD621000DFD321 /* Localizable.strings */; };
 		7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */; };
 		7F1ADDD82D6A825F0089909E /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 7F1ADDD72D6A825F0089909E /* Amplify */; };
 		7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F572C2D7A11CE00FE25FE /* APITestView.swift */; };
@@ -67,6 +68,7 @@
 		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		265A25F92D6BD5A7000A59B2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		269B0F322DAD621100DFD321 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F4F572C2D7A11CE00FE25FE /* APITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITestView.swift; sourceTree = "<group>"; };
 		85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		269B0F2C2DAD617C00DFD321 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				269B0F312DAD621000DFD321 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		3C2144024792AF640B947A66 /* AmplifyConfig */ = {
@@ -308,6 +318,7 @@
 			children = (
 				EB03E3EA2DA43D00005C73D8 /* GroceryStoreMap */,
 				FDE6F9CB2D9F2CC3009FD7B6 /* Utils */,
+				269B0F2C2DAD617C00DFD321 /* Resources */,
 				FD0CA56F2D7F1F9700243404 /* Recipes */,
 				EB26447D2D761DA9005147A9 /* NutrientTrackers */,
 				EB2BCA7F2D63CABF00D83213 /* Settings */,
@@ -463,6 +474,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = FD2EC0BD2D63C3F700525F77;
 			packageReferences = (
@@ -484,6 +496,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269B0F2F2DAD621000DFD321 /* Localizable.strings in Resources */,
 				FD2EC0D32D63C3FE00525F77 /* Preview Assets.xcassets in Resources */,
 				FDE6F9CA2D9F2AB4009FD7B6 /* Secrets.plist in Resources */,
 				FD2EC0D02D63C3FE00525F77 /* Assets.xcassets in Resources */,
@@ -571,6 +584,17 @@
 			targetProxy = FD2EC0E32D63C40000525F77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		269B0F312DAD621000DFD321 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				269B0F322DAD621100DFD321 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FD2EC0EA2D63C40000525F77 /* Debug */ = {

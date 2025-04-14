@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  GlucoseGenie
+
+  Created by Francisco Cruz-Urbanc on 4/14/25.
+  
+*/
+
+"Sign in" = "Inicia sesión";
+
+"Saved Recipes" = "Recetas Guardadas";
+
+"Recipes" = "Recetas";
+
+"Weekly Meal Plan" = "Plan de Comidas Semanal";
+
+"Grocery List" = "Lista de Compras";
+
+"Find Grocery Store" = "Buscar Supermercados";
+
+"Track Nutrients" = "Contar Nutrientes";
+
+"Calories" = "Calorías";
+
+"Carbs" = "Carbohidratos";
+"Carbohydrates" = "Carbohidratos";
+
+"Nutrient Tracker" = "Contador de Nutrientes";
+
+"Fiber" = "Fibra";
+
+"Protein" = "Proteína";
+
+"Add Entry" = "Agregar Entrada";
+
+"Enter" = "Entra";
+
+"Settings" = "Configuración";
+
+"Notifications" = "Notificaciones";
+
+"Log Out" = "Salir";
