@@ -27,15 +27,24 @@ struct GroceryStoreView: View {
                 Marker(placemark.name ?? "", coordinate: placemark.coordinate)
             }
         }
+        .overlay(alignment: .bottom) {
+            Button(action: {
+                Task {
+                    await searchStores()
+                }
+            }, label: {
+                Text("Search for stores")
+            })
+            .font(.headline)
+            .padding(12)
+            .padding()
+            .shadow(radius: 10)
+            .buttonStyle(.borderedProminent)
+        }
         .mapControls {
             MapCompass()
             MapPitchToggle()
             MapUserLocationButton()
-        }
-        .onAppear() {
-            Task {
-                await searchStores()
-            }
         }
         .onChange(of: mapSelection, { oldValue, newValue in
             showDetails = newValue != nil
