@@ -25,11 +25,22 @@ struct WeeklyMealPlanView: View {
                 // LazyVStack so that full width is used
                 LazyVStack(alignment: .leading, spacing: 20) {
                     ForEach(weekDays, id: \.self) { date in
-                        Section(header: Text(sectionHeader(for: date))
+                        Section(header:
+                            HStack {
+                                Text(sectionHeader(for: date))
                                     .font(.title2)
                                     .bold()
-                                    .padding(.top)
-                                    .padding(.leading)) {
+                                //Spacer()
+                                Button(action: {
+                                    // None
+                                }) {
+                                    Image(systemName: "square.and.pencil")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding(.top)
+                            .padding(.horizontal)
+                        ) {
                             ScrollView(.horizontal, showsIndicators: true) {
                                 HStack(spacing: 30) {
                                     MealSection(title: "Breakfast")
@@ -44,13 +55,6 @@ struct WeeklyMealPlanView: View {
                 .padding(.bottom)
             }
             .navigationTitle("Weekly Meal Planner")
-            .toolbar {
-                Button(action: {
-                    // No action for now
-                }) {
-                    Image(systemName: "square.and.pencil")
-                }
-            }
         }
     }
 
@@ -64,21 +68,39 @@ struct WeeklyMealPlanView: View {
 
 struct MealSection: View {
     let title: String
+    @State private var mealAdded = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(title)
                 .font(.headline)
-            VStack(alignment: .leading, spacing: 5){
-                Text("Meal")
+
+            VStack {
+                if mealAdded {
+                    Text("Meal Info Here")
+                } else {
+                    Button(action: {
+                        mealAdded = true
+                    }) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.blue)
+                            Text("Add Meal")
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
             }
+            .frame(maxWidth: .infinity, minHeight: 60)
             .padding()
             .background(Color(.systemGray6))
             .cornerRadius(10)
         }
         .frame(width: 100, alignment: .leading) // Fixed width
         .padding()
-        //.background(Color(.systemGray6))
         .cornerRadius(10)
     }
 }
