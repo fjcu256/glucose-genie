@@ -156,7 +156,7 @@ struct RecipeUIView: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                         ForEach(recipes) { recipe in
-                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                            NavigationLink(destination: DetailedRecipeView(recipe: recipe)) {
                                 VStack {
                                     AsyncImage(url: URL(string: recipe.imageUrl)) { image in
                                         image
