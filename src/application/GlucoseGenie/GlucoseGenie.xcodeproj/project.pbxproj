@@ -14,6 +14,7 @@
 		265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F72D6BD519000A59B2 /* LandingView.swift */; };
 		265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F92D6BD5A7000A59B2 /* MainView.swift */; };
 		7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */; };
+		7C674E3A2DAD699000614764 /* DetailedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C674E392DAD699000614764 /* DetailedRecipeView.swift */; };
 		7F1ADDD82D6A825F0089909E /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 7F1ADDD72D6A825F0089909E /* Amplify */; };
 		7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F572C2D7A11CE00FE25FE /* APITestView.swift */; };
 		7F8E30362D7A147500604F37 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 7F8E30352D7A147500604F37 /* AWSAPIPlugin */; };
@@ -60,6 +61,7 @@
 		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		265A25F92D6BD5A7000A59B2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7C674E392DAD699000614764 /* DetailedRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRecipeView.swift; sourceTree = "<group>"; };
 		7F4F572C2D7A11CE00FE25FE /* APITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITestView.swift; sourceTree = "<group>"; };
 		85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				FD0CA5712D7F201F00243404 /* RecipeUIView.swift */,
+				7C674E392DAD699000614764 /* DetailedRecipeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -362,7 +365,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					FD2EC0C52D63C3F700525F77 = {
 						CreatedOnToolsVersion = 15.2;
@@ -435,6 +438,7 @@
 			files = (
 				EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */,
 				EB51E4672D76236C00B9844B /* NutrientViewModel.swift in Sources */,
+				7C674E3A2DAD699000614764 /* DetailedRecipeView.swift in Sources */,
 				EB2BCA812D63CBC900D83213 /* SettingsUIView.swift in Sources */,
 				FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */,
 				265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */,
@@ -667,7 +671,6 @@
 		FD2EC0F02D63C40000525F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -686,7 +689,6 @@
 		FD2EC0F12D63C40000525F77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -705,7 +707,6 @@
 		FD2EC0F32D63C40000525F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -722,7 +723,6 @@
 		FD2EC0F42D63C40000525F77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
