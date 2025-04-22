@@ -17,6 +17,17 @@ struct GroceryStoreView: View {
     @State private var showDetails = false
     
     var body: some View {
+        Group {
+                if viewModel.isLocationAuthorized {
+                    mapViewContent // show map when authorized
+                } else {
+                    ProgressView("Waiting for location permission...")
+                        .padding()
+                }
+            }
+    }
+    
+    private var mapViewContent: some View {
         Map(position: $viewModel.cameraPosition, selection: $mapSelection) {
             //user location
             UserAnnotation()

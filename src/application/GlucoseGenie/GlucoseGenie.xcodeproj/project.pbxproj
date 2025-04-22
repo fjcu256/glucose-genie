@@ -73,6 +73,7 @@
 		EB51E4662D76236C00B9844B /* NutrientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewModel.swift; sourceTree = "<group>"; };
 		EB51E4682D76246200B9844B /* NutrientLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLog.swift; sourceTree = "<group>"; };
 		EBE3A81C2DAD8CA700C4341B /* GroceryStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreViewModel.swift; sourceTree = "<group>"; };
+		EBEE744B2DB7153D001C9D97 /* LocationTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LocationTestPlan.xctestplan; sourceTree = "<group>"; };
 		EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientUIView.swift; sourceTree = "<group>"; };
 		FD0CA5712D7F201F00243404 /* RecipeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeUIView.swift; sourceTree = "<group>"; };
 		FD2EC0C62D63C3F700525F77 /* GlucoseGenie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseGenie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +269,7 @@
 		FD2EC0BD2D63C3F700525F77 = {
 			isa = PBXGroup;
 			children = (
+				EBEE744B2DB7153D001C9D97 /* LocationTestPlan.xctestplan */,
 				FD2EC0C82D63C3F700525F77 /* GlucoseGenie */,
 				FD2EC0DB2D63C40000525F77 /* GlucoseGenieTests */,
 				FD2EC0E52D63C40000525F77 /* GlucoseGenieUITests */,

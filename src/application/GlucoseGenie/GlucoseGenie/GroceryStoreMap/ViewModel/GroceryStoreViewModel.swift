@@ -14,6 +14,9 @@ class GroceryStoreViewModel: NSObject, ObservableObject, CLLocationManagerDelega
     
     //used for the map view
     @Published var cameraPosition: MapCameraPosition = .automatic
+    
+    @Published var isLocationAuthorized = false // NEW
+
 
     //initialized to Apple HQ coordinates
     private var userRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
@@ -29,7 +32,11 @@ class GroceryStoreViewModel: NSObject, ObservableObject, CLLocationManagerDelega
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
+            isLocationAuthorized = true
             manager.startUpdatingLocation()
+        }
+        else {
+            isLocationAuthorized = false
         }
     }
 
@@ -48,6 +55,10 @@ class GroceryStoreViewModel: NSObject, ObservableObject, CLLocationManagerDelega
             center: location.coordinate,
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         )
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 
     //getter so the store searcher knows what region to search in
