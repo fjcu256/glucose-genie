@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let testRecipe: Recipe = Recipe(name: "Recipe Name", imageUrl: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/shutterstock_425424460.webp?h=e2d4e250&itok=ptCQ_FGY", calories: 5, carbs: 5)
+
 struct WeeklyMealPlanView: View {
     let calendar = Calendar.current
 
@@ -30,19 +32,17 @@ struct WeeklyMealPlanView: View {
                                 Text(sectionHeader(for: date))
                                     .font(.title2)
                                     .bold()
-                                //Spacer()
-                                Button(action: {
-                                    // None
-                                }) {
-                                    Image(systemName: "square.and.pencil")
-                                        .foregroundColor(.blue)
+                                    .foregroundColor(calendar.isDateInToday(date) ? .blue : .primary)
+                                if calendar.isDateInToday(date) {
+                                    Image(systemName: "sun.max.fill")
+                                        .foregroundColor(.orange)
                                 }
                             }
                             .padding(.top)
                             .padding(.horizontal)
                         ) {
                             ScrollView(.horizontal, showsIndicators: true) {
-                                HStack(spacing: 30) {
+                                HStack(spacing: 25) {
                                     MealSection(title: "Breakfast")
                                     MealSection(title: "Lunch")
                                     MealSection(title: "Dinner")
@@ -75,35 +75,59 @@ struct MealSection: View {
             Text(title)
                 .font(.headline)
 
-            VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(.systemGray6))
+
                 if mealAdded {
-                    Text("Meal Info Here")
-                } else {
-                    Button(action: {
-                        mealAdded = true
-                    }) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "plus.circle")
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Add Meal")
-                                .font(.caption)
-                                .foregroundColor(.blue)
+                    VStack {
+                        AsyncImage(url: URL(string: testRecipe.imageUrl)) { image in
+                            image.resizable()
+                                .scaledToFit()
+                                .frame(width: 150, height: 150)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        } placeholder: {
+                            ProgressView()
                         }
+                        Text(testRecipe.name)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.center)
+                    }
+                } else {
+                    VStack(spacing: 4) {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.blue)
+                        Text("Add Meal")
+                            .font(.caption)
+                            .foregroundColor(.blue)
                     }
                 }
             }
-            .frame(maxWidth: .infinity, minHeight: 60)
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(10)
+            .frame(maxWidth: .infinity, minHeight: 180)
+            .onTapGesture {
+                if !mealAdded {
+                    mealAdded = true
+                }
+            }
+            .contextMenu {
+                if mealAdded {
+                    Button(role: .destructive) {
+                        mealAdded = false
+                    } label: {
+                        Label("Remove Meal", systemImage: "trash")
+                    }
+                }
+            }
         }
-        .frame(width: 100, alignment: .leading) // Fixed width
+        .frame(width: 180, alignment: .leading)
         .padding()
         .cornerRadius(10)
     }
 }
+
 
 #Preview {
     WeeklyMealPlanView()
