@@ -15,7 +15,7 @@ class GroceryStoreViewModel: NSObject, ObservableObject, CLLocationManagerDelega
     //used for the map view
     @Published var cameraPosition: MapCameraPosition = .automatic
     
-    @Published var isLocationAuthorized = false // NEW
+    @Published var isLocationAuthorized = false
 
 
     //initialized to Apple HQ coordinates
