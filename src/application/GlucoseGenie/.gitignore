@@ -18,4 +18,4 @@ amplifytools.xcconfig
 **.sample
 #amplify-do-not-edit-end
 xcuserdata/
-
+Secrets.plist
