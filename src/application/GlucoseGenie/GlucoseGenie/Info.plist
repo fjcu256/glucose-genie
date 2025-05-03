@@ -13,5 +13,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Glucose Genie needs your location to find nearby grocery stores.</string>
 </dict>
 </plist>
