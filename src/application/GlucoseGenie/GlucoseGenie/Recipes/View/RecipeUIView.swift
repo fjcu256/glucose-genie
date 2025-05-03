@@ -14,6 +14,8 @@ struct RecipeUIView: View {
     @State private var likedRecipes: [Recipe] = []
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
+    
+    var onRecipeSelected: ((Recipe) -> Void)? = nil
         
     // TODO Filter and Search Recipes
     let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
@@ -166,6 +168,10 @@ struct RecipeUIView: View {
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemGray6)))
+                            .onTapGesture {
+                                print("Tapped Recipe")
+                                onRecipeSelected?(recipe)
+                            }
                         }
                     }.padding()
                 }
