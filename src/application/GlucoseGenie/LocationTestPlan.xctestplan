@@ -1,0 +1,22 @@
+{
+  "configurations" : [
+    {
+      "id" : "760DB72B-C646-4625-A929-6A2F4F52EC4B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "locationScenario" : {
+      "identifier" : "London, England",
+      "referenceType" : "built-in"
+    },
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+
+  ],
+  "version" : 1
+}
