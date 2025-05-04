@@ -230,13 +230,22 @@ struct MealSectionWithPlan: View {
 
                 if let recipe = selectedRecipe {
                     VStack {
-                        AsyncImage(url: URL(string: recipe.image)) { image in
-                            image.resizable()
-                                .scaledToFit()
-                                .frame(width: 150, height: 150)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        } placeholder: {
-                            ProgressView()
+                        // Show recipe image or placeholder emoji
+                        if let imageUrl = recipe.imageUrl {
+                            AsyncImage(url: imageUrl) { phase in
+                                if let image = phase.image {
+                                    image.resizable()
+                                        .scaledToFit()
+                                        .frame(width: 150, height: 150)
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                } else if phase.error != nil {
+                                    placeHolderEmoji
+                                } else {
+                                    ProgressView().frame(width: 150, height: 150)
+                                }
+                            }
+                        } else {
+                            placeHolderEmoji
                         }
                         Text(recipe.name)
                             .font(.headline)
@@ -286,6 +295,14 @@ struct MealSectionWithPlan: View {
         .padding()
         .cornerRadius(10)
     }
+}
+
+private var placeHolderEmoji: some View {
+    Text("🍽️")
+        .font(.system(size: 60))
+        .frame(width: 150, height: 150)
+        .background(Color.gray.opacity(0.2))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
 }
 
 #Preview {
