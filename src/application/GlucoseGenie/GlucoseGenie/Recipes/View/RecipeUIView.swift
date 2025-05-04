@@ -169,7 +169,7 @@ struct RecipeUIView: View {
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemGray6)))
                             .onTapGesture {
-                                print("Tapped Recipe")
+                                // TODO: will probably need to modify this line to work with other flows besides weekly meal planner
                                 onRecipeSelected?(recipe)
                             }
                         }

@@ -27,28 +27,89 @@ let testRecipe = Recipe(
 )
 
 class MealPlan: ObservableObject {
-    @Published var mealsByDay: [Date: [String: Recipe]] = [:]
+    @Published var mealsByDay: [Date: [String: Recipe]] = [:] {
+        didSet {
+            saveMealPlan()
+        }
+    }
+
+    init() {
+        loadMealPlan()
+    }
+
+    private let storageKey = "mealPlanData"
+
+    private func saveMealPlan() {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        if let data = try? encoder.encode(mealsByDay) {
+            UserDefaults.standard.set(data, forKey: storageKey)
+            //print("Meal Plan Saved")
+        }
+    }
+
+    private func loadMealPlan() {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        if let data = UserDefaults.standard.data(forKey: storageKey),
+           let decoded = try? decoder.decode([Date: [String: Recipe]].self, from: data) {
+            self.mealsByDay = decoded
+            //print("Meal Plan Loaded")
+        }
+    }
     
     func addMeal(recipe: Recipe, for date: Date, mealType: String) {
-        var dayMeals = mealsByDay[date] ?? [:]
+        let normalizedDate = normalizeDate(date)
+        
+        // Create a new dictionary if needed, otherwise update existing
+        var dayMeals = mealsByDay[normalizedDate] ?? [:]
         dayMeals[mealType] = recipe
-        mealsByDay[date] = dayMeals
+        mealsByDay[normalizedDate] = dayMeals
         
         // Log add update
-        print("Added \(recipe.name) to \(mealType) on \(date)")
+        print("Added \(recipe.name) to \(mealType) on \(normalizedDate)")
+        
+        // Trigger UI update
+        objectWillChange.send()
     }
     
     func removeMeal(for date: Date, mealType: String) {
-        var dayMeals = mealsByDay[date] ?? [:]
+        let normalizedDate = normalizeDate(date)
+        
+        guard var dayMeals = mealsByDay[normalizedDate] else { return }
         dayMeals.removeValue(forKey: mealType)
-        mealsByDay[date] = dayMeals
+        
+        // If no meals left for this day, remove the whole day entry
+        if dayMeals.isEmpty {
+            mealsByDay.removeValue(forKey: normalizedDate)
+        } else {
+            mealsByDay[normalizedDate] = dayMeals
+        }
         
         // Log remove update
-        print("Removed meal from \(mealType) on \(date)")
+        print("Removed meal from \(mealType) on \(normalizedDate)")
+        
+        // Trigger UI update
+        objectWillChange.send()
     }
     
     func getMeal(for date: Date, mealType: String) -> Recipe? {
-        return mealsByDay[date]?[mealType]
+        let normalizedDate = normalizeDate(date)
+        return mealsByDay[normalizedDate]?[mealType]
+    }
+    
+    func clearMeals() {
+        mealsByDay.removeAll()
+        print("Cleared Meal Planner")
+    }
+    
+    // Normalize date by removing timestamps
+    private func normalizeDate(_ date: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        return calendar.date(from: components) ?? date
     }
 }
 
@@ -65,21 +126,11 @@ struct WeeklyMealPlanView: View {
     }
     
     @StateObject private var mealPlan = MealPlan()
-        
-    // Debug
-    @State private var lastSelectedRecipe: Recipe?
+    @State private var clearConfirmation = false
 
     var body: some View {
         NavigationView {
             ScrollView {
-                // Debug view to confirm recipe selection is working
-                if let recipe = lastSelectedRecipe {
-                    Text("Last selected: \(recipe.name)")
-                        .padding()
-                        .background(Color.green.opacity(0.2))
-                        .cornerRadius(8)
-                }
-                
                 // LazyVStack so that full width is used
                 LazyVStack(alignment: .leading, spacing: 20) {
                     ForEach(weekDays, id: \.self) { date in
@@ -103,34 +154,22 @@ struct WeeklyMealPlanView: View {
                                     MealSectionWithPlan(
                                         title: "Breakfast",
                                         date: date,
-                                        mealPlan: mealPlan,
-                                        onRecipeSelected: { recipe in
-                                            lastSelectedRecipe = recipe
-                                        }
+                                        mealPlan: mealPlan
                                     )
-                                    .id(mealPlan.getMeal(for: date, mealType: "Breakfast")?.id)
                                     
                                     // Lunch slots
                                     MealSectionWithPlan(
                                         title: "Lunch",
                                         date: date,
-                                        mealPlan: mealPlan,
-                                        onRecipeSelected: { recipe in
-                                            lastSelectedRecipe = recipe
-                                        }
+                                        mealPlan: mealPlan
                                     )
-                                    .id(mealPlan.getMeal(for: date, mealType: "Lunch")?.id)
                                     
                                     // Dinner slots
                                     MealSectionWithPlan(
                                         title: "Dinner",
                                         date: date,
-                                        mealPlan: mealPlan,
-                                        onRecipeSelected: { recipe in
-                                            lastSelectedRecipe = recipe
-                                        }
+                                        mealPlan: mealPlan
                                     )
-                                    .id(mealPlan.getMeal(for: date, mealType: "Dinner")?.id)
                                 }
                                 .padding(.horizontal)
                             }
@@ -140,6 +179,24 @@ struct WeeklyMealPlanView: View {
                 .padding(.bottom)
             }
             .navigationTitle("Weekly Meal Planner")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        clearConfirmation = true
+                    }) {
+                        Image(systemName: "trash")
+                    }
+                    .accessibilityLabel("Clear Meal Plan")
+                }
+            }
+            .alert("Clear Meal Planner?", isPresented: $clearConfirmation) {
+                Button("Cancel", role: .cancel) { }
+                Button("Clear", role: .destructive) {
+                    mealPlan.clearMeals()
+                }
+            } message: {
+                Text("This will remove all the recipes in your meal plan. Saved recipes will not be affected.")
+            }
         }
     }
 
@@ -155,7 +212,7 @@ struct MealSectionWithPlan: View {
     let title: String
     let date: Date
     @ObservedObject var mealPlan: MealPlan
-    let onRecipeSelected: (Recipe) -> Void
+    let onRecipeSelected: (Recipe) -> Void = { _ in }
     
     @State private var isSelecting = false
     
@@ -185,6 +242,8 @@ struct MealSectionWithPlan: View {
                             .font(.headline)
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.center)
+                            .lineLimit(nil) // To show full name
+                            .fixedSize(horizontal: false, vertical: true) // To show full name
                     }
                     .padding(8)
                 } else {
@@ -201,7 +260,10 @@ struct MealSectionWithPlan: View {
             }
             .frame(maxWidth: .infinity, minHeight: 180)
             .onTapGesture {
-                isSelecting = true
+                if selectedRecipe == nil {
+                    isSelecting = true
+                }
+                // TODO: Else open recipe detail UI view
             }
             .contextMenu {
                 if selectedRecipe != nil {
@@ -218,7 +280,6 @@ struct MealSectionWithPlan: View {
                 mealPlan.addMeal(recipe: recipe, for: date, mealType: title)
                 onRecipeSelected(recipe)
                 self.isSelecting = false
-                print("Recipe selected in MealSection: \(recipe.name)")
             })
         }
         .frame(width: 180, alignment: .leading)
