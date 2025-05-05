@@ -213,6 +213,12 @@ struct RecipeUIView: View {
                             }
                         }
                     } // End of Button
+                    Spacer(minLength: 30)
+                    Image("EdamamBadge")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 30)
+                        .padding(.bottom, 20)
                 }
             }.navigationTitle("Recipes")
         }
