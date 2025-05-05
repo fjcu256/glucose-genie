@@ -33,7 +33,8 @@ let testRecipe = Recipe(
     ],
     diets: [.balanced, .lowFat],
     mealtypes: [.breakfast],
-    healthLabels: [.glutenFree, .vegetarian]
+    healthLabels: [.glutenFree, .vegetarian],
+    tags: ["dairy", "vegatable"]
 )
 
 struct GroceryItem: Identifiable {
