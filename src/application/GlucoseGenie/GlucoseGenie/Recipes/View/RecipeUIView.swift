@@ -196,7 +196,7 @@ struct RecipeUIView: View {
                             .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemGray6)))
                             .onTapGesture {
                                 // TODO: will probably need to modify this line to work with other flows besides weekly meal planner
-                                onRecipeSelected?(recipe)
+                                onRecipeSelected?(recipe, nil)
                             }
                         }
                     }.padding()

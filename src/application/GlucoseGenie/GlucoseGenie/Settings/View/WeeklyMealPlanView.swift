@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-// Test recipe
-let testRecipe = Recipe(
-    name: "Recipe Name",
-    image: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/shutterstock_425424460.webp?h=e2d4e250&itok=ptCQ_FGY",
-    url: "https://example.com/recipe",
-    ingredients: [
-        Ingredient(text: "1 egg", quantity: 1, units: "unit"),
-        Ingredient(text: "100g flour", quantity: 100, units: "g")
-    ],
-    totalNutrients: [
-        Nutrient(name: "Energy", quantity: 250, unit: "kcal"),
-        Nutrient(name: "Carbohydrates", quantity: 30, unit: "g"),
-        Nutrient(name: "Sugars", quantity: 5, unit: "g")
-    ],
-    diets: [.balanced, .lowFat],
-    mealtypes: [.breakfast],
-    healthLabels: [.glutenFree, .vegetarian]
-)
-
 class MealPlan: ObservableObject {
     @Published var mealsByDay: [Date: [String: Recipe]] = [:] {
         didSet {
@@ -219,6 +200,14 @@ struct MealSectionWithPlan: View {
     var selectedRecipe: Recipe? {
         mealPlan.getMeal(for: date, mealType: title)
     }
+    
+    private var placeHolderEmoji: some View {
+        Text("🍽️")
+            .font(.system(size: 60))
+            .frame(width: 150, height: 150)
+            .background(Color.gray.opacity(0.2))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -285,7 +274,7 @@ struct MealSectionWithPlan: View {
             }
         }
         .sheet(isPresented: $isSelecting) {
-            RecipeUIView(onRecipeSelected: { recipe in
+            RecipeUIView(onRecipeSelected: { recipe, arg  in
                 mealPlan.addMeal(recipe: recipe, for: date, mealType: title)
                 onRecipeSelected(recipe)
                 self.isSelecting = false
@@ -295,14 +284,6 @@ struct MealSectionWithPlan: View {
         .padding()
         .cornerRadius(10)
     }
-}
-
-private var placeHolderEmoji: some View {
-    Text("🍽️")
-        .font(.system(size: 60))
-        .frame(width: 150, height: 150)
-        .background(Color.gray.opacity(0.2))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
 }
 
 #Preview {
