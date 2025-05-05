@@ -26,6 +26,8 @@ let testRecipe = Recipe(
         Ingredient(text: "100g spinach", quantity: 100, units: "g"),
         Ingredient(text: "2tbsp soy sauce", quantity: 2, units: "tbsp")
     ],
+    totalTime: nil,
+    servings: nil,
     totalNutrients: [
         Nutrient(name: "Energy", quantity: 250, unit: "kcal"),
         Nutrient(name: "Carbohydrates", quantity: 30, unit: "g"),
@@ -33,7 +35,8 @@ let testRecipe = Recipe(
     ],
     diets: [.balanced, .lowFat],
     mealtypes: [.breakfast],
-    healthLabels: [.glutenFree, .vegetarian]
+    healthLabels: [.glutenFree, .vegetarian],
+    tags: ["dairy", "vegatable"]
 )
 
 struct GroceryItem: Identifiable {

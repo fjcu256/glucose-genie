@@ -13,10 +13,13 @@ struct Recipe: Identifiable, Equatable {
     let image: String
     let url: String
     let ingredients: [Ingredient]
+    let totalTime:     Double?
+    let servings:      Int?
     let totalNutrients: [Nutrient]
     let diets: [DietType]
     let mealtypes: [MealType]
     let healthLabels: [HealthLabel]
+    let tags: [String]
     
     /*
      Getters. All of the getters return nil if a value cannot be found.
@@ -60,6 +63,14 @@ struct Recipe: Identifiable, Equatable {
     
     var dietTypesDisplay: String {
         diets.map { $0.displayName }.joined(separator: ", ")
+    }
+    
+    var healthLabelsDisplay: String {
+        healthLabels.map { $0.displayName }.joined(separator: ", ")
+    }
+    
+    var tagsDisplay: String {
+        tags.joined(separator: ", ")
     }
     
 }
@@ -188,7 +199,7 @@ enum HealthLabel: String, Codable, CaseIterable, Equatable, Identifiable {
     case lowPotassium
     case lowSugar
     case peanutFree
-    case pescaterian
+    case pescatarian
     case porkFree
     case soyFree
     case treeNutFree
@@ -213,8 +224,8 @@ enum HealthLabel: String, Codable, CaseIterable, Equatable, Identifiable {
             return "Low Sugar"
         case .peanutFree:
             return "Peanut Free"
-        case .pescaterian:
-            return "Pescaterian"
+        case .pescatarian:
+            return "Pescatarian"
         case .porkFree:
             return "Pork Free"
         case .soyFree:
