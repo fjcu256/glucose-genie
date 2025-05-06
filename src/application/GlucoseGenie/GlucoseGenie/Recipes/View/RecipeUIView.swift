@@ -73,6 +73,9 @@ struct RecipeUIView: View {
                     TextField("Search recipes...", text: $searchQuery)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal)
+                        //.onSubmit {
+                          //  print("Submitted search for \(searchQuery)") // Debugging
+                        //}
                     
                     Menu {
                         Section("Meal Types") {
@@ -105,7 +108,25 @@ struct RecipeUIView: View {
                                 }
                             }
                         }
+                        
+                        Section("Diets") {
+                            ForEach(healthFilters, id: \.self) { filter in
+                                Button {
+                                    toggleHealthFilter(filter)
+                                } label: {
+                                    HStack {
+                                        Text(filter.displayName)
+                                        Spacer()
+                                        if selectedHealthLabels.contains(filter) {
+                                            Image(systemName: "checkmark")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                
                         Divider()
+                        // Button that unchecks all filters when clicked.
                         Button("Clear All Filters") {
                             selectedMealTypes.removeAll()
                             selectedHealthLabels.removeAll()
@@ -254,10 +275,11 @@ struct RecipeUIView: View {
             saveToProfile(recipe)
         }
     }
-    
-    private func saveToProfile(_ recipe: Recipe) {
-        // TODO: implement API call to save favorite
-        print("Saved Recipe: \(recipe.name)")
+
+    func saveToProfile(_ recipe: Recipe) {
+        // TODO - Add logic to save the recipe/recipeID/recipe URL to the user's favorited recipes.
+        // API call to save to DB.
+        print("Saved Recipe: \(recipe.name)") // logging
     }
     
     // MARK: – Networking
@@ -271,12 +293,14 @@ struct RecipeUIView: View {
             return
         }
         
+        // Build initial query.
         var query = URLComponents(string: baseUrl)!
         query.queryItems = [
             URLQueryItem(name: "type", value: "public"),
             URLQueryItem(name: "app_id", value: Secrets.appId),
             URLQueryItem(name: "app_key", value: Secrets.appKey),
             URLQueryItem(name: "health", value: "alcohol-free"),
+            // Diabetes Friendly Nutrient Filters
             URLQueryItem(name: "glycemicIndex", value: "0.0-69.0"),
             URLQueryItem(name: "calories", value: "0-800"),
             URLQueryItem(name: "nutrients[CHOCDF]", value: "0-50.0"),
@@ -288,7 +312,9 @@ struct RecipeUIView: View {
         var pagesFetched = 0
         let maxPages = 3
         
+        // Function to sent request with given Url.
         func fetchPage(from url: URL) {
+            
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "accept")
@@ -314,6 +340,9 @@ struct RecipeUIView: View {
                 let (parsed, nextUrl) = RecipeParser.parseRecipes(from: data)
                 combinedRecipes.append(contentsOf: parsed)
                 pagesFetched += 1
+                // DEBUGGING/Logging
+                //if let json = String(data: data, encoding: .utf8) {
+                 //   print("JSON Response: \(json)") }
                 
                 if let nextUrl = nextUrl, pagesFetched < maxPages {
                     fetchPage(from: nextUrl)
@@ -324,9 +353,11 @@ struct RecipeUIView: View {
                         self.isLoading = false
                     }
                 }
+                
             }.resume()
         }
         
+        // Iteratively fetch pages.
         if let initialUrl = query.url {
             fetchPage(from: initialUrl)
         }
