@@ -14,7 +14,8 @@ struct RecipeUIView: View {
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
     
-    // Language for API calls
+  
+    var onRecipeSelected: ((Recipe, URL?) -> Void)? = nil
     @State private var lang: String = "en"
     
     // Pagination state
@@ -186,6 +187,37 @@ struct RecipeUIView: View {
                                                 .padding(.top, 4)
                                         }
                                     }
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.center)
+                                    Button(action: { toggleLike(recipe)}) {
+                                        Image(systemName: likedRecipes.contains(recipe) ? "heart.fill" : "heart")
+                                            .foregroundColor(.red)
+                                            .padding(.top, 4)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 4)
+                            }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemGray6)))
+                            .onTapGesture {
+                                // TODO: will probably need to modify this line to work with other flows besides weekly meal planner
+                                onRecipeSelected?(recipe, nil)
+                            }
+                        }
+                    }.padding()
+                    // Load More button
+                    if let _ = nextPageUrl {
+                        Button(action: {
+                            loadMoreRecipes()
+                        }) {
+                            if isLoadingMore {
+                                ProgressView().padding()
+                            } else {
+                                Text("Load More Recipes")
+                                    .padding()
                                     .frame(maxWidth: .infinity)
                                     .padding(.top, 4)
                                 }
