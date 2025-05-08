@@ -389,6 +389,9 @@ struct RecipeUIView: View {
 
 struct RecipeUIView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeUIView()
+        NavigationStack {            // so your nav links work
+            RecipeUIView()
+                .environmentObject( RecipeStore() )
+        }
     }
 }

@@ -84,6 +84,7 @@ struct NutrientInputField: View {
 
 #Preview {
     MainView()
+        .environmentObject(RecipeStore())
 }
 
 extension View {
