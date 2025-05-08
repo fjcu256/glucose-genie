@@ -91,9 +91,19 @@ struct DetailedRecipeView: View {
 
                 // Nutrition Facts
                 Text("Nutrition Facts")
-                    .font(.title2)
-                    .bold()
+                  .font(.title2)
+                  .bold()
+
                 VStack(alignment: .leading, spacing: 4) {
+                    // Calories & Carbs in the facts section
+                    if let cal = recipe.calories {
+                        Text("Calories: \(cal) kcal")
+                    }
+                    if let carb = recipe.carbs {
+                        Text("Carbs: \(carb)g")
+                    }
+
+                    // The other nutrients you wanted
                     ForEach(nutrientKeys, id: \.self) { key in
                         if let nut = recipe.totalNutrients.first(
                             where: { $0.name.localizedCaseInsensitiveContains(key) }
@@ -162,6 +172,9 @@ struct DetailedRecipeView_Previews: PreviewProvider {
             totalTime:      30,
             servings:       4,
             totalNutrients: [
+                Nutrient(name: "Calories",       quantity: 5,  unit: "kcal"),
+                Nutrient(name: "Carbs",       quantity: 5,  unit: "g"),
+                Nutrient(name: "Sugar",       quantity: 5,  unit: "g"),
                 Nutrient(name: "Sugar",       quantity: 5,  unit: "g"),
                 Nutrient(name: "Fat",         quantity: 12, unit: "g"),
                 Nutrient(name: "Cholesterol", quantity: 30, unit: "mg"),
