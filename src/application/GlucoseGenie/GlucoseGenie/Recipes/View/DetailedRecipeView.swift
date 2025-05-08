@@ -11,6 +11,9 @@ import SwiftUI
 
 struct DetailedRecipeView: View {
     let recipe: Recipe
+    
+    @EnvironmentObject private var store: RecipeStore
+    @State private var showingPlanSheet = false
 
     var body: some View {
         ScrollView {
@@ -80,6 +83,29 @@ struct DetailedRecipeView: View {
                 .padding(.leading, 8)
 
                 Divider()
+                
+                // 🌟 Save / Unsave Button
+                Button {
+                    store.toggleSave(recipe)
+                } label: {
+                    Label(
+                        store.saved.contains(recipe) ? "Unsave Recipe" : "Save Recipe",
+                        systemImage: store.saved.contains(recipe)
+                        ? "bookmark.fill" : "bookmark"
+                    )
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.orange)
+                
+                // 🌟 Add to Meal Plan Button
+                Button("Add to Meal Plan") {
+                    showingPlanSheet = true
+                }
+                .buttonStyle(.bordered)
+                .sheet(isPresented: $showingPlanSheet) {
+                    AddToMealPlanView(recipe: recipe)
+                        .environmentObject(store)
+                }
 
                 Spacer()
             }
@@ -92,12 +118,13 @@ struct DetailedRecipeView: View {
 
 #if DEBUG
 struct DetailedRecipeView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailedRecipeView(recipe: Recipe(
+    // Sample data
+    static var sampleRecipe: Recipe {
+        Recipe(
             name: "Sample",
             image: "",
             url: "",
-            ingredients: [Ingredient(text: "Example", quantity: 1, units: "")],
+            ingredients: [ Ingredient(text: "Example", quantity: 1, units: "") ],
             totalTime: 30,
             servings: 4,
             totalNutrients: [],
@@ -105,7 +132,14 @@ struct DetailedRecipeView_Previews: PreviewProvider {
             mealtypes: [],
             healthLabels: [],
             tags: []
-        ))
+        )
+    }
+
+    static var previews: some View {
+        NavigationStack {
+            DetailedRecipeView(recipe: sampleRecipe)
+                .environmentObject( RecipeStore() )
+        }
     }
 }
 #endif

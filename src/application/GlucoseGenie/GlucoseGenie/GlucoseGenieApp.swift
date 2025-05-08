@@ -15,10 +15,14 @@ struct GlucoseGenieApp: App {
     init() {
         configureAmplify()
     }
+    
+    @StateObject private var recipeStore = RecipeStore()
 
     var body: some Scene {
         WindowGroup {
-            LandingView().environmentObject(AuthenticationService())
+            LandingView()
+                .environmentObject(AuthenticationService())
+                .environmentObject(recipeStore)
         }
     }
     
