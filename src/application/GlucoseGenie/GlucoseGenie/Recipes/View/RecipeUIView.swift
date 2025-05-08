@@ -10,25 +10,24 @@ import SwiftUI
 struct RecipeUIView: View {
     @State public var allRecipes: [Recipe] = []
     @State private var searchQuery: String = ""
-    @State private var selectedFilters: Set<String> = []
     @State private var likedRecipes: [Recipe] = []
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
     
-    // Set language to English
+    // Language for API calls
     @State private var lang: String = "en"
     
-    // For "Load More" button
+    // Pagination state
     @State private var nextPageUrl: URL?
     @State private var isLoadingMore = false
         
-    // Filter values
+    // Available filters
     let mealTypeFilters: [MealType] = MealType.allCases
     let healthFilters: [HealthLabel] = HealthLabel.allCases
     @State private var selectedMealTypes: Set<MealType> = []
     @State private var selectedHealthLabels: Set<HealthLabel> = []
     
-    // Placeholder for missing image
+    // Placeholder for missing images
     private var placeHolderEmoji: some View {
         Text("🍽️")
             .font(.system(size: 60))
@@ -37,10 +36,9 @@ struct RecipeUIView: View {
             .clipShape(RoundedRectangle(cornerRadius: 12))
     }
     
-    // Filtered recipes based on search & filters
+    // Apply search text and filters to the full recipe list
     var filteredRecipes: [Recipe] {
-        let trimmedQuery = searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
-                                    .lowercased()
+        let trimmed = searchQuery.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         var results = allRecipes
         
         if !selectedMealTypes.isEmpty {
@@ -55,113 +53,92 @@ struct RecipeUIView: View {
             }
         }
         
-        guard !trimmedQuery.isEmpty else { return results }
+        guard !trimmed.isEmpty else { return results }
         
         return results.filter { recipe in
-            recipe.name.lowercased().contains(trimmedQuery) ||
-            recipe.ingredients.contains { $0.text.lowercased().contains(trimmedQuery) } ||
-            recipe.healthLabelsDisplay.lowercased().contains(trimmedQuery) ||
-            recipe.tags.contains { $0.lowercased().contains(trimmedQuery) }
+            recipe.name.lowercased().contains(trimmed) ||
+            recipe.ingredients.contains { $0.text.lowercased().contains(trimmed) } ||
+            recipe.healthLabelsDisplay.lowercased().contains(trimmed) ||
+            recipe.tags.contains { $0.lowercased().contains(trimmed) }
         }
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                // MARK: Search & Filters
-                VStack(spacing: 12) {
-                    TextField("Search recipes...", text: $searchQuery)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
-                        //.onSubmit {
-                          //  print("Submitted search for \(searchQuery)") // Debugging
-                        //}
-                    
-                    Menu {
-                        Section("Meal Types") {
-                            ForEach(mealTypeFilters, id: \.self) { filter in
-                                Button {
-                                    toggleMealTypeFilter(filter)
-                                } label: {
-                                    HStack {
-                                        Text(filter.displayName)
-                                        Spacer()
-                                        if selectedMealTypes.contains(filter) {
-                                            Image(systemName: "checkmark")
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        Section("Diets") {
-                            ForEach(healthFilters, id: \.self) { filter in
-                                Button {
-                                    toggleHealthFilter(filter)
-                                } label: {
-                                    HStack {
-                                        Text(filter.displayName)
-                                        Spacer()
-                                        if selectedHealthLabels.contains(filter) {
-                                            Image(systemName: "checkmark")
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        
-                        Section("Diets") {
-                            ForEach(healthFilters, id: \.self) { filter in
-                                Button {
-                                    toggleHealthFilter(filter)
-                                } label: {
-                                    HStack {
-                                        Text(filter.displayName)
-                                        Spacer()
-                                        if selectedHealthLabels.contains(filter) {
-                                            Image(systemName: "checkmark")
-                                        }
-                                    }
-                                }
-                            }
-                        }
+        ScrollView {
+            // Search Bar & Filters
+            VStack(spacing: 12) {
+                TextField("Search recipes...", text: $searchQuery)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
                 
-                        Divider()
-                        // Button that unchecks all filters when clicked.
-                        Button("Clear All Filters") {
-                            selectedMealTypes.removeAll()
-                            selectedHealthLabels.removeAll()
+                Menu {
+                    Section("Meal Types") {
+                        ForEach(mealTypeFilters, id: \.self) { filter in
+                            Button {
+                                toggleMealTypeFilter(filter)
+                            } label: {
+                                HStack {
+                                    Text(filter.displayName)
+                                    Spacer()
+                                    if selectedMealTypes.contains(filter) {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            }
                         }
-                    } label: {
-                        HStack {
-                            Image(systemName: "line.horizontal.3.decrease.circle")
-                            Text("Filters (\(selectedMealTypes.count + selectedHealthLabels.count))")
+                    }
+                    Section("Health Labels") {
+                        ForEach(healthFilters, id: \.self) { filter in
+                            Button {
+                                toggleHealthFilter(filter)
+                            } label: {
+                                HStack {
+                                    Text(filter.displayName)
+                                    Spacer()
+                                    if selectedHealthLabels.contains(filter) {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            }
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        .multilineTextAlignment(.leading)
                     }
-                    
-                    if let error = uiErrorMessage {
-                        Text(error)
-                            .foregroundColor(.orange)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
+                    Divider()
+                    Button("Clear All Filters") {
+                        selectedMealTypes.removeAll()
+                        selectedHealthLabels.removeAll()
                     }
+                } label: {
+                    HStack {
+                        Image(systemName: "line.horizontal.3.decrease.circle")
+                        Text("Filters (\(selectedMealTypes.count + selectedHealthLabels.count))")
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.orange)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.leading)
                 }
                 
-                // MARK: Recipe Grid
-                if isLoading {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                } else {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                        ForEach(filteredRecipes) { recipe in
-                            NavigationLink(destination: DetailedRecipeView(recipe: recipe)) {
+                if let error = uiErrorMessage {
+                    Text(error)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+            }
+            
+            // Recipe Grid
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                    ForEach(filteredRecipes) { recipe in
+                        NavigationLink(destination: DetailedRecipeView(recipe: recipe)
+                            .environmentObject(RecipeStore())) {
                                 VStack {
                                     // Image or placeholder
                                     if let imageUrl = recipe.imageUrl {
@@ -214,42 +191,42 @@ struct RecipeUIView: View {
                                 }
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 12)
-                                                .fill(Color(.systemGray6)))
+                                    .fill(Color(.systemGray6)))
                             }
-                        }
                     }
-                    .padding()
-                    
-                    // Load More button
-                    if nextPageUrl != nil {
-                        Button {
-                            loadMoreRecipes()
-                        } label: {
-                            if isLoadingMore {
-                                ProgressView().padding()
-                            } else {
-                                Text("Load More Recipes")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.orange)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                                    .padding(.horizontal)
-                            }
+                }
+                .padding()
+                
+                // Load More Recipes
+                if nextPageUrl != nil {
+                    Button {
+                        loadMoreRecipes()
+                    } label: {
+                        if isLoadingMore {
+                            ProgressView().padding()
+                        } else {
+                            Text("Load More Recipes")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .padding(.horizontal)
                         }
                     }
                 }
             }
-            .navigationTitle("Recipes")
-            .onAppear {
-                if allRecipes.isEmpty {
-                    fetchInitialRecipes()
-                }
+        }
+        .navigationTitle("Recipes")
+        .navigationBarTitleDisplayMode(.large)
+        .onAppear {
+            if allRecipes.isEmpty {
+                fetchInitialRecipes()
             }
         }
     }
     
-    // MARK: – Filter Methods
+    // Filter methods
     private func toggleMealTypeFilter(_ filter: MealType) {
         if selectedMealTypes.contains(filter) {
             selectedMealTypes.remove(filter)
@@ -266,26 +243,19 @@ struct RecipeUIView: View {
         }
     }
     
-    // MARK: – Like Methods
+    // Like / save methods
     private func toggleLike(_ recipe: Recipe) {
         if likedRecipes.contains(recipe) {
             likedRecipes.removeAll { $0 == recipe }
         } else {
             likedRecipes.append(recipe)
-            saveToProfile(recipe)
         }
     }
-
-    func saveToProfile(_ recipe: Recipe) {
-        // TODO - Add logic to save the recipe/recipeID/recipe URL to the user's favorited recipes.
-        // API call to save to DB.
-        print("Saved Recipe: \(recipe.name)") // logging
-    }
     
-    // MARK: – Networking
+    // Networking
     private func fetchInitialRecipes() {
         let baseUrl = "https://api.edamam.com/api/recipes/v2"
-        if Secrets.appId.isEmpty || Secrets.appKey.isEmpty {
+        guard !Secrets.appId.isEmpty, !Secrets.appKey.isEmpty else {
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.uiErrorMessage = "Credentials missing. Please contact support."
@@ -293,14 +263,12 @@ struct RecipeUIView: View {
             return
         }
         
-        // Build initial query.
         var query = URLComponents(string: baseUrl)!
         query.queryItems = [
             URLQueryItem(name: "type", value: "public"),
             URLQueryItem(name: "app_id", value: Secrets.appId),
             URLQueryItem(name: "app_key", value: Secrets.appKey),
             URLQueryItem(name: "health", value: "alcohol-free"),
-            // Diabetes Friendly Nutrient Filters
             URLQueryItem(name: "glycemicIndex", value: "0.0-69.0"),
             URLQueryItem(name: "calories", value: "0-800"),
             URLQueryItem(name: "nutrients[CHOCDF]", value: "0-50.0"),
@@ -308,58 +276,43 @@ struct RecipeUIView: View {
         ]
         
         self.isLoading = true
-        var combinedRecipes: [Recipe] = []
+        var combined: [Recipe] = []
         var pagesFetched = 0
         let maxPages = 3
         
-        // Function to sent request with given Url.
         func fetchPage(from url: URL) {
+            var req = URLRequest(url: url)
+            req.httpMethod = "GET"
+            req.addValue("application/json", forHTTPHeaderField: "accept")
+            req.addValue(lang, forHTTPHeaderField: "Accept-Language")
             
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.addValue("application/json", forHTTPHeaderField: "accept")
-            request.addValue(lang, forHTTPHeaderField: "Accept-Language")
-            
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
+            URLSession.shared.dataTask(with: req) { data, response, error in
+                if error != nil || data == nil {
                     DispatchQueue.main.async {
                         self.isLoading = false
-                        self.uiErrorMessage = "Network error: \(error.localizedDescription)"
+                        self.uiErrorMessage = "Failed to load recipes."
                     }
                     return
                 }
-                guard let httpResponse = response as? HTTPURLResponse,
-                      let data = data else {
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.uiErrorMessage = "Invalid response."
-                    }
-                    return
-                }
-                print("Status Code: \(httpResponse.statusCode)")
-                let (parsed, nextUrl) = RecipeParser.parseRecipes(from: data)
-                combinedRecipes.append(contentsOf: parsed)
-                pagesFetched += 1
-                // DEBUGGING/Logging
-                //if let json = String(data: data, encoding: .utf8) {
-                 //   print("JSON Response: \(json)") }
                 
-                if let nextUrl = nextUrl, pagesFetched < maxPages {
-                    fetchPage(from: nextUrl)
-                    self.nextPageUrl = nextUrl
+                let (parsed, nextUrl) = RecipeParser.parseRecipes(from: data!)
+                combined.append(contentsOf: parsed)
+                pagesFetched += 1
+                
+                if let next = nextUrl, pagesFetched < maxPages {
+                    fetchPage(from: next)
+                    self.nextPageUrl = next
                 } else {
                     DispatchQueue.main.async {
-                        self.allRecipes = combinedRecipes
+                        self.allRecipes = combined
                         self.isLoading = false
                     }
                 }
-                
             }.resume()
         }
         
-        // Iteratively fetch pages.
-        if let initialUrl = query.url {
-            fetchPage(from: initialUrl)
+        if let url = query.url {
+            fetchPage(from: url)
         }
     }
     
@@ -367,12 +320,12 @@ struct RecipeUIView: View {
         guard let url = nextPageUrl, !isLoadingMore else { return }
         isLoadingMore = true
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "accept")
-        request.addValue(lang, forHTTPHeaderField: "Accept-Language")
+        var req = URLRequest(url: url)
+        req.httpMethod = "GET"
+        req.addValue("application/json", forHTTPHeaderField: "accept")
+        req.addValue(lang, forHTTPHeaderField: "Accept-Language")
         
-        URLSession.shared.dataTask(with: request) { data, _, _ in
+        URLSession.shared.dataTask(with: req) { data, _, _ in
             defer { DispatchQueue.main.async { isLoadingMore = false } }
             guard let data = data else { return }
             let (parsed, nextUrl) = RecipeParser.parseRecipes(from: data)
@@ -389,9 +342,9 @@ struct RecipeUIView: View {
 
 struct RecipeUIView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {            // so your nav links work
+        NavigationStack {
             RecipeUIView()
-                .environmentObject( RecipeStore() )
         }
+        .environmentObject(RecipeStore())
     }
 }

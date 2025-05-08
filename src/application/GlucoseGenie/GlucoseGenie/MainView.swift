@@ -82,9 +82,14 @@ struct NutrientInputField: View {
     }
 }
 
-#Preview {
-    MainView()
-        .environmentObject(RecipeStore())
+struct MainView_Previews: PreviewProvider {
+  static var previews: some View {
+    NavigationStack {
+      MainView()
+        .environmentObject(AuthenticationService())
+    }
+    .environmentObject( RecipeStore() )
+  }
 }
 
 extension View {
