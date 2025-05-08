@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe: Identifiable, Equatable {
+struct Recipe: Identifiable, Equatable, Codable {
     let id = UUID()
     let name: String
     let image: String

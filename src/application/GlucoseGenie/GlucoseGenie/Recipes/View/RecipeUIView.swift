@@ -15,6 +15,7 @@ struct RecipeUIView: View {
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
     
+    var onRecipeSelected: ((Recipe, URL?) -> Void)? = nil
     // Set language to english
     @State private var lang: String = "en"
     
@@ -193,6 +194,10 @@ struct RecipeUIView: View {
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 12).fill(Color(.systemGray6)))
+                            .onTapGesture {
+                                // TODO: will probably need to modify this line to work with other flows besides weekly meal planner
+                                onRecipeSelected?(recipe, nil)
+                            }
                         }
                     }.padding()
                     // Load More button
