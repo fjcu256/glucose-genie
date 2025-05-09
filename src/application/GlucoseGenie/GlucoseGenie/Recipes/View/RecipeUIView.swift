@@ -16,14 +16,11 @@ struct RecipeUIView: View {
     @State private var uiErrorMessage: String?
     let caloriesString = String(localized: "Calories")
     let carbsString = String(localized: "Carbs")
-        
-    // TODO Filter and Search Recipes
-    let filters: [String] = ["vegetarian", "low-carb", "breakfast", "lunch", "dinner", "snack"]
-    //var filteredRecipes: [Recipe] {    }
+    let filtersString = String(localized: "Filters")
     
     var onRecipeSelected: ((Recipe, URL?) -> Void)? = nil
-    // Set language to english
-    @State private var lang: String = "en"
+    // Set language to preferred language of user
+    @State private var lang: String = Bundle.main.preferredLocalizations.first ?? "en"
     
     // For "Load More" button.
     @State private var nextPageUrl: URL?
@@ -124,7 +121,7 @@ struct RecipeUIView: View {
                     } label: {
                         HStack {
                             Image(systemName: "line.horizontal.3.decrease.circle")
-                            Text("Filters (\(selectedMealTypes.count + selectedHealthLabels.count))")
+                            Text("\(filtersString) (\(selectedMealTypes.count + selectedHealthLabels.count))")
                         }
                         .padding()
                         .frame(maxWidth: .infinity) // This spreads the button across the screen.
@@ -284,7 +281,7 @@ struct RecipeUIView: View {
             print("Needed API credentials are missing")
             DispatchQueue.main.async {
                 self.isLoading = false
-                self.uiErrorMessage = "Unable to get recipes. Credentials are missing. Please contact support."
+                self.uiErrorMessage = String(localized: "Unable to get recipes. Credentials are missing. Please contact support.")
             }
             return
         }
@@ -323,7 +320,7 @@ struct RecipeUIView: View {
                     print("Request Error: \(error.localizedDescription)")
                     DispatchQueue.main.async {
                         self.isLoading = false
-                        self.uiErrorMessage = "Network error."
+                        self.uiErrorMessage = String(localized: "Network error.")
                     }
                     return
                 }
@@ -332,7 +329,7 @@ struct RecipeUIView: View {
                     print("No valid response")
                     DispatchQueue.main.async {
                         self.isLoading = false
-                        self.uiErrorMessage = "Something went wrong while getting recipes."
+                        self.uiErrorMessage = String(localized: "Something went wrong while getting recipes.")
                     }
                     return
                 }
@@ -342,12 +339,21 @@ struct RecipeUIView: View {
                     print("No data received")
                     DispatchQueue.main.async {
                         self.isLoading = false
-                        self.uiErrorMessage = "No recipes found."
+                        self.uiErrorMessage = String(localized: "No recipes found ☹️")
                     }
                     return
                 }
                 
                 let (parsedRecipes, nextUrl) = RecipeParser.parseRecipes(from: data)
+                
+                if parsedRecipes.isEmpty {
+                    print("Received empty list of recipes.")
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.uiErrorMessage = String(localized: "No recipes found ☹️")
+                    }
+                    return
+                }
                 
                 combinedRecipes.append(contentsOf: parsedRecipes)
                 print("Total recipes fetched: \(combinedRecipes.count)")
