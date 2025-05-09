@@ -37,6 +37,8 @@ struct EdamamRecipe: Codable {
     let url: String
     let ingredientLines: [String]?
     let ingredients: [IngredientAPI]
+    let totalTime: Double?
+    let yield: Double?
     let healthLabels: [String]?
     let mealType: [String]?
     let dietLabels: [String]?

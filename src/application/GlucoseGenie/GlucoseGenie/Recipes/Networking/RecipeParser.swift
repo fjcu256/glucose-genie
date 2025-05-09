@@ -25,6 +25,8 @@ struct RecipeParser {
                     image: edamam.image,
                     url: edamam.url,
                     ingredients: edamam.ingredients.map { Ingredient(text: $0.text, quantity: $0.quantity, units: $0.measure ?? "") },
+                    totalTime: edamam.totalTime,
+                    servings: edamam.yield.map { Int($0) },
                     totalNutrients: parseTotalNutrients( from: edamam.totalNutrients),
                     diets: edamam.dietLabels?.compactMap {DietType(rawValue: normalizeDietLabel($0)) } ?? [],
                     mealtypes: edamam.mealType?.compactMap {MealType(rawValue: normalizeMealType($0)) } ?? [],

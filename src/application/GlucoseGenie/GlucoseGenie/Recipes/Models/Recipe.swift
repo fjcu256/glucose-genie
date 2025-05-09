@@ -13,6 +13,8 @@ struct Recipe: Identifiable, Equatable, Codable {
     let image: String
     let url: String
     let ingredients: [Ingredient]
+    let totalTime:     Double?
+    let servings:      Int?
     let totalNutrients: [Nutrient]
     let diets: [DietType]
     let mealtypes: [MealType]
