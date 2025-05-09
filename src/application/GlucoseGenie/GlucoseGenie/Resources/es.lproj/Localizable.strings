@@ -46,3 +46,51 @@
 "No preview available" = "Vista previa no disponible";
 
 "Open in Maps" = "Abrir en Mapas";
+
+"Search recipes..." = "Buscar recetas...";
+
+"Meal Types" = "Tipos de Comida";
+
+"Diets" = "Dietas";
+
+"Clear All Filters" = "Borrar Filtros";
+
+"Filters" = "Filtros";
+
+"Load More Recipes" = "Ver Más Recetas";
+
+"Breakfast" = "Desayuno";
+
+"Lunch" = "Almuerzo";
+
+"Dinner" = "Cena";
+
+"Snack" = "Merienda";
+
+"Dairy Free" = "Sin Lácteos";
+
+"Gluten Free" = "Sin Gluten";
+
+"Kidney Friendly" = "Saludable para los Riñones";
+
+"Low Potassium" = "Bajo en Potasio";
+
+"Low Sugar" = "Bajo en Azúcar";
+
+"Peanut Free" = "Sin Maní";
+
+"Pescatarian" = "Pescetariano";
+
+"Pork Free" = "Sin Cerdo";
+
+"Soy Free" = "Sin Soya";
+
+"Tree Nut Free" = "Sin Nueces de Árbol";
+
+"Vegan" = "Vegano";
+
+"Vegetarian" = "Vegetariano";
+
+"Unable to get recipes. Credentials are missing. Please contact support." = "No se puede conseguir las recetas. Le faltan las credenciales. Por favor, póngase en contacto con el soporte técnico.";
+
+"Something went wrong while getting recipes." = "Algo salió mal al intentar conseguir las recetas.";
