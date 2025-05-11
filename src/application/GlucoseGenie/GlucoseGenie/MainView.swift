@@ -86,8 +86,8 @@ struct MainView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationStack {
       MainView()
-        .environmentObject(AuthenticationService())
     }
+    .environmentObject(AuthenticationService())
     .environmentObject( RecipeStore() )
   }
 }

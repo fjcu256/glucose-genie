@@ -8,26 +8,23 @@
 import SwiftUI
 
 struct RecipeUIView: View {
+    // When non-nil, tapping a recipe calls this instead of pushing the detail view.
     var onRecipeSelected: ((Recipe, URL?) -> Void)? = nil
+
+    // Allow you to inject a callback, default is nil
     init(onRecipeSelected: ((Recipe, URL?) -> Void)? = nil) {
-            self.onRecipeSelected = onRecipeSelected
-        }
-    // All fetched recipes
-    @State public var allRecipes: [Recipe] = []
-    // Search text
+        self.onRecipeSelected = onRecipeSelected
+    }
+
+    @State private var allRecipes: [Recipe] = []
     @State private var searchQuery: String = ""
-    // Which recipes the user has "liked"
     @State private var likedRecipes: [Recipe] = []
-    // Loading / error state
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
-    // Language header for API calls
     @State private var lang: String = "en"
-    // Pagination
     @State private var nextPageUrl: URL?
     @State private var isLoadingMore = false
 
-    // Available filter options
     let mealTypeFilters: [MealType] = MealType.allCases
     let healthFilters: [HealthLabel] = HealthLabel.allCases
     @State private var selectedMealTypes: Set<MealType> = []
@@ -36,13 +33,8 @@ struct RecipeUIView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                // Search bar + filter controls
                 filterSection
-
-                // Grid of recipe cards
                 recipeGrid
-
-                // "Load More" button if there is a next page
                 loadMoreButton
             }
             .navigationTitle("Recipes")
@@ -55,10 +47,8 @@ struct RecipeUIView: View {
         }
     }
 
-
-    // The search field and filter menu
-    @ViewBuilder
-    private var filterSection: some View {
+    // Search + Filters
+    @ViewBuilder private var filterSection: some View {
         VStack(spacing: 12) {
             TextField("Search recipes...", text: $searchQuery)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -123,9 +113,8 @@ struct RecipeUIView: View {
         }
     }
 
-    // The grid of fetched recipes
-    @ViewBuilder
-    private var recipeGrid: some View {
+    // Recipe Grid
+    @ViewBuilder private var recipeGrid: some View {
         if isLoading {
             Spacer()
             ProgressView()
@@ -133,11 +122,21 @@ struct RecipeUIView: View {
         } else {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 ForEach(filteredRecipes) { recipe in
-                    NavigationLink {
-                        DetailedRecipeView(recipe: recipe)
-                            .environmentObject(RecipeStore())
-                    } label: {
-                        recipeCard(recipe)
+                    // If onRecipeSelected is set, use a Button to pick the recipe
+                    if let selectAction = onRecipeSelected {
+                        Button {
+                            selectAction(recipe, recipe.imageUrl)
+                        } label: {
+                            recipeCard(recipe)
+                        }
+                    } else {
+                        // Otherwise navigate to detail
+                        NavigationLink {
+                            DetailedRecipeView(recipe: recipe)
+                                // inherits the store from the environment
+                        } label: {
+                            recipeCard(recipe)
+                        }
                     }
                 }
             }
@@ -145,9 +144,8 @@ struct RecipeUIView: View {
         }
     }
 
-    // Button to load more recipes if available
-    @ViewBuilder
-    private var loadMoreButton: some View {
+    // Load More
+    @ViewBuilder private var loadMoreButton: some View {
         if nextPageUrl != nil {
             Button {
                 loadMoreRecipes()
@@ -167,7 +165,7 @@ struct RecipeUIView: View {
         }
     }
 
-    // A single recipe "card" showing image, name, calories/carbs, and like button
+    // Recipe Card
     private func recipeCard(_ recipe: Recipe) -> some View {
         VStack {
             if let imageUrl = recipe.imageUrl {
@@ -231,8 +229,7 @@ struct RecipeUIView: View {
                         .fill(Color(.systemGray6)))
     }
 
-
-    // Returns the recipes array filtered by search text and selected filters
+    // Filtering logic
     private var filteredRecipes: [Recipe] {
         let trimmed = searchQuery
             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -258,7 +255,7 @@ struct RecipeUIView: View {
         }
     }
 
-    // Toggle whether a meal type filter is active
+    // Helpers
     private func toggleMealTypeFilter(_ filter: MealType) {
         if selectedMealTypes.contains(filter) {
             selectedMealTypes.remove(filter)
@@ -267,7 +264,6 @@ struct RecipeUIView: View {
         }
     }
 
-    // Toggle whether a health label filter is active
     private func toggleHealthFilter(_ filter: HealthLabel) {
         if selectedHealthLabels.contains(filter) {
             selectedHealthLabels.remove(filter)
@@ -276,7 +272,6 @@ struct RecipeUIView: View {
         }
     }
 
-    // Add or remove a recipe from `likedRecipes`
     private func toggleLike(_ recipe: Recipe) {
         if likedRecipes.contains(recipe) {
             likedRecipes.removeAll { $0 == recipe }
@@ -285,7 +280,6 @@ struct RecipeUIView: View {
         }
     }
 
-    // Fetches the first one or more pages of recipes from Edamam
     private func fetchInitialRecipes() {
         let baseUrl = "https://api.edamam.com/api/recipes/v2"
         guard !Secrets.appId.isEmpty, !Secrets.appKey.isEmpty else {
@@ -349,7 +343,6 @@ struct RecipeUIView: View {
         }
     }
 
-    // Loads the next page of recipes if there is one
     private func loadMoreRecipes() {
         guard let url = nextPageUrl, !isLoadingMore else { return }
         isLoadingMore = true

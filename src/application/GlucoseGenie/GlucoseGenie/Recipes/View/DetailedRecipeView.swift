@@ -11,6 +11,7 @@ struct DetailedRecipeView: View {
     let recipe: Recipe
 
     @EnvironmentObject private var store: RecipeStore
+    @EnvironmentObject private var authenticationService: AuthenticationService  // ← new
     @State private var showingPlanSheet = false
 
     // The nutrients to display
@@ -148,8 +149,10 @@ struct DetailedRecipeView: View {
                 }
                 .buttonStyle(.bordered)
                 .sheet(isPresented: $showingPlanSheet) {
+                    // Pass both store *and* auth into the sheet
                     AddToMealPlanView(recipe: recipe)
                         .environmentObject(store)
+                        .environmentObject(authenticationService)
                 }
 
                 Spacer()
@@ -173,16 +176,15 @@ struct DetailedRecipeView_Previews: PreviewProvider {
             servings:       4,
             totalNutrients: [
                 Nutrient(name: "Calories",       quantity: 5,  unit: "kcal"),
-                Nutrient(name: "Carbs",       quantity: 5,  unit: "g"),
-                Nutrient(name: "Sugar",       quantity: 5,  unit: "g"),
-                Nutrient(name: "Sugar",       quantity: 5,  unit: "g"),
-                Nutrient(name: "Fat",         quantity: 12, unit: "g"),
-                Nutrient(name: "Cholesterol", quantity: 30, unit: "mg"),
-                Nutrient(name: "Protein",     quantity: 8,  unit: "g"),
-                Nutrient(name: "Sodium",      quantity: 200,unit: "mg"),
-                Nutrient(name: "Calcium",     quantity: 100,unit: "mg"),
-                Nutrient(name: "Magnesium",   quantity: 50, unit: "mg"),
-                Nutrient(name: "Potassium",   quantity: 250,unit: "mg"),
+                Nutrient(name: "Carbs",          quantity: 5,  unit: "g"),
+                Nutrient(name: "Sugar",          quantity: 5,  unit: "g"),
+                Nutrient(name: "Fat",            quantity: 12, unit: "g"),
+                Nutrient(name: "Cholesterol",    quantity: 30, unit: "mg"),
+                Nutrient(name: "Protein",        quantity: 8,  unit: "g"),
+                Nutrient(name: "Sodium",         quantity: 200,unit: "mg"),
+                Nutrient(name: "Calcium",        quantity: 100,unit: "mg"),
+                Nutrient(name: "Magnesium",      quantity: 50, unit: "mg"),
+                Nutrient(name: "Potassium",      quantity: 250,unit: "mg"),
             ],
             diets:           [],
             mealtypes:       [],
@@ -195,6 +197,7 @@ struct DetailedRecipeView_Previews: PreviewProvider {
         NavigationStack {
             DetailedRecipeView(recipe: sampleRecipe)
                 .environmentObject(RecipeStore())
+                .environmentObject(AuthenticationService())
         }
     }
 }
