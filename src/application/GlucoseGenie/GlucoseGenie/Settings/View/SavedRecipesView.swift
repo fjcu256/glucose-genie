@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SavedRecipesView: View {
     @EnvironmentObject private var store: RecipeStore
-
+    @EnvironmentObject private var authenticationService: AuthenticationService
+    
     // Holds the recipe the user tapped “plan” on
     @State private var planRecipe: Recipe?
 
@@ -19,6 +20,8 @@ struct SavedRecipesView: View {
                 // Empty state
                 Text("You have no saved recipes.")
                     .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
             } else {
                 ForEach(store.saved) { recipe in
                     HStack {
@@ -26,6 +29,7 @@ struct SavedRecipesView: View {
                         NavigationLink(recipe.name) {
                             DetailedRecipeView(recipe: recipe)
                                 .environmentObject(store)
+                                .environmentObject(authenticationService)
                         }
                         Spacer()
                         // “+” button to plan this recipe
@@ -52,11 +56,12 @@ struct SavedRecipesView: View {
             }
         }
         .navigationTitle("Saved Recipes")
-        // sheet(item:) only fires if planRecipe is non-nil
+        // Present the AddToMealPlan sheet when planRecipe is non-nil
         .sheet(item: $planRecipe) { recipeToPlan in
             NavigationStack {
                 AddToMealPlanView(recipe: recipeToPlan)
                     .environmentObject(store)
+                    .environmentObject(authenticationService)
             }
         }
     }
@@ -68,6 +73,7 @@ struct SavedRecipesView_Previews: PreviewProvider {
         NavigationStack {
             SavedRecipesView()
                 .environmentObject(RecipeStore())
+                .environmentObject(AuthenticationService())
         }
     }
 }

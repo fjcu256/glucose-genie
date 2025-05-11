@@ -3,7 +3,6 @@
 //  GlucoseGenie
 //
 //  Created by Francisco Cruz-Urbanc on 2/23/25.
-//
 
 import Amplify
 import AuthenticationServices
@@ -14,6 +13,7 @@ import SwiftUI
 class AuthenticationService: ObservableObject {
     @Published var isSignedIn = false
 
+    // Fetch the current auth session and update `isSignedIn`
     func fetchSession() async {
         do {
             let result = try await Amplify.Auth.fetchAuthSession()
@@ -24,7 +24,12 @@ class AuthenticationService: ObservableObject {
         }
     }
 
+    // Show the Hosted UI if *not* already signed in
     func signIn(presentationAnchor: ASPresentationAnchor) async {
+        guard !isSignedIn else {
+            print("Already signed in; skipping signIn()")
+            return
+        }
         do {
             let result = try await Amplify.Auth.signInWithWebUI(
                 presentationAnchor: presentationAnchor,
@@ -37,6 +42,7 @@ class AuthenticationService: ObservableObject {
         }
     }
 
+    // Sign out the current user
     func signOut() async {
         guard let result = await Amplify.Auth.signOut() as? AWSCognitoSignOutResult else {
             return

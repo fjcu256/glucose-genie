@@ -10,11 +10,12 @@ import SwiftUI
 struct DetailedRecipeView: View {
     let recipe: Recipe
 
+    // pulls in the shared store and auth from the environment
     @EnvironmentObject private var store: RecipeStore
-    @EnvironmentObject private var authenticationService: AuthenticationService  // ← new
+    @EnvironmentObject private var authenticationService: AuthenticationService
     @State private var showingPlanSheet = false
 
-    // The nutrients to display
+    // which nutrients to list under “Nutrition Facts”
     private let nutrientKeys = [
         "Sugar", "Fat", "Cholesterol",
         "Protein", "Sodium", "Calcium",
@@ -92,19 +93,17 @@ struct DetailedRecipeView: View {
 
                 // Nutrition Facts
                 Text("Nutrition Facts")
-                  .font(.title2)
-                  .bold()
-
+                    .font(.title2)
+                    .bold()
                 VStack(alignment: .leading, spacing: 4) {
-                    // Calories & Carbs in the facts section
+                    // Calories & Carbs again
                     if let cal = recipe.calories {
                         Text("Calories: \(cal) kcal")
                     }
                     if let carb = recipe.carbs {
                         Text("Carbs: \(carb)g")
                     }
-
-                    // The other nutrients you wanted
+                    // Other selected nutrients
                     ForEach(nutrientKeys, id: \.self) { key in
                         if let nut = recipe.totalNutrients.first(
                             where: { $0.name.localizedCaseInsensitiveContains(key) }
@@ -120,17 +119,16 @@ struct DetailedRecipeView: View {
 
                 // View Full Recipe
                 if let recipeURL = URL(string: recipe.url) {
-                    SwiftUI.Link(destination: recipeURL) {
-                        Text("View Full Recipe")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(8)
-                    }
+                    // Official two-arg initializer
+                    SwiftUI.Link("View Full Recipe", destination: recipeURL)
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(8)
                 }
 
-                // Save / Unsave Button
+                // Save / Unsave
                 Button {
                     store.toggleSave(recipe)
                 } label: {
@@ -143,16 +141,16 @@ struct DetailedRecipeView: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.orange)
 
-                // Add to Meal Plan Button
+                // Add to Meal Plan
                 Button("Add to Meal Plan") {
                     showingPlanSheet = true
                 }
                 .buttonStyle(.bordered)
                 .sheet(isPresented: $showingPlanSheet) {
-                    // Pass both store *and* auth into the sheet
+                    // Only the store needs to be passed explicitly;
+                    // auth and store both already live in the environment:
                     AddToMealPlanView(recipe: recipe)
                         .environmentObject(store)
-                        .environmentObject(authenticationService)
                 }
 
                 Spacer()
@@ -168,28 +166,25 @@ struct DetailedRecipeView: View {
 struct DetailedRecipeView_Previews: PreviewProvider {
     static var sampleRecipe: Recipe {
         Recipe(
-            name:           "Sample",
-            image:          "",
-            url:            "",
-            ingredients:    [ Ingredient(text: "Example", quantity: 1, units: "") ],
-            totalTime:      30,
-            servings:       4,
+            name: "Sample",
+            image: "",
+            url: "",
+            ingredients: [Ingredient(text: "Example", quantity: 1, units: "")],
+            totalTime: 30,
+            servings: 4,
             totalNutrients: [
-                Nutrient(name: "Calories",       quantity: 5,  unit: "kcal"),
-                Nutrient(name: "Carbs",          quantity: 5,  unit: "g"),
-                Nutrient(name: "Sugar",          quantity: 5,  unit: "g"),
-                Nutrient(name: "Fat",            quantity: 12, unit: "g"),
-                Nutrient(name: "Cholesterol",    quantity: 30, unit: "mg"),
-                Nutrient(name: "Protein",        quantity: 8,  unit: "g"),
-                Nutrient(name: "Sodium",         quantity: 200,unit: "mg"),
-                Nutrient(name: "Calcium",        quantity: 100,unit: "mg"),
-                Nutrient(name: "Magnesium",      quantity: 50, unit: "mg"),
-                Nutrient(name: "Potassium",      quantity: 250,unit: "mg"),
+                Nutrient(name: "Calories", quantity: 5, unit: "kcal"),
+                Nutrient(name: "Carbs",    quantity: 5, unit: "g"),
+                Nutrient(name: "Sugar",    quantity: 5, unit: "g"),
+                Nutrient(name: "Fat",      quantity: 12, unit: "g"),
+                Nutrient(name: "Cholesterol", quantity: 30, unit: "mg"),
+                Nutrient(name: "Protein",  quantity: 8, unit: "g"),
+                Nutrient(name: "Sodium",   quantity: 200, unit: "mg"),
+                Nutrient(name: "Calcium",  quantity: 100, unit: "mg"),
+                Nutrient(name: "Magnesium",quantity: 50, unit: "mg"),
+                Nutrient(name: "Potassium",quantity: 250, unit: "mg"),
             ],
-            diets:           [],
-            mealtypes:       [],
-            healthLabels:    [],
-            tags:            []
+            diets: [], mealtypes: [], healthLabels: [], tags: []
         )
     }
 

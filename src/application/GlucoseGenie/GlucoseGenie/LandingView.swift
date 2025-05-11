@@ -34,18 +34,32 @@ struct LandingView: View {
         .task {
             isLoading = true
             await authenticationService.fetchSession()
+            // Only invoke web sign-in if we're not already signed in
             if !authenticationService.isSignedIn {
                 await authenticationService.signIn(presentationAnchor: window)
             }
             isLoading = false
         }
     }
-    
+
+    // We need an ASPresentationAnchor for the WebUI flow.
     private var window: ASPresentationAnchor {
-        if let delegate = UIApplication.shared.connectedScenes.first?.delegate as? UIWindowSceneDelegate,
+        if let delegate = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first?.delegate as? UIWindowSceneDelegate,
            let window = delegate.window as? UIWindow {
             return window
         }
         return ASPresentationAnchor()
     }
 }
+
+#if DEBUG
+struct LandingView_Previews: PreviewProvider {
+    static var previews: some View {
+        LandingView()
+            .environmentObject(AuthenticationService())
+            .environmentObject(RecipeStore())
+    }
+}
+#endif
