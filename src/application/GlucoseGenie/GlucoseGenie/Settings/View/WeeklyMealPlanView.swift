@@ -94,8 +94,8 @@ struct WeeklyMealPlanView: View {
                                 }
                             }
                         }
-                        .navigationTitle("Add to \(day.displayName.prefix(3))")
-                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle("Add to \(String(day.displayName.prefix(3)))")
+                            .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button("Cancel") { dayToAdd = nil }
