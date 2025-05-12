@@ -27,6 +27,7 @@ struct WeeklyMealPlanView: View {
 
     private let calendar = Calendar.current
     private let slots: [MealSlot] = [.breakfast, .lunch, .dinner]
+    private let addRecipeToString = String(localized: "Add recipe to")
 
     // Always start week on Sunday
     private let daysOrder: [DayOfWeek] = [
@@ -84,7 +85,7 @@ struct WeeklyMealPlanView: View {
                                     Image(systemName: "plus.circle")
                                         .font(.title2)
                                 }
-                                .accessibilityLabel("Add recipe to \(day.displayName)")
+                                .accessibilityLabel("\(addRecipeToString) \(day.displayName)")
                             }
                             .padding(.horizontal)
 

@@ -180,13 +180,13 @@ enum MealType: String, Codable, CaseIterable, Equatable, Identifiable {
     var displayName: String {
         switch self {
         case .breakfast:
-            return "Breakfast"
+            return String(localized: "Breakfast")
         case .lunch:
-            return "Lunch"
+            return String(localized: "Lunch")
         case .dinner:
-            return "Dinner"
+            return String(localized: "Dinner")
         case .snack:
-            return "Snack"
+            return String(localized: "Snack")
         }
     }
 }
@@ -211,31 +211,31 @@ enum HealthLabel: String, Codable, CaseIterable, Equatable, Identifiable {
     var displayName: String {
         switch self {
         case .dairyFree:
-            return "Dairy Free"
+            return String(localized: "Dairy Free")
         case .glutenFree:
-            return "Gluten Free"
+            return String(localized: "Gluten Free")
         case .kidneyFriendly:
-            return "Kidney Friendly"
+            return String(localized: "Kidney Friendly")
         case .kosher:
             return "Kosher"
         case .lowPotassium:
-            return "Low Potassium"
+            return String(localized: "Low Potassium")
         case .lowSugar:
-            return "Low Sugar"
+            return String(localized: "Low Sugar")
         case .peanutFree:
-            return "Peanut Free"
+            return String(localized: "Peanut Free")
         case .pescatarian:
-            return "Pescatarian"
+            return String(localized: "Pescatarian")
         case .porkFree:
-            return "Pork Free"
+            return String(localized: "Pork Free")
         case .soyFree:
-            return "Soy Free"
+            return String(localized: "Soy Free")
         case .treeNutFree:
-            return "Tree Nut Free"
+            return String(localized: "Tree Nut Free")
         case .vegan:
-            return "Vegan"
+            return String(localized: "Vegan")
         case .vegetarian:
-            return "Vegetarian"
+            return String(localized: "Vegetarian")
         }
     }
 }

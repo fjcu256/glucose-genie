@@ -12,6 +12,8 @@ struct SavedRecipesView: View {
 
     // Which saved recipe the user tapped “plan” on
     @State private var planRecipe: Recipe?
+    let addString = String(localized: "Add")
+    let toMealPlanString = String(localized: "to meal plan")
 
     var body: some View {
         List {
@@ -39,7 +41,7 @@ struct SavedRecipesView: View {
                                 .imageScale(.large)
                         }
                         .buttonStyle(BorderlessButtonStyle())
-                        .accessibilityLabel("Add \(recipe.name) to meal plan")
+                        .accessibilityLabel("\(addString) \(recipe.name) \(toMealPlanString)")
                     }
                     .swipeActions {
                         Button {

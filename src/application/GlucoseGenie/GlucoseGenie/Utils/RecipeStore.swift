@@ -12,13 +12,13 @@ import Combine
 enum DayOfWeek: String, CaseIterable, Codable, Identifiable {
   case monday, tuesday, wednesday, thursday, friday, saturday, sunday
   var id: String { rawValue }
-  var displayName: String { rawValue.capitalized }
+  var displayName: String { return NSLocalizedString(rawValue.capitalized, comment: "") }
 }
 
 enum MealSlot: String, CaseIterable, Codable, Identifiable {
   case breakfast, lunch, dinner
   var id: String { rawValue }
-  var displayName: String { rawValue.capitalized }
+    var displayName: String { return NSLocalizedString(rawValue.capitalized, comment: "") }
 }
 
 //–– One entry in the weekly meal plan
