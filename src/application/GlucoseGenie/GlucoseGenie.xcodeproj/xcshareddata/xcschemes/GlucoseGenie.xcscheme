@@ -74,6 +74,21 @@
                </Test>
             </SelectedTests>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EB71D8212DD266A60087156F"
+               BuildableName = "GroceryStoreMapUITests.xctest"
+               BlueprintName = "GroceryStoreMapUITests"
+               ReferencedContainer = "container:GlucoseGenie.xcodeproj">
+            </BuildableReference>
+            <SelectedTests>
+               <Test
+                  Identifier = "GroceryStoreMapUITests/testMapIsPannable()">
+               </Test>
+            </SelectedTests>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

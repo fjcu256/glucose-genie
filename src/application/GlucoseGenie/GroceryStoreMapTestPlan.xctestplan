@@ -15,6 +15,7 @@
     {
       "selectedTests" : [
         "GroceryStoreMapUITests\/testExample()",
+        "GroceryStoreMapUITests\/testMapIsPannable()",
         "GroceryStoreMapUITests\/testMapIsZoomable()"
       ],
       "target" : {
