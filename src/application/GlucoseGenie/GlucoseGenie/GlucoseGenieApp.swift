@@ -3,7 +3,6 @@
 //  GlucoseGenie
 //
 //  Created by Hristova,Krisi on 2/17/25.
-//
 
 import SwiftUI
 import Amplify
@@ -16,12 +15,19 @@ struct GlucoseGenieApp: App {
         configureAmplify()
     }
 
+    // Make AuthenticationService a @StateObject so its state
+    // (isSignedIn) persists across the entire app.
+    @StateObject private var authService = AuthenticationService()
+    @StateObject private var recipeStore = RecipeStore()
+
     var body: some Scene {
         WindowGroup {
-            LandingView().environmentObject(AuthenticationService())
+            LandingView()
+                .environmentObject(authService)
+                .environmentObject(recipeStore)
         }
     }
-    
+
     private func configureAmplify() {
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())

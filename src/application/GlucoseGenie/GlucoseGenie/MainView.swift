@@ -3,6 +3,7 @@
 //  GlucoseGenie
 //
 //  Created by Francisco Cruz-Urbanc on 2/23/25.
+//
 
 import SwiftUI
 
@@ -18,6 +19,7 @@ struct MainView: View {
                         Spacer()
                         Spacer()
                         Spacer()
+                        
                         NavigationLink(destination: RecipeUIView()) {
                             Text("Recipes").styledButton()
                         }
@@ -33,16 +35,17 @@ struct MainView: View {
                         NavigationLink(destination: GroceryStoreView()) {
                             Text("Find Grocery Store").styledButton()
                         }
-                        NavigationLink(destination:
-                                        NutrientUIView()) {
+                        NavigationLink(destination: NutrientUIView()) {
                             Text("Track Nutrients").styledButton()
                         }
+                        
                         Spacer()
-                    }.padding()
+                    }
+                    .padding()
                     
                     VStack {
                         HStack(spacing: -16) {
-                          Spacer()
+                            Spacer()
                             NavigationLink(destination: APITestView()) {
                                 Image(systemName: "heart.fill")
                                     .font(.largeTitle)
@@ -57,12 +60,9 @@ struct MainView: View {
                         Spacer()
                     }
                 }
-                
             }
-            
         }
     }
-    
 }
 
 struct NutrientInputField: View {
@@ -82,8 +82,14 @@ struct NutrientInputField: View {
     }
 }
 
-#Preview {
-    MainView()
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            MainView()
+                .environmentObject(AuthenticationService())
+                .environmentObject(RecipeStore())
+        }
+    }
 }
 
 extension View {

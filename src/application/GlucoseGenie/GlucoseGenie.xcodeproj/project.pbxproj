@@ -14,6 +14,10 @@
 		265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F72D6BD519000A59B2 /* LandingView.swift */; };
 		265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F92D6BD5A7000A59B2 /* MainView.swift */; };
 		7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */; };
+		7C70EA6B2DD1824E00C33726 /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
+		7CDC792D2DCAB250006DF552 /* DetailedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDC792C2DCAB250006DF552 /* DetailedRecipeView.swift */; };
+		7CF45BF42DCCFF2400A1E212 /* RecipeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF45BF32DCCFF2400A1E212 /* RecipeStore.swift */; };
+		7CF45C022DCD016200A1E212 /* AddToMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF45C012DCD016200A1E212 /* AddToMealPlanView.swift */; };
 		7F1ADDD82D6A825F0089909E /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = 7F1ADDD72D6A825F0089909E /* Amplify */; };
 		7F4F572D2D7A11CE00FE25FE /* APITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F572C2D7A11CE00FE25FE /* APITestView.swift */; };
 		7F8E30362D7A147500604F37 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = 7F8E30352D7A147500604F37 /* AWSAPIPlugin */; };
@@ -38,7 +42,6 @@
 		FDE6F9D02D9F53B4009FD7B6 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9CF2D9F53B4009FD7B6 /* Recipe.swift */; };
 		FDE6F9D32D9F86A6009FD7B6 /* RecipeAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9D22D9F86A6009FD7B6 /* RecipeAPIModels.swift */; };
 		FDE6F9D52D9F8900009FD7B6 /* RecipeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9D42D9F8900009FD7B6 /* RecipeParser.swift */; };
-		FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
 		FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E012D761A9200654EEF /* GroceryStoreView.swift */; };
 		FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E032D761AC500654EEF /* SavedRecipesView.swift */; };
 		FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E052D761F7E00654EEF /* GroceryListView.swift */; };
@@ -67,6 +70,9 @@
 		265A25F52D6BD1DC000A59B2 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		265A25F72D6BD519000A59B2 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		265A25F92D6BD5A7000A59B2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7CDC792C2DCAB250006DF552 /* DetailedRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRecipeView.swift; sourceTree = "<group>"; };
+		7CF45BF32DCCFF2400A1E212 /* RecipeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStore.swift; sourceTree = "<group>"; };
+		7CF45C012DCD016200A1E212 /* AddToMealPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToMealPlanView.swift; sourceTree = "<group>"; };
 		7F4F572C2D7A11CE00FE25FE /* APITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITestView.swift; sourceTree = "<group>"; };
 		85C00D9F62CC02A485E5CC63 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TestDB+Schema.swift"; path = "amplify/generated/models/TestDB+Schema.swift"; sourceTree = "<group>"; };
@@ -274,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				FD0CA5712D7F201F00243404 /* RecipeUIView.swift */,
+				7CDC792C2DCAB250006DF552 /* DetailedRecipeView.swift */,
+				7CF45C012DCD016200A1E212 /* AddToMealPlanView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -351,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE6F9CC2D9F2CFF009FD7B6 /* Secrets.swift */,
+				7CF45BF32DCCFF2400A1E212 /* RecipeStore.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -527,14 +536,17 @@
 				EBE3A81D2DAD8CA700C4341B /* GroceryStoreViewModel.swift in Sources */,
 				FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */,
 				265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */,
+				7CF45C022DCD016200A1E212 /* AddToMealPlanView.swift in Sources */,
 				EBFAE15D2D7CD3AF00561A7A /* NutrientUIView.swift in Sources */,
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
 				265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */,
 				EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */,
-				FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */,
+				7C70EA6B2DD1824E00C33726 /* WeeklyMealPlanView.swift in Sources */,
 				F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */,
 				7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */,
+				7CDC792D2DCAB250006DF552 /* DetailedRecipeView.swift in Sources */,
 				B3C2817AA7A942FA274038C4 /* TestDB.swift in Sources */,
+				7CF45BF42DCCFF2400A1E212 /* RecipeStore.swift in Sources */,
 				FD0CA5722D7F201F00243404 /* RecipeUIView.swift in Sources */,
 				FDE6F9D02D9F53B4009FD7B6 /* Recipe.swift in Sources */,
 			);
@@ -697,6 +709,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlucoseGenie/Preview Content\"";
@@ -704,7 +717,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GlucoseGenie/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Glucose Genie wants your location to provide a map of nearby grocery stores";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Glucose Genie needs your location to find nearby grocery stores.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -717,6 +730,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.glucosegenie.GlucoseGenie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -728,6 +742,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GlucoseGenie/Preview Content\"";
@@ -735,7 +750,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GlucoseGenie/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Glucose Genie wants your location to provide a map of nearby grocery stores";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Glucose Genie needs your location to find nearby grocery stores.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -748,6 +763,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.glucosegenie.GlucoseGenie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
