@@ -151,10 +151,14 @@
 
 "Clear all meals" = "Borrar comidas";
 
-"Clear all meals in your plan?" = "¿Quiere borrar todas las comidas en su plan?";
+"Clear all meals in your plan?" = "¿Quieres borrar todas las comidas en tu plan?";
 
 "Clear All" = "Borrar";
 
 "Remove Meal" = "Borrar";
 
 "Add" = "Agregar";
+
+"You have no saved recipes." = "No tienes ningunas recetas guardadas.";
+
+"to meal plan" = "al plan de comidas";
