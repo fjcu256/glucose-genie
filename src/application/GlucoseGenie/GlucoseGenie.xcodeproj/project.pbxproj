@@ -14,6 +14,7 @@
 		265A25F82D6BD519000A59B2 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F72D6BD519000A59B2 /* LandingView.swift */; };
 		265A25FA2D6BD5A7000A59B2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A25F92D6BD5A7000A59B2 /* MainView.swift */; };
 		7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E2E009351AB4D3BC2C211E /* TestDB+Schema.swift */; };
+		7C70EA6B2DD1824E00C33726 /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
 		7CDC792D2DCAB250006DF552 /* DetailedRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDC792C2DCAB250006DF552 /* DetailedRecipeView.swift */; };
 		7CF45BF42DCCFF2400A1E212 /* RecipeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF45BF32DCCFF2400A1E212 /* RecipeStore.swift */; };
 		7CF45C022DCD016200A1E212 /* AddToMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF45C012DCD016200A1E212 /* AddToMealPlanView.swift */; };
@@ -41,7 +42,6 @@
 		FDE6F9D02D9F53B4009FD7B6 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9CF2D9F53B4009FD7B6 /* Recipe.swift */; };
 		FDE6F9D32D9F86A6009FD7B6 /* RecipeAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9D22D9F86A6009FD7B6 /* RecipeAPIModels.swift */; };
 		FDE6F9D52D9F8900009FD7B6 /* RecipeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9D42D9F8900009FD7B6 /* RecipeParser.swift */; };
-		FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89DFF2D761A6100654EEF /* WeeklyMealPlanView.swift */; };
 		FDF89E022D761A9200654EEF /* GroceryStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E012D761A9200654EEF /* GroceryStoreView.swift */; };
 		FDF89E042D761AC500654EEF /* SavedRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E032D761AC500654EEF /* SavedRecipesView.swift */; };
 		FDF89E062D761F7E00654EEF /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF89E052D761F7E00654EEF /* GroceryListView.swift */; };
@@ -541,7 +541,7 @@
 				FD2EC0CA2D63C3F700525F77 /* GlucoseGenieApp.swift in Sources */,
 				265A25F62D6BD1DC000A59B2 /* AuthenticationService.swift in Sources */,
 				EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */,
-				FDF89E002D761A6100654EEF /* WeeklyMealPlanView.swift in Sources */,
+				7C70EA6B2DD1824E00C33726 /* WeeklyMealPlanView.swift in Sources */,
 				F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */,
 				7C65AB56E67A7B1567C72299 /* TestDB+Schema.swift in Sources */,
 				7CDC792D2DCAB250006DF552 /* DetailedRecipeView.swift in Sources */,

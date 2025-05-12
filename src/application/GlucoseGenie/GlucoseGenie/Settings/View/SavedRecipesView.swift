@@ -1,8 +1,7 @@
-//
 //  SavedRecipesView.swift
 //  GlucoseGenie
 //
-//  Created by Capro,Thomas 5/8/25
+//  Created by Capro,Thomas on 5/8/25
 //
 
 import SwiftUI
@@ -10,8 +9,8 @@ import SwiftUI
 struct SavedRecipesView: View {
     @EnvironmentObject private var store: RecipeStore
     @EnvironmentObject private var authenticationService: AuthenticationService
-    
-    // Holds the recipe the user tapped “plan” on
+
+    // Which saved recipe the user tapped “plan” on
     @State private var planRecipe: Recipe?
 
     var body: some View {
@@ -25,18 +24,19 @@ struct SavedRecipesView: View {
             } else {
                 ForEach(store.saved) { recipe in
                     HStack {
-                        // Tap name to go to detail
+                        // Name → detail
                         NavigationLink(recipe.name) {
                             DetailedRecipeView(recipe: recipe)
                                 .environmentObject(store)
                                 .environmentObject(authenticationService)
                         }
                         Spacer()
-                        // “+” button to plan this recipe
+                        // Calendar button → plan sheet
                         Button {
                             planRecipe = recipe
                         } label: {
                             Image(systemName: "calendar.badge.plus")
+                                .imageScale(.large)
                         }
                         .buttonStyle(BorderlessButtonStyle())
                         .accessibilityLabel("Add \(recipe.name) to meal plan")
@@ -56,12 +56,11 @@ struct SavedRecipesView: View {
             }
         }
         .navigationTitle("Saved Recipes")
-        // Present the AddToMealPlan sheet when planRecipe is non-nil
+        // Present the standard day+slot picker
         .sheet(item: $planRecipe) { recipeToPlan in
             NavigationStack {
                 AddToMealPlanView(recipe: recipeToPlan)
                     .environmentObject(store)
-                    .environmentObject(authenticationService)
             }
         }
     }
