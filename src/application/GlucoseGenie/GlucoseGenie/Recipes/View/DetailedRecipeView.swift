@@ -17,10 +17,18 @@ struct DetailedRecipeView: View {
 
     // which nutrients to list under “Nutrition Facts”
     private let nutrientKeys = [
-        "Sugar", "Fat", "Cholesterol",
-        "Protein", "Sodium", "Calcium",
-        "Magnesium", "Potassium"
+        ("Sugar", String(localized: "Sugar")),
+        ("Fat", String(localized: "Fat")),
+        ("Cholesterol", String(localized: "Cholesterol")),
+        ("Protein", String(localized: "Protein")),
+        ("Sodium", String(localized: "Sodium")),
+        ("Calcium", String(localized: "Calcium")),
+        ("Magnesium", String(localized: "Magnesium")),
+        ("Potassium", String(localized: "Potassium"))
     ]
+    let caloriesString = String(localized: "Calories")
+    let carbsString = String(localized: "Carbs")
+    let servingsString = String(localized: "servings")
 
     var body: some View {
         ScrollView {
@@ -55,10 +63,10 @@ struct DetailedRecipeView: View {
                 // Calories & Carbs
                 HStack {
                     if let cal = recipe.calories {
-                        Text("Calories: \(cal) kcal")
+                        Text("\(caloriesString): \(cal) kcal")
                     }
                     if let carb = recipe.carbs {
-                        Text("Carbs: \(carb)g")
+                        Text("\(carbsString): \(carb)g")
                     }
                 }
                 .font(.subheadline)
@@ -70,7 +78,7 @@ struct DetailedRecipeView: View {
                         Text("⏱ \(Int(time)) min")
                     }
                     if let serves = recipe.servings {
-                        Text("🍽 Serves \(serves)")
+                        Text("🍽 \(serves) \(servingsString)")
                     }
                 }
                 .font(.subheadline)
@@ -98,18 +106,18 @@ struct DetailedRecipeView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     // Calories & Carbs again
                     if let cal = recipe.calories {
-                        Text("Calories: \(cal) kcal")
+                        Text("\(caloriesString): \(cal) kcal")
                     }
                     if let carb = recipe.carbs {
-                        Text("Carbs: \(carb)g")
+                        Text("\(carbsString): \(carb)g")
                     }
                     // Other selected nutrients
-                    ForEach(nutrientKeys, id: \.self) { key in
+                    ForEach(nutrientKeys, id:\.0) { key in
                         if let nut = recipe.totalNutrients.first(
-                            where: { $0.name.localizedCaseInsensitiveContains(key) }
+                            where: { $0.name.localizedCaseInsensitiveContains(key.0) }
                         ) {
                             let qty = Int(nut.quantity)
-                            Text("\(key): \(qty) \(nut.unit)")
+                            Text("\(key.1): \(qty) \(nut.unit)")
                         }
                     }
                 }

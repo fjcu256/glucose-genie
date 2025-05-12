@@ -94,3 +94,33 @@
 "Unable to get recipes. Credentials are missing. Please contact support." = "No se puede conseguir las recetas. Le faltan las credenciales. Por favor, póngase en contacto con el soporte técnico.";
 
 "Something went wrong while getting recipes." = "Algo salió mal al intentar conseguir las recetas.";
+
+"Sugar" = "Azúcar";
+
+"Fat" = "Grasa";
+
+"Cholesterol" = "Colesterol";
+
+"Sodium" = "Sodio";
+
+"Calcium" = "Calcio";
+
+"Magnesium" = "Magnesio";
+
+"Potassium" = "Potasio";
+
+"servings" = "porciones";
+
+"Ingredients" = "Ingredientes";
+
+"Nutrition Facts" = "Información Nutricional";
+
+"View Full Recipe" = "Ver Receta Completa";
+
+"Save Recipe" = "Guardar Receta";
+
+"Unsave Recipe" = "Quitar de Recetas Guardadas";
+
+"Add to Meal Plan" = "Agregar al Plan";
+
+"Recipe" = "Receta";
