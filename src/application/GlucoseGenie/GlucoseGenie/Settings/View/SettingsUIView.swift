@@ -21,15 +21,6 @@ struct SettingsUIView: View {
                     }
                 }
                 
-                Section(header: Text("Language")) {
-                    Picker("Select Language", selection: $viewModel.selectedLanguage) {
-                        ForEach(viewModel.languages, id: \.self) { language in
-                            Text(language)
-                        }
-                    }
-                    .pickerStyle(PalettePickerStyle())
-                }
-                
                 Section {
                     Button(action: handleLogOut) {
                         HStack {

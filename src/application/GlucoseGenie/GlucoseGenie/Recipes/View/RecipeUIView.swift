@@ -21,7 +21,7 @@ struct RecipeUIView: View {
     @State private var likedRecipes: [Recipe] = []
     @State private var isLoading: Bool = true
     @State private var uiErrorMessage: String?
-    @State private var lang: String = "en"
+    @State private var lang: String = Bundle.main.preferredLocalizations.first ?? "en"
     @State private var nextPageUrl: URL?
     @State private var isLoadingMore = false
 
@@ -29,6 +29,9 @@ struct RecipeUIView: View {
     let healthFilters: [HealthLabel] = HealthLabel.allCases
     @State private var selectedMealTypes: Set<MealType> = []
     @State private var selectedHealthLabels: Set<HealthLabel> = []
+    let caloriesString = String(localized: "Calories")
+    let carbsString = String(localized: "Carbs")
+    let filtersString = String(localized: "Filters")
 
     var body: some View {
         NavigationView {
@@ -70,7 +73,7 @@ struct RecipeUIView: View {
                         }
                     }
                 }
-                Section("Health Labels") {
+                Section("Diets") {
                     ForEach(healthFilters, id: \.self) { filter in
                         Button {
                             toggleHealthFilter(filter)
@@ -93,7 +96,7 @@ struct RecipeUIView: View {
             } label: {
                 HStack {
                     Image(systemName: "line.horizontal.3.decrease.circle")
-                    Text("Filters (\(selectedMealTypes.count + selectedHealthLabels.count))")
+                    Text("\(filtersString) (\(selectedMealTypes.count + selectedHealthLabels.count))")
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
@@ -204,10 +207,10 @@ struct RecipeUIView: View {
 
                 HStack {
                     if let cal = recipe.calories {
-                        Text("Calories: \(cal) kcal")
+                        Text("\(caloriesString): \(cal) kcal")
                     }
                     if let carb = recipe.carbs {
-                        Text("Carbs: \(carb)g")
+                        Text("\(carbsString): \(carb)g")
                     }
                 }
                 .font(.subheadline)
@@ -285,7 +288,7 @@ struct RecipeUIView: View {
         guard !Secrets.appId.isEmpty, !Secrets.appKey.isEmpty else {
             DispatchQueue.main.async {
                 isLoading = false
-                uiErrorMessage = "Credentials missing. Please contact support."
+                uiErrorMessage = String(localized: "Unable to get recipes. Credentials are missing. Please contact support.")
             }
             return
         }
@@ -317,7 +320,7 @@ struct RecipeUIView: View {
                 if error != nil || data == nil {
                     DispatchQueue.main.async {
                         isLoading = false
-                        uiErrorMessage = "Failed to load recipes."
+                        uiErrorMessage = String(localized: "Something went wrong while getting recipes.")
                     }
                     return
                 }
