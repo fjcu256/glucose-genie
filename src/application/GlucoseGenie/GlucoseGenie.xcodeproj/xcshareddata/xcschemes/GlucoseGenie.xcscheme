@@ -29,7 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:LocationTestPlan.xctestplan">
+            reference = "container:LocationTestPlan.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:GroceryStoreMapTestPlan.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -54,6 +58,36 @@
                BlueprintName = "GlucoseGenieUITests"
                ReferencedContainer = "container:GlucoseGenie.xcodeproj">
             </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FD2EC0E12D63C40000525F77"
+               BuildableName = "GlucoseGenieUITests.xctest"
+               BlueprintName = "GlucoseGenieUITests"
+               ReferencedContainer = "container:GlucoseGenie.xcodeproj">
+            </BuildableReference>
+            <SelectedTests>
+               <Test
+                  Identifier = "GroceryStoreMapUITests/testExample()">
+               </Test>
+            </SelectedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EB71D8212DD266A60087156F"
+               BuildableName = "GroceryStoreMapUITests.xctest"
+               BlueprintName = "GroceryStoreMapUITests"
+               ReferencedContainer = "container:GlucoseGenie.xcodeproj">
+            </BuildableReference>
+            <SelectedTests>
+               <Test
+                  Identifier = "GroceryStoreMapUITests/testMapIsPannable()">
+               </Test>
+            </SelectedTests>
          </TestableReference>
       </Testables>
    </TestAction>

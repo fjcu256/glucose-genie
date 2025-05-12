@@ -56,6 +56,9 @@ struct GroceryStoreView: View {
                 .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
                 .presentationCornerRadius(12)
         })
+        //testing purposes
+        .accessibilityIdentifier("MainMap")
+
     }
 }
 
