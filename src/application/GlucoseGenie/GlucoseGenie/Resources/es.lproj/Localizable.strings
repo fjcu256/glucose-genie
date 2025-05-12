@@ -33,7 +33,7 @@
 
 "Add Entry" = "Agregar Entrada";
 
-"Enter" = "Entra";
+"Enter" = "Entrar";
 
 "Settings" = "Configuración";
 
@@ -124,3 +124,25 @@
 "Add to Meal Plan" = "Agregar al Plan";
 
 "Recipe" = "Receta";
+
+"Day" = "Día";
+
+"Meal" = "Comida";
+
+"Add" = "Agregar";
+
+"Cancel" = "Cancelar";
+
+"Monday" = "Lunes";
+
+"Tuesday" = "Martes";
+
+"Wednesday" = "Miércoles";
+
+"Thursday" = "Jueves";
+
+"Friday" = "Viernes";
+
+"Saturday" = "Sábado";
+
+"Sunday" = "Domingo";
