@@ -27,6 +27,9 @@
 		EB2BCA862D63DEA800D83213 /* SettingsUIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */; };
 		EB51E4672D76236C00B9844B /* NutrientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51E4662D76236C00B9844B /* NutrientViewModel.swift */; };
 		EB51E4692D76246200B9844B /* NutrientLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51E4682D76246200B9844B /* NutrientLog.swift */; };
+		EB71D81D2DD2661F0087156F /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB71D81C2DD2661F0087156F /* Secrets.plist */; };
+		EB71D8302DD26A140087156F /* GroceryStoreMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71D82F2DD26A140087156F /* GroceryStoreMapUITests.swift */; };
+		EB71D8312DD26A140087156F /* GroceryStoreMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71D82F2DD26A140087156F /* GroceryStoreMapUITests.swift */; };
 		EBE3A81D2DAD8CA700C4341B /* GroceryStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE3A81C2DAD8CA700C4341B /* GroceryStoreViewModel.swift */; };
 		EBFAE15D2D7CD3AF00561A7A /* NutrientUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */; };
 		F75D07137D28B687082E5728 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB74DB5803F97684EE11D5E /* AmplifyModels.swift */; };
@@ -37,7 +40,6 @@
 		FD2EC0DD2D63C40000525F77 /* GlucoseGenieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0DC2D63C40000525F77 /* GlucoseGenieTests.swift */; };
 		FD2EC0E72D63C40000525F77 /* GlucoseGenieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */; };
 		FD2EC0E92D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */; };
-		FDE6F9CA2D9F2AB4009FD7B6 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDE6F9C92D9F2AB4009FD7B6 /* Secrets.plist */; };
 		FDE6F9CD2D9F2CFF009FD7B6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9CC2D9F2CFF009FD7B6 /* Secrets.swift */; };
 		FDE6F9D02D9F53B4009FD7B6 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9CF2D9F53B4009FD7B6 /* Recipe.swift */; };
 		FDE6F9D32D9F86A6009FD7B6 /* RecipeAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE6F9D22D9F86A6009FD7B6 /* RecipeAPIModels.swift */; };
@@ -48,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EB71D8282DD266A60087156F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD2EC0BE2D63C3F700525F77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD2EC0C52D63C3F700525F77;
+			remoteInfo = GlucoseGenie;
+		};
 		FD2EC0D92D63C40000525F77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FD2EC0BE2D63C3F700525F77 /* Project object */;
@@ -83,6 +92,11 @@
 		EB2BCA852D63DEA800D83213 /* SettingsUIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIViewModel.swift; sourceTree = "<group>"; };
 		EB51E4662D76236C00B9844B /* NutrientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientViewModel.swift; sourceTree = "<group>"; };
 		EB51E4682D76246200B9844B /* NutrientLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLog.swift; sourceTree = "<group>"; };
+		EB71D81C2DD2661F0087156F /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Secrets.plist; path = ../../../../../Downloads/Secrets.plist; sourceTree = "<group>"; };
+		EB71D8222DD266A60087156F /* GroceryStoreMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroceryStoreMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB71D82D2DD2698F0087156F /* GroceryStoreMapTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GroceryStoreMapTestPlan.xctestplan; sourceTree = "<group>"; };
+		EB71D82E2DD26A140087156F /* GroceryStoreMapUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroceryStoreMapUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		EB71D82F2DD26A140087156F /* GroceryStoreMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreMapUITests.swift; sourceTree = "<group>"; };
 		EBE3A81C2DAD8CA700C4341B /* GroceryStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryStoreViewModel.swift; sourceTree = "<group>"; };
 		EBEE744B2DB7153D001C9D97 /* LocationTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = LocationTestPlan.xctestplan; sourceTree = "<group>"; };
 		EBFAE15C2D7CD3AF00561A7A /* NutrientUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientUIView.swift; sourceTree = "<group>"; };
@@ -96,7 +110,6 @@
 		FD2EC0E22D63C40000525F77 /* GlucoseGenieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseGenieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITests.swift; sourceTree = "<group>"; };
 		FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseGenieUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FDE6F9C92D9F2AB4009FD7B6 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		FDE6F9CC2D9F2CFF009FD7B6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		FDE6F9CF2D9F53B4009FD7B6 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		FDE6F9D22D9F86A6009FD7B6 /* RecipeAPIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPIModels.swift; sourceTree = "<group>"; };
@@ -108,6 +121,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EB71D81F2DD266A60087156F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD2EC0C32D63C3F700525F77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -290,7 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				EBEE744B2DB7153D001C9D97 /* LocationTestPlan.xctestplan */,
-				FDE6F9C92D9F2AB4009FD7B6 /* Secrets.plist */,
+				EB71D82D2DD2698F0087156F /* GroceryStoreMapTestPlan.xctestplan */,
+				EB71D81C2DD2661F0087156F /* Secrets.plist */,
 				FD2EC0C82D63C3F700525F77 /* GlucoseGenie */,
 				FD2EC0DB2D63C40000525F77 /* GlucoseGenieTests */,
 				FD2EC0E52D63C40000525F77 /* GlucoseGenieUITests */,
@@ -307,6 +328,7 @@
 				FD2EC0C62D63C3F700525F77 /* GlucoseGenie.app */,
 				FD2EC0D82D63C40000525F77 /* GlucoseGenieTests.xctest */,
 				FD2EC0E22D63C40000525F77 /* GlucoseGenieUITests.xctest */,
+				EB71D8222DD266A60087156F /* GroceryStoreMapUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +373,8 @@
 			children = (
 				FD2EC0E62D63C40000525F77 /* GlucoseGenieUITests.swift */,
 				FD2EC0E82D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift */,
+				EB71D82F2DD26A140087156F /* GroceryStoreMapUITests.swift */,
+				EB71D82E2DD26A140087156F /* GroceryStoreMapUITests-Bridging-Header.h */,
 			);
 			path = GlucoseGenieUITests;
 			sourceTree = "<group>";
@@ -384,6 +408,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EB71D8212DD266A60087156F /* GroceryStoreMapUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB71D82A2DD266A60087156F /* Build configuration list for PBXNativeTarget "GroceryStoreMapUITests" */;
+			buildPhases = (
+				EB71D81E2DD266A60087156F /* Sources */,
+				EB71D81F2DD266A60087156F /* Frameworks */,
+				EB71D8202DD266A60087156F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB71D8292DD266A60087156F /* PBXTargetDependency */,
+			);
+			name = GroceryStoreMapUITests;
+			productName = GroceryStoreMapUITests;
+			productReference = EB71D8222DD266A60087156F /* GroceryStoreMapUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		FD2EC0C52D63C3F700525F77 /* GlucoseGenie */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD2EC0EC2D63C40000525F77 /* Build configuration list for PBXNativeTarget "GlucoseGenie" */;
@@ -452,6 +494,11 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					EB71D8212DD266A60087156F = {
+						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
+						TestTargetID = FD2EC0C52D63C3F700525F77;
+					};
 					FD2EC0C52D63C3F700525F77 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -484,19 +531,27 @@
 				FD2EC0C52D63C3F700525F77 /* GlucoseGenie */,
 				FD2EC0D72D63C40000525F77 /* GlucoseGenieTests */,
 				FD2EC0E12D63C40000525F77 /* GlucoseGenieUITests */,
+				EB71D8212DD266A60087156F /* GroceryStoreMapUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EB71D8202DD266A60087156F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD2EC0C42D63C3F700525F77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FD2EC0D32D63C3FE00525F77 /* Preview Assets.xcassets in Resources */,
-				FDE6F9CA2D9F2AB4009FD7B6 /* Secrets.plist in Resources */,
 				FD2EC0D02D63C3FE00525F77 /* Assets.xcassets in Resources */,
 				1C7175124ED8CDE24B3CCFB7 /* awsconfiguration.json in Resources */,
+				EB71D81D2DD2661F0087156F /* Secrets.plist in Resources */,
 				14FFDD3620BCA9BAEBD88013 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +573,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EB71D81E2DD266A60087156F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB71D8312DD26A140087156F /* GroceryStoreMapUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FD2EC0C22D63C3F700525F77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,12 +629,18 @@
 			files = (
 				FD2EC0E92D63C40000525F77 /* GlucoseGenieUITestsLaunchTests.swift in Sources */,
 				FD2EC0E72D63C40000525F77 /* GlucoseGenieUITests.swift in Sources */,
+				EB71D8302DD26A140087156F /* GroceryStoreMapUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EB71D8292DD266A60087156F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD2EC0C52D63C3F700525F77 /* GlucoseGenie */;
+			targetProxy = EB71D8282DD266A60087156F /* PBXContainerItemProxy */;
+		};
 		FD2EC0DA2D63C40000525F77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FD2EC0C52D63C3F700525F77 /* GlucoseGenie */;
@@ -585,6 +654,43 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		EB71D82B2DD266A60087156F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = crf73.GroceryStoreMapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "GlucoseGenieUITests/GroceryStoreMapUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GlucoseGenie;
+			};
+			name = Debug;
+		};
+		EB71D82C2DD266A60087156F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = crf73.GroceryStoreMapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "GlucoseGenieUITests/GroceryStoreMapUITests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GlucoseGenie;
+			};
+			name = Release;
+		};
 		FD2EC0EA2D63C40000525F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -845,6 +951,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EB71D82A2DD266A60087156F /* Build configuration list for PBXNativeTarget "GroceryStoreMapUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB71D82B2DD266A60087156F /* Debug */,
+				EB71D82C2DD266A60087156F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FD2EC0C12D63C3F700525F77 /* Build configuration list for PBXProject "GlucoseGenie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
