@@ -162,3 +162,13 @@
 "You have no saved recipes." = "No tienes ningunas recetas guardadas.";
 
 "to meal plan" = "al plan de comidas";
+
+"Based on your weekly meal plan, you will need:" = "Según tu plan de comidas semanal, necesitas comprar:";
+
+"Sync with Meal Plan" = "Sincronizar con tu plan de comidas";
+
+"Sync Grocery List?" = "¿Quieres sincronizar tu lista de compras?";
+
+"Sync" = "Sincronizar";
+
+"This will sync your grocery list with your current meal plan. Any changes will be lost." = "Al sincronizar la lista de compras con el plan de comidas actual, cualquier cambio a la medida se perderá.";
