@@ -122,7 +122,7 @@ struct WeeklyMealPlanView: View {
                 titleVisibility: .visible
             ) {
                 Button("Clear All", role: .destructive) {
-                    store.plan.removeAll()
+                    store.clearPlan()
                 }
                 Button("Cancel", role: .cancel) { }
             }
