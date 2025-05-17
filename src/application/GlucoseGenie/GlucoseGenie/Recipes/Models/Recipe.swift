@@ -75,7 +75,7 @@ struct Recipe: Identifiable, Equatable, Codable {
     
 }
 
-struct Ingredient: Identifiable, Equatable, Codable {
+struct Ingredient: Identifiable, Equatable, Codable, Hashable {
     let id = UUID()
     let text: String
     let quantity: Double

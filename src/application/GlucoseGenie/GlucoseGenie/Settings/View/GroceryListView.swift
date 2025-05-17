@@ -7,112 +7,130 @@
 
 import SwiftUI
 
-// Hard-coded ingredients
-let testRecipe = Recipe(
-    name: "Recipe Name",
-    image: "https://diabetesfoodhub.org/sites/foodhub/files/styles/375_375_2x/public/shutterstock_425424460.webp?h=e2d4e250&itok=ptCQ_FGY",
-    url: "https://example.com/recipe",
-    ingredients: [
-        Ingredient(text: "1 egg", quantity: 1, units: "unit"),
-        Ingredient(text: "100g flour", quantity: 100, units: "g"),
-        Ingredient(text: "2cups milk", quantity: 2, units: "cups"),
-        Ingredient(text: "1.5tbsp olive oil", quantity: 1.5, units: "tbsp"),
-        Ingredient(text: "200g chicken breast", quantity: 200, units: "g"),
-        Ingredient(text: "3cloves garlic", quantity: 3, units: "cloves"),
-        Ingredient(text: "1tsp salt", quantity: 1, units: "tsp"),
-        Ingredient(text: "0.5cup chopped onions", quantity: 0.5, units: "cup"),
-        Ingredient(text: "250ml vegetable broth", quantity: 250, units: "ml"),
-        Ingredient(text: "1slice whole wheat bread", quantity: 1, units: "slice"),
-        Ingredient(text: "100g spinach", quantity: 100, units: "g"),
-        Ingredient(text: "2tbsp soy sauce", quantity: 2, units: "tbsp")
-    ],
-    totalTime: nil,
-    servings: nil,
-    totalNutrients: [
-        Nutrient(name: "Energy", quantity: 250, unit: "kcal"),
-        Nutrient(name: "Carbohydrates", quantity: 30, unit: "g"),
-        Nutrient(name: "Sugars", quantity: 5, unit: "g")
-    ],
-    diets: [.balanced, .lowFat],
-    mealtypes: [.breakfast],
-    healthLabels: [.glutenFree, .vegetarian],
-    tags: ["dairy", "vegatable"]
-)
+class GroceryList: ObservableObject {
+    @Published var items: [GroceryItem] = [] {
+        didSet {
+            saveItems()
+        }
+    }
 
-struct GroceryItem: Identifiable {
-    let id = UUID()
-    let quantity: String
-    let name: String
-    var isChecked: Bool = false
-}
+    private let storageKey = "grocery_list"
 
-func parseIngredients(_ ingredients: [Ingredient]) -> [GroceryItem] {
-    ingredients.map { ingredient in
-        let parts = ingredient.text.split(separator: " ", maxSplits: 1).map(String.init)
-        let quantity = parts.first ?? ""
-        let name = parts.count > 1 ? parts[1] : ""
-        return GroceryItem(quantity: quantity, name: name.capitalized)
+    init() {
+        loadItems()
+    }
+
+    private func saveItems() {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(items) {
+            UserDefaults.standard.set(data, forKey: storageKey)
+            // print("Grocery list saved")
+        }
+    }
+
+    private func loadItems() {
+        let decoder = JSONDecoder()
+        if let data = UserDefaults.standard.data(forKey: storageKey),
+           let decoded = try? decoder.decode([GroceryItem].self, from: data) {
+            self.items = decoded
+            // print("Grocery list loaded")
+        }
+    }
+    
+    func removeItem(_ item: GroceryItem) {
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+            items.remove(at: index)
+            objectWillChange.send()
+        }
+    }
+    
+    func syncWithMealPlan(from plan: [MealPlanEntry]) {
+        items = plan.flatMap { entry in
+            entry.recipe.ingredients.map { ingredient in
+                GroceryItem(
+                    recipeName: entry.recipe.name,
+                    ingredientName: ingredient.text
+                )
+            }
+        }
     }
 }
 
+struct GroceryItem: Identifiable, Codable {
+    let id = UUID()
+    let recipeName: String
+    let ingredientName: String
+    var isChecked: Bool = false
+}
 
 struct GroceryListView: View {
-    @State private var groceryItems: [GroceryItem] = parseIngredients(testRecipe.ingredients)
+    @EnvironmentObject private var store: RecipeStore
+    @StateObject private var groceryList = GroceryList()
     @State private var syncConfirmation = false
+    
+    // Group grocery items by recipe name
+    private var groupedGroceryList: [String: [Binding<GroceryItem>]] {
+        Dictionary(grouping: $groceryList.items) { $item in
+            item.recipeName
+        }
+    }
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Based on your weekly meal plan, you will need:")
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal)
+            VStack {
+                if groceryList.items.isEmpty {
+                    Text("Your grocery list is empty.")
+                        .font(.headline)
+                        .padding()
+                    
+                    Text("Add recipes to your weekly meal plan and click the sync button")
+                        .font(.body)
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                } else {
+                    List {
+                        ForEach(groupedGroceryList.keys.sorted(), id: \.self) { recipeName in
+                            Section(header: Text(recipeName)
+                                        .font(.headline)
+                                        .lineLimit(nil)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .padding(.horizontal)
+                                        .padding(.bottom, 8)) {
+                                ForEach(groupedGroceryList[recipeName]!, id: \.id) { $item in
+                                    HStack {
+                                        Button(action: {
+                                            item.isChecked.toggle()
+                                        }) {
+                                            Image(systemName: item.isChecked ? "checkmark.square.fill" : "square")
+                                                .foregroundColor(item.isChecked ? .green : .gray)
+                                                .font(.title3)
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())
 
-                ScrollView {
-                    VStack(spacing: 12) {
-                        ForEach($groceryItems) { $item in
-                            HStack {
-                                Button(action: {
-                                    item.isChecked.toggle()
-                                }) {
-                                    Image(systemName: item.isChecked ? "checkmark.square.fill" : "square")
-                                        .foregroundColor(item.isChecked ? .green : .gray)
-                                        .font(.title3)
-                                }
+                                        Text(item.ingredientName.capitalized)
+                                            .font(.body)
+                                            .fontWeight(.medium)
+                                            .strikethrough(item.isChecked, color: .gray)
+                                            .foregroundColor(item.isChecked ? .gray : .primary)
 
-                                Text(item.quantity)
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .frame(width: 80, alignment: .center)
-                                    .strikethrough(item.isChecked, color: .gray)
-                                    .foregroundColor(item.isChecked ? .gray : .primary)
+                                        Spacer()
 
-                                Text(item.name)
-                                    .font(.body)
-                                    .fontWeight(.medium)
-                                    .strikethrough(item.isChecked, color: .gray)
-                                    .foregroundColor(item.isChecked ? .gray : .primary)
-
-                                Spacer()
-                                
-                                Button(action: {
-                                    if let index = groceryItems.firstIndex(where: { $0.id == item.id }) {
-                                        groceryItems.remove(at: index)
+                                        Button(action: {
+                                            groceryList.removeItem(item)
+                                        }) {
+                                            Image(systemName: "xmark.circle")
+                                                .foregroundColor(.red)
+                                                .font(.title3)
+                                        }
+                                        .buttonStyle(BorderlessButtonStyle())
                                     }
-                                }) {
-                                    Image(systemName: "xmark.circle")
-                                        .foregroundColor(.red)
-                                        .font(.title3)
+                                    .padding(.vertical, 4)
                                 }
                             }
-                            .padding()
-                            .background(Color(.systemBackground))
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
                         }
                     }
-                    .padding()
+                    .listStyle(InsetGroupedListStyle())
                 }
             }
             .navigationTitle("Grocery List")
@@ -129,7 +147,7 @@ struct GroceryListView: View {
             .alert("Sync Grocery List?", isPresented: $syncConfirmation) {
                 Button("Cancel", role: .cancel) { }
                 Button("Sync") {
-                    groceryItems = parseIngredients(testRecipe.ingredients)
+                    groceryList.syncWithMealPlan(from: store.plan)
                 }
             } message: {
                 Text("This will sync your grocery list with your current meal plan. Any changes will be lost.")

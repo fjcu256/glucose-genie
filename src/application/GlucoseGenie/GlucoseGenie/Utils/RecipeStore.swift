@@ -57,6 +57,11 @@ final class RecipeStore: ObservableObject {
     plan.removeAll { $0.id == entry.id }
     save()
   }
+    
+  func clearPlan() {
+    plan.removeAll()
+    save()
+  }
 
   private func load() {
     let decoder = JSONDecoder()
