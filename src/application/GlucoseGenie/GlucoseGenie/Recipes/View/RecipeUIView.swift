@@ -39,6 +39,12 @@ struct RecipeUIView: View {
                 filterSection
                 recipeGrid
                 loadMoreButton
+                Spacer(minLength: 30)
+                Image("EdamamBadge")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 30)
+                    .padding(.bottom, 20)
             }
             .navigationTitle("Recipes")
             .navigationBarTitleDisplayMode(.large)
@@ -107,6 +113,7 @@ struct RecipeUIView: View {
                 .multilineTextAlignment(.leading)
             }
 
+            // Error message to display to user if something unexpected happens or if no recipes were found.
             if let error = uiErrorMessage {
                 Text(error)
                     .foregroundColor(.orange)
@@ -234,6 +241,7 @@ struct RecipeUIView: View {
 
     // Filtering logic
     private var filteredRecipes: [Recipe] {
+        // Search Query from User search bar.
         let trimmed = searchQuery
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
@@ -308,6 +316,7 @@ struct RecipeUIView: View {
         isLoading = true
         var combined: [Recipe] = []
         var pagesFetched = 0
+        // maxPages places a limit on the number of pages to load at once when opening this page. 
         let maxPages = 3
 
         func fetchPage(from url: URL) {
