@@ -39,7 +39,6 @@ struct RecipeUIView: View {
                 
                 // Set background to two colors
                 VStack(spacing: 0) {
-                    Color.orangeMain.frame(height:98)
                     Color.eggWhite
                 }.ignoresSafeArea()
                 
@@ -58,13 +57,7 @@ struct RecipeUIView: View {
                             .padding(.bottom, 20)
                     }
                 }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("Recipes")
-                            .font(.largeTitle.bold())
-                            .foregroundColor(.darkBrown)
-                    }
-                }
+                .navigationTitle("Recipes")
                 .navigationBarTitleDisplayMode(.large)
                 .onAppear {
                     if allRecipes.isEmpty {
