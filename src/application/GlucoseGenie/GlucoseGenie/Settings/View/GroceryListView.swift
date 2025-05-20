@@ -131,6 +131,8 @@ struct GroceryListView: View {
                         }
                     }
                     .listStyle(InsetGroupedListStyle())
+                    .scrollContentBackground(.hidden)
+                    .background(Color.eggWhite)
                     Spacer(minLength: 30)
                     Image("EdamamBadge")
                         .resizable()
