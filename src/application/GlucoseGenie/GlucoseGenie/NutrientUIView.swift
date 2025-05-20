@@ -22,7 +22,7 @@ struct NutrientUIView: View {
             Color.eggWhite.ignoresSafeArea()
             
         VStack(alignment: .center) {
-            Text("Nutrient Tracker" + " 📊")
+            Text("Nutrient Tracker 📊")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()

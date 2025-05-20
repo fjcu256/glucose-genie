@@ -141,7 +141,7 @@ struct GroceryListView: View {
                         .padding(.bottom, 20)
                 }
             }
-            .navigationTitle("Grocery List" + " 🗒️")
+            .navigationTitle("Grocery List 🗒️")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {

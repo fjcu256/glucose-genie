@@ -60,7 +60,7 @@ struct SavedRecipesView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.eggWhite)
-        .navigationTitle("Saved Recipes" + " ❤️")
+        .navigationTitle("Saved Recipes ❤️")
         .navigationBarTitleDisplayMode(.large)
         // Present the standard day+slot picker
         .sheet(item: $planRecipe) { recipeToPlan in

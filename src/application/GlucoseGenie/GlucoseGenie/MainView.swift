@@ -28,22 +28,22 @@ struct MainView: View {
                                 .clipped()
 
                             NavigationLink(destination: RecipeUIView()) {
-                                Text("Recipes" + " 🔎").styledButton()
+                                Text("Recipes 🔎").styledButton()
                             }
                             NavigationLink(destination: SavedRecipesView()) {
-                                Text("Saved Recipes" + " ❤️").styledButton()
+                                Text("Saved Recipes ❤️").styledButton()
                             }
                             NavigationLink(destination: WeeklyMealPlanView()) {
-                                Text("Weekly Meal Plan" + " 📆").styledButton()
+                                Text("Weekly Meal Plan 📆").styledButton()
                             }
                             NavigationLink(destination: GroceryListView()) {
-                                Text("Grocery List" + " 🗒️").styledButton()
+                                Text("Grocery List 🗒️").styledButton()
                             }
                             NavigationLink(destination: GroceryStoreView()) {
-                                Text("Find Grocery Store" + " 📍").styledButton()
+                                Text("Find Grocery Store 📍").styledButton()
                             }
                             NavigationLink(destination: NutrientUIView()) {
-                                Text("Track Nutrients" + " 📊").styledButton()
+                                Text("Track Nutrients 📊").styledButton()
                             }
                             
                             Spacer()
