@@ -17,11 +17,12 @@ struct SettingsUIView: View {
             ZStack {
                 Color.eggWhite.ignoresSafeArea()
                 Form {
-                    Section {
+                    // FIXME - Notifications are not implemented.
+                    /*Section {
                         Toggle(isOn: $viewModel.isNotificationsEnabled) {
                             Label("Notifications", systemImage: "bell")
                         }
-                    }
+                    }*/
                     
                     Section {
                         Button(action: handleLogOut) {
