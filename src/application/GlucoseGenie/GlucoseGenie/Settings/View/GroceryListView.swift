@@ -79,15 +79,20 @@ struct GroceryListView: View {
         NavigationView {
             VStack {
                 if groceryList.items.isEmpty {
-                    Text("Your grocery list is empty.")
-                        .font(.headline)
-                        .padding()
+                    ZStack {
+                        Color.eggWhite.ignoresSafeArea()
+                        Text("Your grocery list is empty.")
+                            .font(.headline)
+                            .padding(.top, -80)
+                        Spacer()
+                        
+                        Text("Add recipes to your weekly meal plan and click the sync button")
+                            .font(.body)
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
                     
-                    Text("Add recipes to your weekly meal plan and click the sync button")
-                        .font(.body)
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
                 } else {
                     List {
                         ForEach(groupedGroceryList.keys.sorted(), id: \.self) { recipeName in
