@@ -88,6 +88,7 @@ struct WeeklyMealPlanView: View {
                                 } label: {
                                     Image(systemName: "plus.circle")
                                         .font(.title2)
+                                        .foregroundStyle(Color.orangeMain)
                                 }
                                 .accessibilityLabel("\(addRecipeToString) \(day.displayName)")
                             }
