@@ -147,7 +147,7 @@ struct DetailedRecipeView: View {
                     )
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.orange)
+                .tint(.orangeMain)
 
                 // Add to Meal Plan
                 Button("Add to Meal Plan") {
@@ -164,6 +164,7 @@ struct DetailedRecipeView: View {
                 Spacer()
             }
             .padding()
+            .background(Color.eggWhite)
             Spacer(minLength: 30)
             Image("EdamamBadge")
                 .resizable()
@@ -173,6 +174,8 @@ struct DetailedRecipeView: View {
         }
         .navigationTitle("Recipe")
         .navigationBarTitleDisplayMode(.inline)
+        .background(Color.eggWhite)
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
