@@ -191,7 +191,7 @@ private struct MealTile: View {
                             .environmentObject(store)
                             .environmentObject(authService)
                     } label: {
-                        TileContent(recipe: entry.recipe)
+                        TileContent(recipe: entry.recipe).foregroundColor(Color.darkBrown)
                     }
                     .contextMenu {
                         Button(role: .destructive) {
@@ -207,10 +207,10 @@ private struct MealTile: View {
                         VStack {
                             Image(systemName: "plus.circle")
                                 .font(.largeTitle)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.orangeMain)
                             Text("Add")
                                 .font(.caption)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.orangeMain)
                         }
                     }
                 }
