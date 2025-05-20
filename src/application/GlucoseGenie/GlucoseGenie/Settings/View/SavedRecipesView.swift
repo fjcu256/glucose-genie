@@ -49,15 +49,19 @@ struct SavedRecipesView: View {
                         } label: {
                             Label("Plan", systemImage: "calendar.badge.plus")
                         }
-                        .tint(.blue)
+                        .tint(.orangeMain)
                     }
+                    .listRowBackground(Color.white)
                 }
                 .onDelete { offsets in
                     store.saved.remove(atOffsets: offsets)
                 }
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(Color.eggWhite)
         .navigationTitle("Saved Recipes")
+        .navigationBarTitleDisplayMode(.large)
         // Present the standard day+slot picker
         .sheet(item: $planRecipe) { recipeToPlan in
             NavigationStack {
