@@ -115,7 +115,7 @@ struct WeeklyMealPlanView: View {
                     .frame(height: 30)
                     .padding(.bottom, 20)
             }
-            .navigationTitle("Weekly Meal Plan")
+            .navigationTitle("Weekly Meal Plan" + " 📆")
             .navigationBarTitleDisplayMode(.large)
             .background(Color.eggWhite)
             .scrollContentBackground(.hidden)

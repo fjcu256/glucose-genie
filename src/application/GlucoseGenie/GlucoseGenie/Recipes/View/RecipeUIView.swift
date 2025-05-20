@@ -57,7 +57,7 @@ struct RecipeUIView: View {
                             .padding(.bottom, 20)
                     }
                 }
-                .navigationTitle("Recipes")
+                .navigationTitle("Recipes" + " 🔎")
                 .navigationBarTitleDisplayMode(.large)
                 .onAppear {
                     if allRecipes.isEmpty {
