@@ -18,8 +18,11 @@ struct NutrientUIView: View {
     let proteinString = String(localized: "Protein")
     
     var body: some View {
+        ZStack {
+            Color.eggWhite.ignoresSafeArea()
+            
         VStack(alignment: .center) {
-            Text("Nutrient Tracker")
+            Text("Nutrient Tracker 📊")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
@@ -35,11 +38,12 @@ struct NutrientUIView: View {
                         .padding()
                         .foregroundColor(.white)
                 }
-                .background(Color.orange)
+                .background(Color.orangeMain)
                 .cornerRadius(10)
                 .padding(.top)
             }
             .padding()
+            .background(Color.eggWhite)
             
             List(nutrientsViewModel.logs.sorted(by: { $0.date > $1.date})) { log in
                 HStack {
@@ -53,10 +57,13 @@ struct NutrientUIView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.eggWhite)
         }
         .onAppear {
             nutrientsViewModel.loadLogs()
         }
+    }
     }
     
     private func addEntry() {

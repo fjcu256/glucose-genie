@@ -64,6 +64,7 @@ struct WeeklyMealPlanView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             // Day header with date and sun icon
                             HStack(spacing: 4) {
+                                
                                 Text(day.displayName)
                                     .font(.title2).bold()
                                     .foregroundColor(
@@ -71,6 +72,7 @@ struct WeeklyMealPlanView: View {
                                             ? .blue
                                             : .primary
                                     )
+                                
                                 Text("· \(Self.monthDayFormatter.string(from: date))")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
@@ -78,12 +80,15 @@ struct WeeklyMealPlanView: View {
                                     Image(systemName: "sun.max.fill")
                                         .foregroundColor(.orange)
                                 }
+                                
                                 Spacer()
+                                
                                 Button {
                                     activeSheet = .chooseDay(day: day)
                                 } label: {
                                     Image(systemName: "plus.circle")
                                         .font(.title2)
+                                        .foregroundStyle(Color.orangeMain)
                                 }
                                 .accessibilityLabel("\(addRecipeToString) \(day.displayName)")
                             }
@@ -111,7 +116,11 @@ struct WeeklyMealPlanView: View {
                     .frame(height: 30)
                     .padding(.bottom, 20)
             }
-            .navigationTitle("Weekly Meal Plan")
+            .navigationTitle("Weekly Meal Plan 📆")
+            .navigationBarTitleDisplayMode(.large)
+            .background(Color.eggWhite)
+            .scrollContentBackground(.hidden)
+            .ignoresSafeArea(edges: .bottom)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(role: .destructive) {
@@ -174,7 +183,7 @@ private struct MealTile: View {
             Text(slot.displayName).font(.headline)
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(.systemGray6))
+                    .fill(Color(.white))
                     .frame(width: 150, height: 150)
 
                 if let entry = entry {
@@ -183,7 +192,7 @@ private struct MealTile: View {
                             .environmentObject(store)
                             .environmentObject(authService)
                     } label: {
-                        TileContent(recipe: entry.recipe)
+                        TileContent(recipe: entry.recipe).foregroundColor(Color.darkBrown)
                     }
                     .contextMenu {
                         Button(role: .destructive) {
@@ -199,10 +208,10 @@ private struct MealTile: View {
                         VStack {
                             Image(systemName: "plus.circle")
                                 .font(.largeTitle)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.orangeMain)
                             Text("Add")
                                 .font(.caption)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.orangeMain)
                         }
                     }
                 }

@@ -14,24 +14,30 @@ struct SettingsUIView: View {
     var body: some View {
         
         NavigationView {
-            Form {
-                Section {
-                    Toggle(isOn: $viewModel.isNotificationsEnabled) {
-                        Label("Notifications", systemImage: "bell")
-                    }
-                }
-                
-                Section {
-                    Button(action: handleLogOut) {
-                        HStack {
-                            Image(systemName: "rectangle.portrait.and.arrow.right")
-                                .foregroundColor(.red)
-                            Text("Log Out")
-                                .foregroundColor(.red)
+            ZStack {
+                Color.eggWhite.ignoresSafeArea()
+                Form {
+                    // FIXME - Notifications are not implemented.
+                    /*Section {
+                        Toggle(isOn: $viewModel.isNotificationsEnabled) {
+                            Label("Notifications", systemImage: "bell")
                         }
-                        
+                    }*/
+                    
+                    Section {
+                        Button(action: handleLogOut) {
+                            HStack {
+                                Image(systemName: "rectangle.portrait.and.arrow.right")
+                                    .foregroundColor(.red)
+                                Text("Log Out")
+                                    .foregroundColor(.red)
+                            }
+                            
+                        }
                     }
                 }
+                .scrollContentBackground(.hidden)
+                .background(Color.eggWhite)
             }
             .navigationTitle("Settings")
         }

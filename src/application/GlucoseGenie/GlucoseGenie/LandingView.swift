@@ -14,6 +14,9 @@ struct LandingView: View {
 
     var body: some View {
         ZStack {
+            
+            Color.orangeMain.ignoresSafeArea()
+            
             if isLoading {
                 ProgressView()
             }
@@ -21,11 +24,28 @@ struct LandingView: View {
                 if authenticationService.isSignedIn {
                     MainView()
                 } else {
-                    Button("Sign in") {
-                        Task {
-                            await authenticationService.signIn(presentationAnchor: window)
+                    VStack {
+                        // Add Logo to Screen.
+                        Image("GlucoseGenieBanner")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UIScreen.main.bounds.width, height:100)
+                            .offset(y:  -12) // Show only the middle section of square banner
+                            .clipped()
+                        
+                        // Sign in button.
+                        Button("Sign in") {
+                            Task {
+                                await authenticationService.signIn(presentationAnchor: window)
+                            }
                         }
+                        .padding()
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
                     }
+                    .padding()
                 }
             }
             .opacity(isLoading ? 0.5 : 1)
