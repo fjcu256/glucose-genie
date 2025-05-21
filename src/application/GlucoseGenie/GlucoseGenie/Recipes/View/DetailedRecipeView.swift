@@ -66,7 +66,7 @@ struct DetailedRecipeView: View {
                         Text("\(caloriesString): \(cal) kcal")
                     }
                     if let carb = recipe.carbs {
-                        Text("\(carbsString): \(carb)g")
+                        Text("\(carbsString): \(carb) g")
                     }
                 }
                 .font(.subheadline)
