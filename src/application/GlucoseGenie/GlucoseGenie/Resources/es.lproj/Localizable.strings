@@ -180,3 +180,7 @@
 "Sync" = "Sincronizar";
 
 "This will sync your grocery list with your current meal plan. Any changes will be lost." = "Al sincronizar la lista de compras con el plan de comidas actual, cualquier cambio a la medida se perderá.";
+
+"Your grocery list is empty." = "La lista de compras está vacía.";
+
+"Add recipes to your weekly meal plan and click the sync button." = "Añade recetas a tu plan de comidas semanal y selecciona el botón de sincronización.";
