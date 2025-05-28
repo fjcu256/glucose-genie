@@ -86,7 +86,7 @@ struct GroceryListView: View {
                             .padding(.top, -80)
                         Spacer()
                         
-                        Text("Add recipes to your weekly meal plan and click the sync button")
+                        Text("Add recipes to your weekly meal plan and click the sync button.")
                             .font(.body)
                             .frame(maxWidth: .infinity)
                             .multilineTextAlignment(.center)
