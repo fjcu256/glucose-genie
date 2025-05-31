@@ -163,6 +163,9 @@ struct WeeklyMealPlanView: View {
                 }
             }
         }
+        .onAppear{
+            store.resetIfNewWeek()
+        }
     }
 }
 
