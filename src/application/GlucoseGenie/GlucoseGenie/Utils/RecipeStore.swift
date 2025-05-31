@@ -35,6 +35,7 @@ final class RecipeStore: ObservableObject {
 
   private let savedKey = "saved_recipes"
   private let planKey  = "weekly_plan"
+  private let lastResetDate = "last_reset_date"
 
   init() { load() }
 
@@ -61,6 +62,25 @@ final class RecipeStore: ObservableObject {
   func clearPlan() {
     plan.removeAll()
     save()
+  }
+    
+  func resetIfNewWeek() {
+    let calendar = Calendar.current
+    let today = Date()
+
+    // Start of the current week (Sunday)
+    let startOfThisWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
+
+    if let lastResetData = UserDefaults.standard.object(forKey: lastResetDate) as? Date {
+        // Clear plan if new week
+        if !calendar.isDate(lastResetData, equalTo: today, toGranularity: .weekOfYear) {
+            clearPlan()
+            UserDefaults.standard.set(startOfThisWeek, forKey: lastResetDate)
+        }
+    } else {
+        // First time setup; store current Sunday
+        UserDefaults.standard.set(startOfThisWeek, forKey: lastResetDate)
+    }
   }
 
   private func load() {
