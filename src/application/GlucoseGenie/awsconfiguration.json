@@ -55,10 +55,10 @@
     },
     "AppSync": {
         "Default": {
-            "ApiUrl": "https://qzxatnnfi5fwjmuo6b3ixhsbdu.appsync-api.us-east-1.amazonaws.com/graphql",
+            "ApiUrl": "https://6exu6lnvzjh2zpvblx5tgyrgoq.appsync-api.us-east-1.amazonaws.com/graphql",
             "Region": "us-east-1",
             "AuthMode": "AMAZON_COGNITO_USER_POOLS",
-            "ClientDatabasePrefix": "glucosegenieAPI_AMAZON_COGNITO_USER_POOLS"
+            "ClientDatabasePrefix": "Recipe API_AMAZON_COGNITO_USER_POOLS"
         }
     }
 }

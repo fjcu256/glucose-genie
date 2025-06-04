@@ -1,6 +1,6 @@
 {
   "api": {
-    "glucosegenieAPI": {
+    "Recipe API": {
       "dependsOn": [
         {
           "attributes": [
