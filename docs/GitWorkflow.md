@@ -110,7 +110,7 @@ git push --delete origin <branch-name>
 ```
 ### 9. Repeat steps 1-8 whenever new changes to main are made. 
 
-# Approving a PR
+## Approving a PR
 Our team requires at least one other person to pull the PR, build the project and check the behavior that was implemented in addition to a code review any time changes to code are made. 
 
 In order to pull and test another PR locally:
@@ -120,6 +120,7 @@ Example:
 - The **ID** is `22`
 2. Pull the PR locally. 
 `$git fetch origin pull/<ID>/head:BRANCH-NAME`
+
 `BRANCH_NAME` is the name of the branch you are creating locally to pull the PR into. 
 
 3. Switch into the PR
