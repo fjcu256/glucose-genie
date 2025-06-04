@@ -119,14 +119,10 @@ Example:
 - New stuff added is in a PR: `#22`
 - The **ID** is `22`
 2. Pull the PR locally. 
-```
-$git fetch origin pull/<ID>/head:BRANCH-NAME
-```
+`$git fetch origin pull/<ID>/head:BRANCH-NAME`
 `BRANCH_NAME` is the name of the branch you are creating locally to pull the PR into. 
 
 3. Switch into the PR
-```
-$git switch BRANCH-NAME
-```
+`$git switch BRANCH-NAME`
 
 4. Attempt a build in Xcode and ensure the functionality of the application is expected.  
