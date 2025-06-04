@@ -123,8 +123,10 @@ Example:
 $git fetch origin pull/<ID>/head:BRANCH-NAME
 ```
 `BRANCH_NAME` is the name of the branch you are creating locally to pull the PR into. 
+
 3. Switch into the PR
 ```
 $git switch BRANCH-NAME
 ```
+
 4. Attempt a build in Xcode and ensure the functionality of the application is expected.  
