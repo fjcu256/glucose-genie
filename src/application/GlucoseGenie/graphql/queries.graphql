@@ -1,31 +1,21 @@
 # this is an auto generated file. This will be overwritten
 
-query GetTestDB($id: ID!) {
-  getTestDB(id: $id) {
+query GetSavedRecipes($user: String!) {
+  getSavedRecipes(user: $user) {
     id
-    owner
-    description
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-
-query ListTestDBS(
-  $filter: ModelTestDBFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTestDBS(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      owner
-      description
-      createdAt
-      updatedAt
+    user
+    recipe {
+      name
+      image
+      url
+      time
+      servings
+      diets
+      meals
+      labels
+      tags
       __typename
     }
-    nextToken
     __typename
   }
 }
