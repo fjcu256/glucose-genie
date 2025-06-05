@@ -8,7 +8,7 @@
 import Foundation
 
 struct Recipe: Identifiable, Equatable, Codable {
-    let id = UUID()
+    let id: UUID
     let name: String
     let image: String
     let url: String
@@ -20,6 +20,34 @@ struct Recipe: Identifiable, Equatable, Codable {
     let mealtypes: [MealType]
     let healthLabels: [HealthLabel]
     let tags: [String]
+    
+    init(
+        id: UUID = UUID(),
+        name: String,
+        image: String,
+        url: String,
+        ingredients: [Ingredient],
+        totalTime:     Double?,
+        servings:      Int?,
+        totalNutrients: [Nutrient],
+        diets: [DietType],
+        mealtypes: [MealType],
+        healthLabels: [HealthLabel],
+        tags: [String]
+    ) {
+        self.id = id
+        self.name = name
+        self.image = image
+        self.url = url
+        self.ingredients = ingredients
+        self.totalTime = totalTime
+        self.servings = servings
+        self.totalNutrients = totalNutrients
+        self.diets = diets
+        self.mealtypes = mealtypes
+        self.healthLabels = healthLabels
+        self.tags = tags
+    }
     
     /*
      Getters. All of the getters return nil if a value cannot be found.
