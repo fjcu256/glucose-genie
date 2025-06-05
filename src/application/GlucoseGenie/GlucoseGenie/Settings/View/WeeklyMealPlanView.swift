@@ -230,11 +230,20 @@ private struct TileContent: View {
         VStack(spacing: 4) {
             if let url = recipe.imageUrl {
                 AsyncImage(url: url) { phase in
-                    phase.image?
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    switch phase {
+                    case .empty:
+                        ProgressView().frame(width: 100, height: 100)
+                    case .success(let image):
+                        image.resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    case .failure(_):
+                        Text("🍽️")
+                            .font(.largeTitle)
+                    @unknown default:
+                        EmptyView()
+                    }
                 }
             } else {
                 Text("🍽️")
