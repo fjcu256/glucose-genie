@@ -1,43 +1,41 @@
 # this is an auto generated file. This will be overwritten
 
-mutation CreateTestDB(
-  $input: CreateTestDBInput!
-  $condition: ModelTestDBConditionInput
-) {
-  createTestDB(input: $input, condition: $condition) {
+mutation AddSavedRecipe($input: SavedRecipeInput!) {
+  addSavedRecipe(input: $input) {
     id
-    owner
-    description
-    createdAt
-    updatedAt
+    user
+    recipe {
+      name
+      image
+      url
+      time
+      servings
+      diets
+      meals
+      labels
+      tags
+      __typename
+    }
     __typename
   }
 }
 
-mutation UpdateTestDB(
-  $input: UpdateTestDBInput!
-  $condition: ModelTestDBConditionInput
-) {
-  updateTestDB(input: $input, condition: $condition) {
+mutation RemoveSavedRecipe($input: RemoveSavedRecipeInput!) {
+  removeSavedRecipe(input: $input) {
     id
-    owner
-    description
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-
-mutation DeleteTestDB(
-  $input: DeleteTestDBInput!
-  $condition: ModelTestDBConditionInput
-) {
-  deleteTestDB(input: $input, condition: $condition) {
-    id
-    owner
-    description
-    createdAt
-    updatedAt
+    user
+    recipe {
+      name
+      image
+      url
+      time
+      servings
+      diets
+      meals
+      labels
+      tags
+      __typename
+    }
     __typename
   }
 }

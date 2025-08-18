@@ -4,9 +4,8 @@
     "api": {
         "plugins": {
             "awsAPIPlugin": {
-                "glucosegenieAPI": {
+                "Recipe API": {
                     "endpointType": "GraphQL",
-                    "endpoint": "https://qzxatnnfi5fwjmuo6b3ixhsbdu.appsync-api.us-east-1.amazonaws.com/graphql",
                     "region": "us-east-1",
                     "authorizationType": "AMAZON_COGNITO_USER_POOLS"
                 }
@@ -20,63 +19,6 @@
                 "Version": "0.1.0",
                 "IdentityManager": {
                     "Default": {}
-                },
-                "CredentialsProvider": {
-                    "CognitoIdentity": {
-                        "Default": {
-                            "PoolId": "us-east-1:2f4b5f45-2ab5-4f66-8989-63d92f80baab",
-                            "Region": "us-east-1"
-                        }
-                    }
-                },
-                "CognitoUserPool": {
-                    "Default": {
-                        "PoolId": "us-east-1_aqEVpbUTQ",
-                        "AppClientId": "18jaf55rjrig8o1434rd5chl2d",
-                        "Region": "us-east-1"
-                    }
-                },
-                "Auth": {
-                    "Default": {
-                        "OAuth": {
-                            "WebDomain": "glucosegenie56529a16-56529a16-dev.auth.us-east-1.amazoncognito.com",
-                            "AppClientId": "18jaf55rjrig8o1434rd5chl2d",
-                            "SignInRedirectURI": "glucosegenie://",
-                            "SignOutRedirectURI": "glucosegenie://",
-                            "Scopes": [
-                                "phone",
-                                "email",
-                                "openid",
-                                "profile",
-                                "aws.cognito.signin.user.admin"
-                            ]
-                        },
-                        "authenticationFlowType": "USER_SRP_AUTH",
-                        "mfaConfiguration": "OFF",
-                        "mfaTypes": [
-                            "SMS"
-                        ],
-                        "passwordProtectionSettings": {
-                            "passwordPolicyMinLength": 8,
-                            "passwordPolicyCharacters": []
-                        },
-                        "signupAttributes": [
-                            "EMAIL"
-                        ],
-                        "socialProviders": [],
-                        "usernameAttributes": [],
-                        "verificationMechanisms": [
-                            "EMAIL"
-                        ]
-                    }
-                },
-                "AppSync": {
-                    "Default": {
-                        "ApiUrl": "https://qzxatnnfi5fwjmuo6b3ixhsbdu.appsync-api.us-east-1.amazonaws.com/graphql",
-                        "Region": "us-east-1",
-                        "AuthMode": "AMAZON_COGNITO_USER_POOLS",
-                        "ClientDatabasePrefix": "glucosegenieAPI_AMAZON_COGNITO_USER_POOLS"
-                    }
                 }
             }
         }
