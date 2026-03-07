@@ -312,8 +312,8 @@ struct RecipeUIView: View {
     }
 
     private func fetchInitialRecipes() {
-        let baseUrl = "https://api.edamam.com/api/recipes/v2"
-        guard !Secrets.appId.isEmpty, !Secrets.appKey.isEmpty else {
+        let baseUrl = "https://api.spoonacular.com/recipes/complexSearch"
+        guard !Secrets.spoonacularKey.isEmpty else {
             DispatchQueue.main.async {
                 isLoading = false
                 uiErrorMessage = String(localized: "Unable to get recipes. Credentials are missing. Please contact support.")
@@ -323,78 +323,45 @@ struct RecipeUIView: View {
 
         var query = URLComponents(string: baseUrl)!
         query.queryItems = [
-            .init(name: "type", value: "public"),
-            .init(name: "app_id", value: Secrets.appId),
-            .init(name: "app_key", value: Secrets.appKey),
-            .init(name: "health", value: "alcohol-free"),
-            .init(name: "glycemicIndex", value: "0.0-69.0"),
-            .init(name: "calories", value: "0-800"),
-            .init(name: "nutrients[CHOCDF]", value: "0-50.0"),
-            .init(name: "nutrients[SUGAR]", value: "0-15.0")
+            .init(name: "apiKey",                   value: Secrets.spoonacularKey),
+            .init(name: "addRecipeInformation",      value: "true"),
+            .init(name: "addRecipeNutrition",        value: "true"),
+            .init(name: "maxCalories",               value: "800"),
+            .init(name: "maxCarbs",                  value: "50"),
+            .init(name: "maxSugar",                  value: "15"),
+            .init(name: "number",                    value: "20"),
+            .init(name: "offset",                    value: "0")
         ]
 
         isLoading = true
-        var combined: [Recipe] = []
-        var pagesFetched = 0
-        // maxPages places a limit on the number of pages to load at once when opening this page. 
-        let maxPages = 3
 
-        func fetchPage(from url: URL) {
-            var req = URLRequest(url: url)
-            req.httpMethod = "GET"
-            req.addValue("application/json", forHTTPHeaderField: "accept")
-            req.addValue(lang, forHTTPHeaderField: "Accept-Language")
-
-            URLSession.shared.dataTask(with: req) { data, _, error in
-                if error != nil || data == nil {
-                    DispatchQueue.main.async {
-                        isLoading = false
-                        uiErrorMessage = String(localized: "Something went wrong while getting recipes.")
-                    }
-                    return
-                }
-                let (parsed, nextUrl) = RecipeParser.parseRecipes(from: data!)
-                combined.append(contentsOf: parsed)
-                pagesFetched += 1
-
-                if let nxt = nextUrl, pagesFetched < maxPages {
-                    fetchPage(from: nxt)
-                    nextPageUrl = nxt
-                } else {
-                    DispatchQueue.main.async {
-                        allRecipes = combined
-                        isLoading = false
-                    }
-                }
-            }
-            .resume()
-        }
-
-        if let initial = query.url {
-            fetchPage(from: initial)
-        }
-    }
-
-    private func loadMoreRecipes() {
-        guard let url = nextPageUrl, !isLoadingMore else { return }
-        isLoadingMore = true
-
+        guard let url = query.url else { return }
         var req = URLRequest(url: url)
         req.httpMethod = "GET"
         req.addValue("application/json", forHTTPHeaderField: "accept")
-        req.addValue(lang, forHTTPHeaderField: "Accept-Language")
 
-        URLSession.shared.dataTask(with: req) { data, _, _ in
-            defer { DispatchQueue.main.async { isLoadingMore = false } }
-            guard let data else { return }
-            let (parsed, nextUrl) = RecipeParser.parseRecipes(from: data)
-            let unique = parsed.filter { !allRecipes.contains($0) }
+        URLSession.shared.dataTask(with: req) { data, _, error in
+            if error != nil || data == nil {
+                DispatchQueue.main.async {
+                    isLoading = false
+                    uiErrorMessage = String(localized: "Something went wrong while getting recipes.")
+                }
+                return
+            }
+            let (parsed, _) = RecipeParser.parseRecipes(from: data!)
             DispatchQueue.main.async {
-                allRecipes.append(contentsOf: unique)
-                self.nextPageUrl = nextUrl
+                allRecipes = parsed
+                isLoading = false
             }
         }
         .resume()
+    }
+
+    private func loadMoreRecipes() {
+        // Spoonacular uses offset-based pagination; nextPageUrl is repurposed as a sentinel.
+        // For now, load-more is a no-op since we load 20 results upfront.
+        // To implement: track current offset and increment by 20 each call.
+        nextPageUrl = nil
     }
     
     // FIXME this function is purely for demo purposes

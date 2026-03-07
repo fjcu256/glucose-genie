@@ -8,7 +8,7 @@
 import Foundation
 
 struct Recipe: Identifiable, Equatable, Codable {
-    let id: UUID
+    let id: Int
     let name: String
     let image: String
     let url: String
@@ -22,7 +22,7 @@ struct Recipe: Identifiable, Equatable, Codable {
     let tags: [String]
     
     init(
-        id: UUID = UUID(),
+        id: Int = 0,
         name: String,
         image: String,
         url: String,
@@ -104,7 +104,7 @@ struct Recipe: Identifiable, Equatable, Codable {
 }
 
 struct Ingredient: Identifiable, Equatable, Codable, Hashable {
-    let id = UUID()
+    var id: String { "\(text)-\(quantity)-\(units)" }
     let text: String
     let quantity: Double
     let units: String

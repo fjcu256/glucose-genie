@@ -12,18 +12,22 @@ struct SettingsUIView: View {
     @EnvironmentObject private var authenticationService: AuthenticationService
     
     var body: some View {
-        
         NavigationView {
             ZStack {
                 Color.eggWhite.ignoresSafeArea()
                 Form {
-                    // FIXME - Notifications are not implemented.
-                    /*Section {
-                        Toggle(isOn: $viewModel.isNotificationsEnabled) {
-                            Label("Notifications", systemImage: "bell")
+                    #if DEBUG
+                    Section("Developer") {
+                        NavigationLink(destination: APITestView()) {
+                            HStack {
+                                Image(systemName: "network")
+                                    .foregroundColor(.blue)
+                                Text("API Test")
+                            }
                         }
-                    }*/
-                    
+                    }
+                    #endif
+
                     Section {
                         Button(action: handleLogOut) {
                             HStack {
@@ -32,7 +36,6 @@ struct SettingsUIView: View {
                                 Text("Log Out")
                                     .foregroundColor(.red)
                             }
-                            
                         }
                     }
                 }
@@ -41,7 +44,6 @@ struct SettingsUIView: View {
             }
             .navigationTitle("Settings")
         }
-        
     }
     
     private func handleLogOut() {
@@ -49,7 +51,6 @@ struct SettingsUIView: View {
             await authenticationService.signOut()
         }
     }
-    
 }
 
 struct SettingsUIView_Previews: PreviewProvider {
