@@ -166,11 +166,7 @@ struct DetailedRecipeView: View {
             .padding()
             .background(Color.eggWhite)
             Spacer(minLength: 30)
-            Image("EdamamBadge")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 30)
-                .padding(.bottom, 20)
+            
         }
         .navigationTitle("Recipe")
         .navigationBarTitleDisplayMode(.inline)

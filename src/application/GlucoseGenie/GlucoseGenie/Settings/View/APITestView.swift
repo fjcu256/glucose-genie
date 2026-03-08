@@ -57,6 +57,7 @@ struct APITestView: View {
             .init(name: "apiKey",               value: Secrets.spoonacularKey),
             .init(name: "addRecipeInformation", value: "true"),
             .init(name: "addRecipeNutrition",   value: "true"),
+            .init(name: "fillIngredients",      value: "true"),
             .init(name: "maxCalories",          value: "800"),
             .init(name: "maxCarbs",             value: "50"),
             .init(name: "maxSugar",             value: "15"),
