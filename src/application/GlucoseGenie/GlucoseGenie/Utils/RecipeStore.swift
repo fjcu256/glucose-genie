@@ -31,6 +31,7 @@ struct MealPlanEntry: Identifiable, Codable {
 
 final class RecipeStore: ObservableObject {
   @Published var saved: [Recipe] = []
+  @Published var language: String = (Bundle.main.preferredLocalizations.first ?? "en").components(separatedBy: "-").first ?? "en"
   @Published var plan: [MealPlanEntry] = []
 
   private let savedKey = "saved_recipes"

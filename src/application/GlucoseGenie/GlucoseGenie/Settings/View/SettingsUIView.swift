@@ -10,12 +10,28 @@ import SwiftUI
 struct SettingsUIView: View {
     @State private var viewModel = SettingsUIViewModel()
     @EnvironmentObject private var authenticationService: AuthenticationService
-    
+    @EnvironmentObject private var store: RecipeStore
+
     var body: some View {
         NavigationView {
             ZStack {
                 Color.eggWhite.ignoresSafeArea()
                 Form {
+                    Section("Language") {
+                        HStack {
+                            Image(systemName: "globe")
+                                .foregroundColor(.blue)
+                            Text("Recipe Language")
+                            Spacer()
+                            Picker("", selection: $store.language) {
+                                Text("English").tag("en")
+                                Text("Español").tag("es")
+                            }
+                            .pickerStyle(.segmented)
+                            .frame(width: 160)
+                        }
+                    }
+
                     #if DEBUG
                     Section("Developer") {
                         NavigationLink(destination: APITestView()) {
@@ -45,7 +61,7 @@ struct SettingsUIView: View {
             .navigationTitle("Settings")
         }
     }
-    
+
     private func handleLogOut() {
         Task {
             await authenticationService.signOut()
@@ -55,6 +71,8 @@ struct SettingsUIView: View {
 
 struct SettingsUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsUIView().environmentObject(AuthenticationService())
+        SettingsUIView()
+            .environmentObject(AuthenticationService())
+            .environmentObject(RecipeStore())
     }
 }
