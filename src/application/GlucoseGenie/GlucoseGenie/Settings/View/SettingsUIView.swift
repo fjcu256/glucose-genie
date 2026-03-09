@@ -11,6 +11,7 @@ struct SettingsUIView: View {
     @State private var viewModel = SettingsUIViewModel()
     @EnvironmentObject private var authenticationService: AuthenticationService
     @EnvironmentObject private var store: RecipeStore
+    @State private var showClearCacheConfirmation = false
 
     var body: some View {
         NavigationView {
@@ -41,6 +42,16 @@ struct SettingsUIView: View {
                                 Text("API Test")
                             }
                         }
+                        Button {
+                            showClearCacheConfirmation = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "trash")
+                                    .foregroundColor(.orange)
+                                Text("Clear Recipe Cache")
+                                    .foregroundColor(.orange)
+                            }
+                        }
                     }
                     #endif
 
@@ -59,6 +70,14 @@ struct SettingsUIView: View {
                 .background(Color.eggWhite)
             }
             .navigationTitle("Settings")
+            .alert("Clear Recipe Cache?", isPresented: $showClearCacheConfirmation) {
+                Button("Cancel", role: .cancel) { }
+                Button("Clear", role: .destructive) {
+                    store.clearCache()
+                }
+            } message: {
+                Text("Recipes will be re-fetched from Spoonacular next time you visit the Recipes tab.")
+            }
         }
     }
 
