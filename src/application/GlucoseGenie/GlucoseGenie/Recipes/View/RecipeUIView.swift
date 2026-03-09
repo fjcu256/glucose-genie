@@ -48,15 +48,19 @@ struct RecipeUIView: View {
                 .navigationTitle("Recipes 🔎")
                 .navigationBarTitleDisplayMode(.large)
                 .onAppear {
-                    if allRecipes.isEmpty {
+                    if store.hasFreshCache {
+                        // Use cached recipes — no API call needed
+                        allRecipes = store.cachedRecipes
+                        isLoading = false
+                    } else {
                         Task { await fetchAndTranslateRecipes() }
                     }
                 }
                 .onChange(of: store.language) {
-                    Task {
-                        allRecipes = []
-                        await fetchAndTranslateRecipes()
-                    }
+                    // Language changed — clear cache and re-fetch
+                    store.clearCache()
+                    allRecipes = []
+                    Task { await fetchAndTranslateRecipes() }
                 }
             }
         }
@@ -84,7 +88,7 @@ struct RecipeUIView: View {
             .init(name: "maxCalories",          value: "800"),
             .init(name: "maxCarbs",             value: "50"),
             .init(name: "maxSugar",             value: "15"),
-            .init(name: "number",               value: "20"),
+            .init(name: "number",               value: "10"),
             .init(name: "offset",               value: "0")
         ]
 
@@ -92,18 +96,12 @@ struct RecipeUIView: View {
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            
-            if let raw = String(data: data, encoding: .utf8) {
-                print("Spoonacular raw response: \(raw.prefix(500))")
-            }
-            
             let (parsed, _) = RecipeParser.parseRecipes(from: data)
-
-            // Translate if language is set to Spanish
             let final = await RecipeParser.translateRecipes(parsed, to: store.language)
 
             await MainActor.run {
                 allRecipes = final
+                store.setCachedRecipes(final, language: store.language)
                 isLoading = false
             }
         } catch {
