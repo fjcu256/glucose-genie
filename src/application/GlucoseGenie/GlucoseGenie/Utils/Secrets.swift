@@ -8,6 +8,15 @@
 import Foundation
 
 struct Secrets {
+    
+    static var spoonacularKey: String {
+        return getValue(forKey: "SPOONACULAR_API_KEY")
+    }
+    
+    static var googleTranslateKey: String {
+        return getValue(forKey: "GOOGLE_TRANSLATE_API_KEY")
+    }
+    
     static var appId: String {
         return getValue(forKey: "APP_ID")
     }

@@ -15,8 +15,6 @@ struct GlucoseGenieApp: App {
         configureAmplify()
     }
 
-    // Make AuthenticationService a @StateObject so its state
-    // (isSignedIn) persists across the entire app.
     @StateObject private var authService = AuthenticationService()
     @StateObject private var recipeStore = RecipeStore()
 
@@ -29,6 +27,11 @@ struct GlucoseGenieApp: App {
     }
 
     private func configureAmplify() {
+        #if DEBUG_BYPASS_AUTH
+        print("Auth bypass active — skipping Amplify configuration")
+        return
+        #endif
+
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.add(plugin: AWSAPIPlugin())

@@ -2,87 +2,96 @@
 //  APITestView.swift
 //  GlucoseGenie
 //
-//  Created by Jared Jackson on 3/6/25.
-//
 
 import SwiftUI
-import Amplify
 
 struct APITestView: View {
-    @State private var message: String = "Tap the button to add dummy data"
-    @State private var dbData: [TestDB] = []
+    @State private var message = "Tap to test Spoonacular API"
+    @State private var recipes: [Recipe] = []
+    @State private var isLoading = false
 
     var body: some View {
         VStack(spacing: 20) {
             Text(message)
                 .padding()
                 .multilineTextAlignment(.center)
+                .foregroundColor(message.contains("✅") ? .green :
+                                 message.contains("❌") ? .red : .primary)
 
             Button {
-                Task {
-                    await createData()
-                    await fetchData() // Refresh list
-                }
+                Task { await testAPI() }
             } label: {
-                Text("Add Dummy Data")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Text("Test Spoonacular API")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
             }
+            .disabled(isLoading)
 
-            List(dbData, id: \.id) { item in
-                VStack(alignment: .leading) {
-//                    Text(item.description) // Display title of todo
-//                        .font(.headline)
-                    Text(item.description ?? "No description") // Display description
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+            List(recipes) { recipe in
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(recipe.name).font(.headline)
+                    if let cal = recipe.calories {
+                        Text("\(cal) kcal").font(.subheadline).foregroundColor(.gray)
+                    }
+                    Text("\(recipe.ingredients.count) ingredients")
+                        .font(.caption).foregroundColor(.secondary)
                 }
             }
         }
         .padding()
-        .task {
-            await fetchData() // Fetch data on view load
-        }
+        .navigationTitle("API Test")
     }
-        
 
-    func createData() async {
-        do{
-            let attributes = try await Amplify.Auth.fetchUserAttributes()
-            let email = attributes.first(where: { $0.key == .email })?.value ?? "Unknown Email"
-            let data = TestDB(owner: email, description: "A Test Create by " + email)
-            
-            let result = try await Amplify.API.mutate(request: .create(data))
-            switch result {
-                case .success(let data):
-                    print("✅ Successfully created data: \(data)")
-                case .failure(let error):
-                    print("Got failed result with \(error.errorDescription)")
-            }
-        } catch let error as APIError {
-            print("❌ Failed to create data: ", error)
-        } catch {
-            print("❌ Unexpected error: \(error)")
+    func testAPI() async {
+        isLoading = true
+        message = "Fetching..."
+
+        var components = URLComponents(string: "https://api.spoonacular.com/recipes/complexSearch")!
+        components.queryItems = [
+            .init(name: "apiKey",               value: Secrets.spoonacularKey),
+            .init(name: "addRecipeInformation", value: "true"),
+            .init(name: "addRecipeNutrition",   value: "true"),
+            .init(name: "fillIngredients",      value: "true"),
+            .init(name: "maxCalories",          value: "800"),
+            .init(name: "maxCarbs",             value: "50"),
+            .init(name: "maxSugar",             value: "15"),
+            .init(name: "number",               value: "5")
+        ]
+
+        guard let url = components.url else {
+            message = "❌ Invalid URL"
+            isLoading = false
+            return
         }
-    }
-    
-    func fetchData() async {
+
         do {
-            let result = try await Amplify.API.query(request: .list(TestDB.self))
-            switch result {
-            case .success(let fetchedData):
-                DispatchQueue.main.async {
-                    self.dbData = Array(fetchedData)
-                    self.message = "Fetched \(fetchedData.count) entries"
+            let (data, response) = try await URLSession.shared.data(from: url)
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+
+            let (parsed, _) = RecipeParser.parseRecipes(from: data)
+
+            await MainActor.run {
+                if parsed.isEmpty {
+                    // Show raw response to help diagnose
+                    let raw = String(data: data, encoding: .utf8) ?? "unreadable"
+                    message = "❌ HTTP \(statusCode) — parsed 0 recipes\n\n\(raw.prefix(300))"
+                } else {
+                    message = "✅ HTTP \(statusCode) — got \(parsed.count) recipes"
+                    recipes = parsed
                 }
-            case .failure(let error):
-                print("❌ Failed to fetch data: \(error.errorDescription)")
+                isLoading = false
             }
         } catch {
-            print("❌ Unexpected error: \(error)")
+            await MainActor.run {
+                message = "❌ Network error: \(error.localizedDescription)"
+                isLoading = false
+            }
         }
     }
 }
-
