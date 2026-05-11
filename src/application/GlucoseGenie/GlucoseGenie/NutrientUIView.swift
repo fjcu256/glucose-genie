@@ -15,6 +15,7 @@ struct NutrientUIView: View {
     private let fiberString    = String(localized: "Fiber")
     private let sugarString    = String(localized: "Sugar")
     private let proteinString  = String(localized: "Protein")
+    private let fatString      = String(localized: "Fat")
     private let mealString     = String(localized: "meal")
     private let mealsString    = String(localized: "meals")
     private let noMealsString  = String(localized: "No meals planned.")
@@ -29,25 +30,28 @@ struct NutrientUIView: View {
         var fiber:    Double = 0
         var sugar:    Double = 0
         var protein:  Double = 0
+        var fat:      Double = 0
     }
 
-    // Edamam totals are for the whole recipe yield, so divide by servings
-    // to approximate what one meal-plan slot actually contributes.
-    private func perServing(_ recipe: Recipe, matching keyword: String) -> Double {
+    // Spoonacular returns canonical nutrient names; match exactly so we
+    // don't confuse "Carbohydrates" with "Net Carbohydrates", "Fat" with
+    // "Saturated Fat", or "Sugar" with "Added Sugar". Totals are for the
+    // whole recipe yield, so divide by servings to get a single slot.
+    private func perServing(_ recipe: Recipe, named name: String) -> Double {
         guard let nutrient = recipe.totalNutrients.first(where: {
-            $0.name.localizedCaseInsensitiveContains(keyword)
+            $0.name.caseInsensitiveCompare(name) == .orderedSame
         }) else { return 0 }
         let servings = max(Double(recipe.servings ?? 1), 1)
         return nutrient.quantity / servings
     }
 
     private func add(_ recipe: Recipe, to totals: inout MacroTotals) {
-        let energy = perServing(recipe, matching: "energ")
-        totals.calories += energy > 0 ? energy : perServing(recipe, matching: "calorie")
-        totals.carbs    += perServing(recipe, matching: "carb")
-        totals.fiber    += perServing(recipe, matching: "fiber")
-        totals.sugar    += perServing(recipe, matching: "sugar")
-        totals.protein  += perServing(recipe, matching: "protein")
+        totals.calories += perServing(recipe, named: "Calories")
+        totals.carbs    += perServing(recipe, named: "Carbohydrates")
+        totals.fiber    += perServing(recipe, named: "Fiber")
+        totals.sugar    += perServing(recipe, named: "Sugar")
+        totals.protein  += perServing(recipe, named: "Protein")
+        totals.fat      += perServing(recipe, named: "Fat")
     }
 
     private var weekTotals: MacroTotals {
@@ -110,6 +114,7 @@ struct NutrientUIView: View {
             macroRow(fiberString,    value: totals.fiber,    unit: "g")
             macroRow(sugarString,    value: totals.sugar,    unit: "g")
             macroRow(proteinString,  value: totals.protein,  unit: "g")
+            macroRow(fatString,      value: totals.fat,      unit: "g")
         }
         .foregroundColor(Color.darkBrown)
         .padding()
@@ -139,6 +144,7 @@ struct NutrientUIView: View {
                 macroRow(fiberString,    value: dayTotals.fiber,    unit: "g")
                 macroRow(sugarString,    value: dayTotals.sugar,    unit: "g")
                 macroRow(proteinString,  value: dayTotals.protein,  unit: "g")
+                macroRow(fatString,      value: dayTotals.fat,      unit: "g")
             }
         }
         .foregroundColor(Color.darkBrown)
