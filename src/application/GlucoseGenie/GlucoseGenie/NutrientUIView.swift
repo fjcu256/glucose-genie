@@ -33,25 +33,25 @@ struct NutrientUIView: View {
         var fat:      Double = 0
     }
 
-    // Spoonacular returns canonical nutrient names; match exactly so we
-    // don't confuse "Carbohydrates" with "Net Carbohydrates", "Fat" with
-    // "Saturated Fat", or "Sugar" with "Added Sugar". Totals are for the
-    // whole recipe yield, so divide by servings to get a single slot.
-    private func perServing(_ recipe: Recipe, named name: String) -> Double {
-        guard let nutrient = recipe.totalNutrients.first(where: {
-            $0.name.caseInsensitiveCompare(name) == .orderedSame
-        }) else { return 0 }
-        let servings = max(Double(recipe.servings ?? 1), 1)
-        return nutrient.quantity / servings
+    // Mirror the Nutrition Facts panel in DetailedRecipeView so the
+    // tracker reads the same numbers users see on each recipe. The
+    // Spoonacular endpoint already returns per-serving values, so a
+    // meal-plan slot contributes one recipe's nutrition as-is — no
+    // divide-by-servings here.
+    private func quantity(_ recipe: Recipe, matching keyword: String) -> Double {
+        recipe.totalNutrients.first(where: {
+            $0.name.localizedCaseInsensitiveContains(keyword)
+        })?.quantity ?? 0
     }
 
     private func add(_ recipe: Recipe, to totals: inout MacroTotals) {
-        totals.calories += perServing(recipe, named: "Calories")
-        totals.carbs    += perServing(recipe, named: "Carbohydrates")
-        totals.fiber    += perServing(recipe, named: "Fiber")
-        totals.sugar    += perServing(recipe, named: "Sugar")
-        totals.protein  += perServing(recipe, named: "Protein")
-        totals.fat      += perServing(recipe, named: "Fat")
+        let energy = quantity(recipe, matching: "energy")
+        totals.calories += energy > 0 ? energy : quantity(recipe, matching: "calorie")
+        totals.carbs    += quantity(recipe, matching: "carb")
+        totals.fiber    += quantity(recipe, matching: "fiber")
+        totals.sugar    += quantity(recipe, matching: "sugar")
+        totals.protein  += quantity(recipe, matching: "protein")
+        totals.fat      += quantity(recipe, matching: "fat")
     }
 
     private var weekTotals: MacroTotals {
