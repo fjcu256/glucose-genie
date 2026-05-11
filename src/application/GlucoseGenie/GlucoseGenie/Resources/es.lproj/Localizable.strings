@@ -198,3 +198,19 @@
 "Your meal plan is empty." = "Tu plan de comidas está vacío.";
 
 "Add recipes to your weekly meal plan to see your macros." = "Añade recetas a tu plan de comidas semanal para ver tus macros.";
+
+"Weekly Goals" = "Metas Semanales";
+
+"Set Goals" = "Establecer Metas";
+
+"Edit Goals" = "Editar Metas";
+
+"Goals met:" = "Metas alcanzadas:";
+
+"Save" = "Guardar";
+
+"Stay Under" = "Mantente por debajo";
+
+"Aim For At Least" = "Apunta a por lo menos";
+
+"Set your weekly macro goals. Leave a field blank to skip it." = "Establece tus metas semanales de macros. Deja un campo en blanco para omitirlo.";
