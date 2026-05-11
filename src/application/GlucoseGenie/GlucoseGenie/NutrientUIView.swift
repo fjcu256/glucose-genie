@@ -91,14 +91,6 @@ struct NutrientUIView: View {
                         ForEach(daysOrder) { day in
                             dayCard(day)
                         }
-
-                        Spacer(minLength: 30)
-                        Image("EdamamBadge")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 30)
-                            .frame(maxWidth: .infinity)
-                            .padding(.bottom, 20)
                     }
                     .padding(.vertical)
                 }
